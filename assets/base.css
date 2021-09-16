@@ -1763,6 +1763,10 @@ input[type='checkbox'] {
   color: rgb(var(--color-foreground));
 }
 
+.announcement-bar-new {
+  color: green;
+}
+
 .announcement-bar__link {
   display: block;
   width: 100%;

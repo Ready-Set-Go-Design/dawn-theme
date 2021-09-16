@@ -1,0 +1,27 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@media screen(sm) {
+  .tester {
+    @apply text-blue-400 font-sans w-16;
+  }
+}
+
+@media screen(md) {
+  .tester {
+    @apply text-blue-400 font-sans w-16 text-2xl;
+  }
+}
+
+@media screen(lg) {
+  .tester {
+    @apply text-blue-400 font-serif w-32 text-base;
+  }
+}
+
+@media screen(xl) {
+  .tester {
+    @apply text-blue-400 font-serif text-4xl;
+  }
+}

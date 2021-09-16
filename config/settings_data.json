@@ -20,10 +20,17 @@
               "settings": {
                 "color_scheme": "background-1"
               }
+            },
+            "announcement-bar-1": {
+              "type": "announcement",
+              "settings": {
+                "color_scheme": "background-1"
+              }
             }
           },
           "block_order": [
-            "announcement-bar-0"
+            "announcement-bar-0",
+            "announcement-bar-1"
           ]
         }
       }

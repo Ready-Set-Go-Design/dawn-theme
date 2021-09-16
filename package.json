@@ -1,0 +1,30 @@
+{
+  "name": "dawn-theme",
+  "version": "1.0.0",
+  "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"shopify theme serve\" \"npx tailwindcss -i ./src/tailwind_index.css -o ./assets/tailwind.css --watch\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shopify/dawn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shopify/dawn/issues"
+  },
+  "homepage": "https://github.com/Shopify/dawn#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.3.4",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.15"
+  },
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "postcss-import": "^14.0.2",
+    "postcss-nesting": "^8.0.1"
+  }
+}
