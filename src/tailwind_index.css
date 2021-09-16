@@ -24,4 +24,8 @@
   .tester {
     @apply text-blue-400 font-serif text-4xl;
   }
+
+  .tester2 {
+    @apply text-blue-400 font-serif text-4xl;
+  }
 }

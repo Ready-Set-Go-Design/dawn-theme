@@ -1,0 +1,49 @@
+<div>Tester</div>
+  <p class="text-green-400">Dismissable? {{ section.settings }} asdas</p>
+
+  <p>{%- if section.settings.dismissable == "true" -%}
+    true
+    {%- else -%}
+    false
+  {%- endif -%}</p>
+  {% schema %}
+  {
+    "name": "RSG Announcement Edited",
+    "tag": "section",
+    "class": "spaced-section spaced-section--full-width",
+    "settings": [
+        {
+        "type": "select",
+        "id": "dismissable",
+        "label": "Dismissable?",
+        "default": "true",
+        "options": [
+            {
+                "value": "true",
+                "label": "True"
+            },
+            {
+                "value": "false",
+                "label": "False"
+            },
+            {
+                "value": "sometimes",
+                "label": "On a full moon"
+            },
+            {
+                "value": "forth",
+                "label": "because!"
+            }
+        ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "RSG Announcement"
+        }
+    ],
+    "blocks": []
+}
+
+  {% endschema %}
+  

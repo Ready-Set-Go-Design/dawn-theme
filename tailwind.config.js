@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: [
     './assets/**/*.js',
     './layout/**/*.liquid',
