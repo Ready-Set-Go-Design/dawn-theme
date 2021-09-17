@@ -1,13 +1,26 @@
 <div class="text-center">
-  <p class="p-2 text-base text-black">This is an announcement</p>
-  <p class="p-2 text-base text-black">This is another announcement looped from a block</p>
+  <p class="p-2 text-base text-black">This is an announcement!</p>
+  {{ section.blocks.size }}
+  {%- for block in section.blocks -%}
+    
+        <div class="stuff" {{ block.shopify_attributes }}>
+          <span>{{ block.settings.text | escape }}</span>
+        </div>
+    
+        {%- if block.settings.image != blank -%}
+          <img
+            src="{{ block.settings.image | img_url: '1500x' }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            class="image-class"
+          >
+        {%- endif -%}
+    
+  {%- endfor -%}
+  
 </div>
-  <!-- <p>{%- if section.settings.dismissable == "true" -%}
-    true
-    {%- else -%}
-    false
-  {%- endif -%}</p>  -->
-
 
   {% schema %}
   {
@@ -48,6 +61,11 @@
           "id": "text",
           "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
           "default": "Welcome to our store"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.image-banner.settings.image.label"
         }
       ]
     }
