@@ -1,40 +1,35 @@
-<div>Tester</div>
-  <p class="text-green-400">Dismissable? {{ section.settings }} asdas</p>
-
-  <p>{%- if section.settings.dismissable == "true" -%}
+<div class="text-center">
+  <p class="p-2 text-base text-black">This is an announcement</p>
+  <p class="p-2 text-base text-black">This is another announcement looped from a block</p>
+</div>
+  <!-- <p>{%- if section.settings.dismissable == "true" -%}
     true
     {%- else -%}
     false
-  {%- endif -%}</p>
+  {%- endif -%}</p>  -->
+
+
   {% schema %}
   {
-    "name": "RSG Announcement Edited",
+    "name": "RSG Announcement",
     "tag": "section",
-    "class": "spaced-section spaced-section--full-width",
+    "class": "border-b",
     "settings": [
         {
-        "type": "select",
-        "id": "dismissable",
-        "label": "Dismissable?",
-        "default": "true",
-        "options": [
+          "type": "radio",
+          "id": "dismiss",
+          "label": "Dissmissable",
+          "options": [
             {
-                "value": "true",
-                "label": "True"
+              "value": "yes",
+              "label": "Yes"
             },
             {
-                "value": "false",
-                "label": "False"
-            },
-            {
-                "value": "sometimes",
-                "label": "On a full moon"
-            },
-            {
-                "value": "forth",
-                "label": "because!"
+              "value": "no",
+              "label": "No"
             }
-        ]
+          ],
+          "default": "yes"
         }
     ],
     "presets": [
@@ -42,7 +37,21 @@
             "name": "RSG Announcement"
         }
     ],
-    "blocks": []
+    "max_blocks": 3,
+    "blocks": [
+    {
+      "type": "announcement",
+      "name": "RSG Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
+          "default": "Welcome to our store"
+        }
+      ]
+    }
+  ]
 }
 
   {% endschema %}
