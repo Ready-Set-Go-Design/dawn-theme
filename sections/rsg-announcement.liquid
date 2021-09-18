@@ -1,22 +1,42 @@
-<div class="text-center">
-  <p class="p-2 text-base text-black">This is an announcement!</p>
+{%- liquid
+  if section.settings.background == "light1"
+    assign text_class_default = "text-dark-default" 
+    assign text_class_muted = "text-dark-muted" 
+    assign bg_class = "bg-light1"
+  elsif section.settings.background == "light2"
+    assign text_class_default = "text-dark-default" 
+    assign text_class_muted = "text-dark-muted" 
+    assign bg_class = "bg-light2"
+  elsif section.settings.background == "dark1"
+    assign text_class_default = "text-light-default" 
+    assign text_class_muted = "text-light-muted" 
+    assign bg_class = "bg-dark1"
+  elsif section.settings.background == "dark2"
+    assign text_class_default = "text-light-default" 
+    assign text_class_muted = "text-light-muted" 
+    assign bg_class = "bg-dark2"
+  endif 
+-%}
+
+<div class="text-center {{ bg_class }}">
+<p class="p-2 text-base {{ text_class_default }}">This is the announcement title! {{ section.settings.background }}</p>
+<p class="p-2 text-base {{ text_class_muted }}">This is the sub title! {{ section.settings.background }}</p>
   {{ section.blocks.size }}
   {%- for block in section.blocks -%}
-    
-        <div class="stuff" {{ block.shopify_attributes }}>
-          <span>{{ block.settings.text | escape }}</span>
-        </div>
-    
-        {%- if block.settings.image != blank -%}
-          <img
-            src="{{ block.settings.image | img_url: '1500x' }}"
-            alt="{{ block.settings.image.alt | escape }}"
-            loading="lazy"
-            width="{{ block.settings.image.width }}"
-            height="{{ block.settings.image.height }}"
-            class="image-class"
-          >
-        {%- endif -%}
+    <div class="stuff" {{ block.shopify_attributes }}>
+      <span>{{ block.settings.text | escape }}</span>
+    </div>
+
+    {%- if block.settings.image != blank -%}
+      <img
+        src="{{ block.settings.image | img_url: '1500x' }}"
+        alt="{{ block.settings.image.alt | escape }}"
+        loading="lazy"
+        width="{{ block.settings.image.width }}"
+        height="{{ block.settings.image.height }}"
+        class="w-full h-24 object-cover"
+      >
+    {%- endif -%}
     
   {%- endfor -%}
   
@@ -43,12 +63,36 @@
             }
           ],
           "default": "yes"
+        },
+        {
+          "type": "select",
+          "id": "background",
+          "label": "Background",
+          "options": [
+            {
+              "value": "light1",
+              "label": "Light 1"
+            },
+            {
+              "value": "light2",
+              "label": "Light 2"
+            },
+            {
+              "value": "dark1",
+              "label": "Dark 1"
+            },
+            {
+              "value": "dark2",
+              "label": "Dark 2"
+            }
+          ],
+          "default": "dark1"
         }
     ],
     "presets": [
-        {
-            "name": "RSG Announcement"
-        }
+      {
+          "name": "RSG Announcement"
+      }
     ],
     "max_blocks": 3,
     "blocks": [

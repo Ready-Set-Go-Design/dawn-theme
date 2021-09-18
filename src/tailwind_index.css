@@ -2,30 +2,23 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@media screen(sm) {
-  .tester {
-    @apply text-blue-400 font-sans w-16;
-  }
-}
+@layer base {
+  :root {
+    --color-text-dark-default: #121212;
+    --color-text-dark-muted: #4D4D4D; 
+    --color-text-light-default: #FFFFFF;
+    --color-text-light-muted: #FFFFFF;
 
-@media screen(md) {
-  .tester {
-    @apply text-blue-400 font-sans w-16 text-2xl;
-  }
-}
+    --color-background-light1: #FFFFFF;
+    --color-background-light2: #F3F3F3;
 
-@media screen(lg) {
-  .tester {
-    @apply text-blue-400 font-serif w-32 text-base;
-  }
-}
+    --color-background-dark1: #7D7D7D;
+    --color-background-dark2: #4D4D4D;
 
-@media screen(xl) {
-  .tester {
-    @apply text-blue-400 font-serif text-4xl;
-  }
+    --color-border-light1: #D0D0D0;
+    --color-border-dark1: #7D7D7D;
 
-  .tester2 {
-    @apply text-blue-400 font-serif text-4xl;
+    --color-accent1: #121212;
+    --color-accent2: #3752B2;
   }
 }

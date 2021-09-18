@@ -12,6 +12,69 @@
     "settings": [
       {
         "type": "header",
+        "content": "RSG theme colors"
+      },
+      {
+        "type": "color",
+        "id": "color_background_light1",
+        "default": "#FFFFFF",
+        "label": "Background light 1",
+        "info": "Used as a background color"
+      },
+      {
+        "type": "color",
+        "id": "color_background_light2",
+        "default": "#F3F3F3",
+        "label": "Background light 2",
+        "info": "Used as a background color"
+      },
+      {
+        "type": "color",
+        "id": "color_background_dark1",
+        "default": "#4D4D4D",
+        "label": "Background dark 1",
+        "info": "Used as a background color"
+      },
+      {
+        "type": "color",
+        "id": "color_background_dark2",
+        "default": "#7D7D7D",
+        "label": "Background dark 2",
+        "info": "Used as a background color"
+      },
+      {
+        "type": "color",
+        "id": "color_background_accent1",
+        "default": "#121212",
+        "label": "Background accent 1",
+        "info": "Used for buttons"},
+      {
+        "type": "color",
+        "id": "color_background_accent2",
+        "default": "#3752B2",
+        "label": "Background accent 2",
+        "info": "Used to bring attention to page elements, like sale prices"
+      },
+      {
+        "type": "header",
+        "content": "RSG text colors"
+      },
+      {
+        "type": "color",
+        "id": "color_text_dark_default",
+        "default": "#121212",
+        "label": "Text dark default",
+        "info": "Used on all light backgrounds"
+      },
+      {
+        "type": "color",
+        "id": "color_text_light_default",
+        "default": "#FFFFFF",
+        "label": "Text light default",
+        "info": "Used on all dark backgrounds"
+      },
+      {
+        "type": "header",
         "content": "t:settings_schema.colors.settings.header__1.content"
       },
       {

@@ -610,6 +610,21 @@ video {
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+:root {
+  --color-text-dark-default: #121212;
+  --color-text-dark-muted: #4D4D4D;
+  --color-text-light-default: #FFFFFF;
+  --color-text-light-muted: #FFFFFF;
+  --color-background-light1: #FFFFFF;
+  --color-background-light2: #F3F3F3;
+  --color-background-dark1: #7D7D7D;
+  --color-background-dark2: #4D4D4D;
+  --color-border-light1: #D0D0D0;
+  --color-border-dark1: #7D7D7D;
+  --color-accent1: #121212;
+  --color-accent2: #3752B2;
+}
+
 .container {
   width: 100%;
 }
@@ -660,6 +675,14 @@ video {
   display: none;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -676,6 +699,11 @@ video {
 
 .border-b {
   border-bottom-width: 1px;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-2 {
@@ -703,11 +731,6 @@ video {
   font-style: italic;
 }
 
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgba(0, 0, 0, var(--tw-text-opacity));
-}
-
 .blur {
   --tw-blur: blur(8px);
   filter: var(--tw-filter);
@@ -715,89 +738,4 @@ video {
 
 .filter {
   filter: var(--tw-filter);
-}
-
-@media (min-width: 640px) {
-  .tester {
-    width: 4rem;
-  }
-
-  .tester {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  }
-
-  .tester {
-    --tw-text-opacity: 1;
-    color: rgba(96, 165, 250, var(--tw-text-opacity));
-  }
-}
-
-@media (min-width: 768px) {
-  .tester {
-    width: 4rem;
-  }
-
-  .tester {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  }
-
-  .tester {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .tester {
-    --tw-text-opacity: 1;
-    color: rgba(96, 165, 250, var(--tw-text-opacity));
-  }
-}
-
-@media (min-width: 1024px) {
-  .tester {
-    width: 8rem;
-  }
-
-  .tester {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  }
-
-  .tester {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  .tester {
-    --tw-text-opacity: 1;
-    color: rgba(96, 165, 250, var(--tw-text-opacity));
-  }
-}
-
-@media (min-width: 1280px) {
-  .tester {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  }
-
-  .tester {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  .tester {
-    --tw-text-opacity: 1;
-    color: rgba(96, 165, 250, var(--tw-text-opacity));
-  }
-
-  .tester2 {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  }
-
-  .tester2 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-  }
-
-  .tester2 {
-    --tw-text-opacity: 1;
-    color: rgba(96, 165, 250, var(--tw-text-opacity));
-  }
 }

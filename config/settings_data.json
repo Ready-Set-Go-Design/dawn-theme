@@ -2,6 +2,16 @@
   "current": "Default",
   "presets": {
     "Default": {
+      "color_background_light1": "#FFFFFF",
+      "color_background_light2": "#F3F3F3",
+      "color_background_dark1": "#4D4D4D",
+      "color_background_dark2": "#7D7D7D",
+      "color_background_accent1": "#121212",
+      "color_background_accent2": "#3752B2",
+      "color_text_dark_default": "#121212",
+      "color_text_light_default": "#FFFFFF",
+
+
       "colors_solid_button_labels": "#FFFFFF",
       "colors_accent_1": "#121212",
       "colors_accent_2": "#334FB4",
@@ -36,6 +46,16 @@
       }
     },
     "Craft": {
+      "color_background_light1": "#FF0000",
+      "color_background_light2": "#F3F3F3",
+      "color_background_dark1": "#4D4D4D",
+      "color_background_dark2": "#7D7D7D",
+      "color_background_accent1": "#121212",
+      "color_background_accent2": "#3752B2",
+      "color_text_dark_default": "#121212",
+      "color_text_light_default": "#FFFFFF",
+
+
       "colors_solid_button_labels": "#EFECEC",
       "colors_accent_1": "#2A332F",
       "colors_accent_2": "#476154",
