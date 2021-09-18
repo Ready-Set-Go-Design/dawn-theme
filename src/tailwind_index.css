@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@layer base {
+/* @layer base {
   :root {
     --color-text-dark-default: #121212;
     --color-text-dark-muted: #4D4D4D; 
@@ -21,4 +21,4 @@
     --color-accent1: #121212;
     --color-accent2: #3752B2;
   }
-}
+} */

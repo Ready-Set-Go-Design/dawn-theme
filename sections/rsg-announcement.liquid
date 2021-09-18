@@ -19,25 +19,10 @@
 -%}
 
 <div class="text-center {{ bg_class }}">
-<p class="p-2 text-base {{ text_class_default }}">This is the announcement title! {{ section.settings.background }}</p>
-<p class="p-2 text-base {{ text_class_muted }}">This is the sub title! {{ section.settings.background }}</p>
-  {{ section.blocks.size }}
   {%- for block in section.blocks -%}
-    <div class="stuff" {{ block.shopify_attributes }}>
-      <span>{{ block.settings.text | escape }}</span>
-    </div>
-
-    {%- if block.settings.image != blank -%}
-      <img
-        src="{{ block.settings.image | img_url: '1500x' }}"
-        alt="{{ block.settings.image.alt | escape }}"
-        loading="lazy"
-        width="{{ block.settings.image.width }}"
-        height="{{ block.settings.image.height }}"
-        class="w-full h-24 object-cover"
-      >
-    {%- endif -%}
-    
+    <p class="{{ text_class_default }} py-2 text-xs">
+      {{ block.settings.text | escape }}
+    </p>    
   {%- endfor -%}
   
 </div>
@@ -88,32 +73,32 @@
           ],
           "default": "dark1"
         }
-    ],
-    "presets": [
-      {
-          "name": "RSG Announcement"
-      }
-    ],
+    ]
     "max_blocks": 3,
     "blocks": [
     {
-      "type": "announcement",
-      "name": "RSG Announcement",
+      "type": "message",
+      "name": "Message",
       "settings": [
         {
           "type": "text",
           "id": "text",
           "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
           "default": "Welcome to our store"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "t:sections.image-banner.settings.image.label"
         }
       ]
     }
-  ]
+  ],
+  "presets": [
+    {
+        "name": "RSG Announcement",
+        "blocks": [
+        {
+          "type": "message"
+        }
+      ]
+    }
+  ],
 }
 
   {% endschema %}
