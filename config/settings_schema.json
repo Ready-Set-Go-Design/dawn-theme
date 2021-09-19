@@ -30,20 +30,6 @@
       },
       {
         "type": "color",
-        "id": "color_background_dark1",
-        "default": "#FFFFFF",
-        "label": "Background dark 1",
-        "info": "Used as a background color"
-      },
-      {
-        "type": "color",
-        "id": "color_background_dark2",
-        "default": "#FFFFFF",
-        "label": "Background dark 2",
-        "info": "Used as a background color"
-      },
-      {
-        "type": "color",
         "id": "color_background_accent1",
         "default": "#FFFFFF",
         "label": "Background accent 1",

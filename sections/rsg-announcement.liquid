@@ -5,30 +5,29 @@
   elsif section.settings.background == "light2"
     assign text_class_default = "text-dark-default"  
     assign bg_class = "bg-light2"
-  elsif section.settings.background == "dark1"
+  elsif section.settings.background == "accent1"
     assign text_class_default = "text-light-default" 
-    assign bg_class = "bg-dark1"
-  elsif section.settings.background == "dark2"
+    assign bg_class = "bg-accent1"
+  elsif section.settings.background == "accent2"
     assign text_class_default = "text-light-default" 
-    assign bg_class = "bg-dark2"
+    assign bg_class = "bg-accent2"
   endif 
 -%}
 
-<section class="text-center {{ bg_class }}">
+<section class="text-center border-b {{ bg_class }}">
   <div class="container">
   {%- for block in section.blocks -%}
     <p class="{{ text_class_default }} py-2 text-xs">
       {{ block.settings.message | escape }}
     </p>    
   {%- endfor -%}
-  </section>
+  </div>
 </section>
 
   {% schema %}
   {
     "name": "RSG Announcement",
     "tag": "section",
-    "class": "border-b",
     "settings": [{
         "type": "radio",
         "id": "dismiss",
@@ -57,15 +56,15 @@
             "label": "Light 2"
           },
           {
-            "value": "dark1",
-            "label": "Dark 1"
+            "value": "accent1",
+            "label": "Accent 1"
           },
           {
-            "value": "dark2",
-            "label": "Dark 2"
+            "value": "accent2",
+            "label": "Accent 2"
           }
         ],
-        "default": "dark1"
+        "default": "light2"
       }
     ],
     "max_blocks": 3,
