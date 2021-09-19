@@ -32,74 +32,63 @@
     "name": "RSG Announcement",
     "tag": "section",
     "class": "border-b",
-    "settings": [
-        {
-          "type": "radio",
-          "id": "dismiss",
-          "label": "Dissmissable",
-          "options": [
-            {
-              "value": "yes",
-              "label": "Yes"
-            },
-            {
-              "value": "no",
-              "label": "No"
-            }
-          ],
-          "default": "yes"
-        },
-        {
-          "type": "select",
-          "id": "background",
-          "label": "Background",
-          "options": [
-            {
-              "value": "light1",
-              "label": "Light 1"
-            },
-            {
-              "value": "light2",
-              "label": "Light 2"
-            },
-            {
-              "value": "dark1",
-              "label": "Dark 1"
-            },
-            {
-              "value": "dark2",
-              "label": "Dark 2"
-            }
-          ],
-          "default": "dark1"
-        }
-    ]
+    "settings": [{
+        "type": "radio",
+        "id": "dismiss",
+        "label": "Dissmissable",
+        "options": [{
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ],
+        "default": "yes"
+      },
+      {
+        "type": "select",
+        "id": "background",
+        "label": "Background",
+        "options": [{
+            "value": "light1",
+            "label": "Light 1"
+          },
+          {
+            "value": "light2",
+            "label": "Light 2"
+          },
+          {
+            "value": "dark1",
+            "label": "Dark 1"
+          },
+          {
+            "value": "dark2",
+            "label": "Dark 2"
+          }
+        ],
+        "default": "dark1"
+      }
+    ],
     "max_blocks": 3,
-    "blocks": [
-    {
+    "blocks": [{
       "type": "message",
       "name": "Message",
-      "settings": [
-        {
-          "type": "text",
-          "id": "text",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
-          "default": "Welcome to our store"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-        "name": "RSG Announcement",
-        "blocks": [
-        {
-          "type": "message"
-        }
-      ]
-    }
-  ],
-}
+      "settings": [{
+        "type": "text",
+        "id": "message",
+        "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
+        "default": "Welcome to our store"
+      }]
+    }],
+    "presets": [{
+      "name": "RSG Announcement",
+      "blocks": [{
+        "type": "message"
+      }]
+    }]
+  }
 
   {% endschema %}
   

@@ -5,9 +5,18 @@
       "type": "rsg-announcement",
       "settings": {
         "dismissable": "true"
-      }
-      
-      
+      },
+      "blocks": {
+        "message": {
+          "type": "message",
+          "settings": {
+            "message": "This is your store"
+          }
+        }
+      },
+      "block_order": [
+        "message"
+      ]
     },
     "image_banner": {
       "type": "image-banner",
