@@ -1,31 +1,28 @@
 {%- liquid
   if section.settings.background == "light1"
     assign text_class_default = "text-dark-default" 
-    assign text_class_muted = "text-dark-muted" 
     assign bg_class = "bg-light1"
   elsif section.settings.background == "light2"
-    assign text_class_default = "text-dark-default" 
-    assign text_class_muted = "text-dark-muted" 
+    assign text_class_default = "text-dark-default"  
     assign bg_class = "bg-light2"
   elsif section.settings.background == "dark1"
     assign text_class_default = "text-light-default" 
-    assign text_class_muted = "text-light-muted" 
     assign bg_class = "bg-dark1"
   elsif section.settings.background == "dark2"
     assign text_class_default = "text-light-default" 
-    assign text_class_muted = "text-light-muted" 
     assign bg_class = "bg-dark2"
   endif 
 -%}
 
-<div class="text-center {{ bg_class }}">
+<section class="text-center {{ bg_class }}">
+  <div class="container">
   {%- for block in section.blocks -%}
     <p class="{{ text_class_default }} py-2 text-xs">
-      {{ block.settings.text | escape }}
+      {{ block.settings.message | escape }}
     </p>    
   {%- endfor -%}
-  
-</div>
+  </section>
+</section>
 
   {% schema %}
   {
