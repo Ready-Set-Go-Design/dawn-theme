@@ -1,8 +1,8 @@
 {
   
   "sections": {
-    "rsg_announcement": {
-      "type": "rsg-announcement",
+    "aaa_announcement": {
+      "type": "aaa-announcement",
       "settings": {
         "dismissable": "true"
       },
@@ -17,6 +17,12 @@
       "block_order": [
         "message"
       ]
+    },
+    "aaa_image_banner": {
+      "type": "aaa-image-banner",
+      "settings":{},
+      "blocks":{},
+      "block_order": []
     },
     "image_banner": {
       "type": "image-banner",
@@ -46,7 +52,8 @@
     }
   },
   "order": [
-    "rsg_announcement",
+    "aaa_announcement",
+    "aaa_image_banner",
     "image_banner"
   ]
 }

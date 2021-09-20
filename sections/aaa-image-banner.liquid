@@ -1,0 +1,77 @@
+<section class="h-screen bg-gray-200 flex items-center">
+  <div class="container">
+    <div class="w-10/12 bg-light1 mx-auto p-12">
+      <h2 class="text-6xl text-dark-default py-2 md:text-7xl mb-4">
+        This is a headline
+      </h2>
+      <a href="#" class="inline px-6 py-3 bg-accent1 border border-black text-base text-light-default hover:bg-gray-900 transition-colors transform-gpu hover:scale-110">
+        Click me
+      </a>
+    </div>    
+  </div>
+</section>
+
+  {% schema %}
+  {
+    "name": "AAA Image Banner",
+    "tag": "section",
+    "settings": [{
+        "type": "radio",
+        "id": "dismiss",
+        "label": "Dissmissable",
+        "options": [{
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ],
+        "default": "yes"
+      },
+      {
+        "type": "select",
+        "id": "background",
+        "label": "Background",
+        "options": [{
+            "value": "light1",
+            "label": "Light 1"
+          },
+          {
+            "value": "light2",
+            "label": "Light 2"
+          },
+          {
+            "value": "accent1",
+            "label": "Accent 1"
+          },
+          {
+            "value": "accent2",
+            "label": "Accent 2"
+          }
+        ],
+        "default": "light2"
+      }
+    ],
+    "max_blocks": 3,
+    "blocks": [{
+      "type": "message",
+      "name": "Message",
+      "settings": [{
+        "type": "text",
+        "id": "message",
+        "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
+        "default": "Welcome to our store"
+      }]
+    }],
+    "presets": [{
+      "name": "AAA Announcement",
+      "blocks": [{
+        "type": "message"
+      }]
+    }]
+  }
+
+  {% endschema %}
+  
