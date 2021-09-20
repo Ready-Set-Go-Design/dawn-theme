@@ -18,7 +18,11 @@ module.exports = {
         '2xl': '6rem',
       },
     },
-    extend: {},
+    extend: {
+      boxShadow:{
+        button: "0 0 0 0.2rem rgba(0, 0, 0, 1)",
+      },
+    },
   },
   variants: {
     extend: {},
