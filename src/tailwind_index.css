@@ -1,7 +1,14 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
+
+@layer components{
+  /* .btn-primary{
+    background-color: var(--color-background-accent1);
+    color: var(--color-text-light-default);
+    @apply px-6 py-3 text-base transition-all hover:bg-white;
+  }; */
+}
 
 /* @layer base {
   :root {

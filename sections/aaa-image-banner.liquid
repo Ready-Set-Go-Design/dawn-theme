@@ -1,3 +1,30 @@
+{% style  %}
+.btn-thing{
+  background-color: pink;
+  color: var(--color-text-light-default);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.btn-thing:hover {
+  background-color: green;
+}
+
+.hover-test {
+  padding: 81px;
+  background-color: pink;
+}
+
+.hover-test:hover {
+  background-color: #0f1;
+}
+{% endstyle %}
+
+
 <section class="h-screen bg-gray-200 flex items-center">
   <div class="container">
     <div class="w-10/12 bg-light1 mx-auto p-12">
@@ -5,9 +32,9 @@
         <h2 class="text-6xl text-dark-default py-2 md:text-7xl mb-4">
           This is a headline
         </h2>
-        <a class="inline px-6 py-3 bg-accent1 text-base text-light-default transition-all hover:shadow-button">
+        <div class="hover-test">
           Click me
-        </a>
+        </div>
       </div>
     </div>    
   </div>

@@ -39,6 +39,11 @@
     %}
 
     {% style %}
+      :root{
+      --color-background-accent1: {{ settings.color_background_accent1 }};
+      --color-text-light-default: {{ settings.color_text_light_default }};
+      }
+
       .bg-light1 {
         background-color: {{ settings.color_background_light1 }}
       }
