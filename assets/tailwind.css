@@ -613,6 +613,21 @@ video {
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+:root {
+  --color-text-dark-default: #121212;
+  --color-text-dark-muted: #4d4d4d;
+  --color-text-light-default: #ffffff;
+  --color-text-light-muted: #ffffff;
+  --color-background-light1: #ffffff;
+  --color-background-light2: #f3f3f3;
+  --color-background-dark1: #7d7d7d;
+  --color-background-dark2: #4d4d4d;
+  --color-border-light1: #d0d0d0;
+  --color-border-dark1: #7d7d7d;
+  --color-accent1: #121212;
+  --color-accent2: #3752b2;
+}
+
 .container {
   width: 100%;
   margin-right: auto;
@@ -872,6 +887,7 @@ video {
 .filter {
   filter: var(--tw-filter);
 }
+
 
 @media (min-width: 768px) {
   .md\:w-10\/12 {
