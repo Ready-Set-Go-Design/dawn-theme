@@ -1,11 +1,83 @@
-<section class="h-screen bg-gray-200 flex items-center relative mt-16">
+<section class="h-screen bg-gray-200 flex items-center relative {{ section.settings.space_before_section }}">
   <div class="absolute top-0 left-0 flex flex-col h-full w-full md:flex-row">
-    <div class="bg-accent1 h-full w-full">
-      left
-    </div>
-    <div class="bg-light2 h-full w-full">
-      right
-    </div>
+    {% if section.settings.image_1 == blank and section.settings.image_2 == blank %}
+      <div class="bg-light1 h-full w-full flex flex-col items-center justify-center">
+        {{ "collection-1" | placeholder_svg_tag: "" }}
+        {{ "collection-2" | placeholder_svg_tag: "" }}
+      </div>
+      <div class="bg-light2 h-full w-full flex flex-col items-center justify-center">
+        {{ "collection-3" | placeholder_svg_tag: "" }}
+        {{ "collection-4" | placeholder_svg_tag: "" }}
+      </div>
+    {% elsif section.settings.image_1 != blank and section.settings.image_2 == blank %}
+      <div class="h-full w-full">
+        <img class="h-full w-full object-cover"
+        srcset="
+        {%- if section.settings.image_1.width >= 375 -%}{{ section.settings.image_1 | img_url: '375x' }} 375w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 750 -%}{{ section.settings.image_1 | img_url: '750x' }} 750w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 1100 -%}{{ section.settings.image_1 | img_url: '1100x' }} 1100w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 1500 -%}{{ section.settings.image_1 | img_url: '1500x' }} 1500w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 1780 -%}{{ section.settings.image_1 | img_url: '1780x' }} 1780w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 2000 -%}{{ section.settings.image_1 | img_url: '2000x' }} 2000w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 3000 -%}{{ section.settings.image_1 | img_url: '3000x' }} 3000w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 3840 -%}{{ section.settings.image_1 | img_url: '3840x' }} 3840w,{%- endif -%}"
+        src="{{ section.settings.image_1 | img_url: '1500x' }}" 
+        loading="lazy" 
+        alt="{{ section.settings.image_1.alt | escape }}"
+        width="{{ section.settings.image_1.width }}"
+        height="{{ section.settings.image_1.width | divided_by: section.settings.image_1.aspect_ratio }}">
+      </div>
+    {% elsif section.settings.image_1 == blank and section.settings.image_2 != blank %}
+      <div class="h-full w-full">
+        <img class="h-full w-full object-cover"
+        srcset="{%- if section.settings.image_2.width >= 375 -%}{{ section.settings.image_2 | img_url: '375x' }} 375w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 750 -%}{{ section.settings.image_2 | img_url: '750x' }} 750w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1100 -%}{{ section.settings.image_2 | img_url: '1100x' }} 1100w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1500 -%}{{ section.settings.image_2 | img_url: '1500x' }} 1500w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1780 -%}{{ section.settings.image_2 | img_url: '1780x' }} 1780w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 2000 -%}{{ section.settings.image_2 | img_url: '2000x' }} 2000w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 3000 -%}{{ section.settings.image_2 | img_url: '3000x' }} 3000w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 3840 -%}{{ section.settings.image_2 | img_url: '3840x' }} 3840w,{%- endif -%}"
+        src="{{ section.settings.image_2 | img_url: '1500x' }}" 
+        loading="lazy" 
+        alt="{{ section.settings.image_2.alt | escape }}"
+        width="{{ section.settings.image_2.width }}"
+        height="{{ section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio }}">
+      </div>
+    {% elsif section.settings.image_1 != blank and section.settings.image_2 != blank %}
+      <div class="h-full w-full flex flex-col items-center justify-center">
+        <img class="h-full w-full object-cover"
+        srcset="{%- if section.settings.image_1.width >= 375 -%}{{ section.settings.image_1 | img_url: '375x' }} 375w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 750 -%}{{ section.settings.image_1 | img_url: '750x' }} 750w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 1100 -%}{{ section.settings.image_1 | img_url: '1100x' }} 1100w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 1500 -%}{{ section.settings.image_1 | img_url: '1500x' }} 1500w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 1780 -%}{{ section.settings.image_1 | img_url: '1780x' }} 1780w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 2000 -%}{{ section.settings.image_1 | img_url: '2000x' }} 2000w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 3000 -%}{{ section.settings.image_1 | img_url: '3000x' }} 3000w,{%- endif -%}
+        {%- if section.settings.image_1.width >= 3840 -%}{{ section.settings.image_1 | img_url: '3840x' }} 3840w,{%- endif -%}"
+        src="{{ section.settings.image_1 | img_url: '1500x' }}" 
+        loading="lazy" 
+        alt="{{ section.settings.image_1.alt | escape }}"
+        width="{{ section.settings.image_1.width }}"
+        height="{{ section.settings.image_1.width | divided_by: section.settings.image_1.aspect_ratio }}">
+      </div>
+      <div class="h-full w-full flex flex-col items-center justify-center">
+        <img class="h-full w-full object-cover"
+        srcset="{%- if section.settings.image_2.width >= 375 -%}{{ section.settings.image_2 | img_url: '375x' }} 375w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 750 -%}{{ section.settings.image_2 | img_url: '750x' }} 750w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1100 -%}{{ section.settings.image_2 | img_url: '1100x' }} 1100w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1500 -%}{{ section.settings.image_2 | img_url: '1500x' }} 1500w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 1780 -%}{{ section.settings.image_2 | img_url: '1780x' }} 1780w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 2000 -%}{{ section.settings.image_2 | img_url: '2000x' }} 2000w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 3000 -%}{{ section.settings.image_2 | img_url: '3000x' }} 3000w,{%- endif -%}
+        {%- if section.settings.image_2.width >= 3840 -%}{{ section.settings.image_2 | img_url: '3840x' }} 3840w,{%- endif -%}"
+        src="{{ section.settings.image_2 | img_url: '1500x' }}" 
+        loading="lazy" 
+        alt="{{ section.settings.image_2.alt | escape }}"
+        width="{{ section.settings.image_2.width }}"
+        height="{{ section.settings.image_2.width | divided_by: section.settings.image_2.aspect_ratio }}">
+      </div>
+    {% endif %}
   </div>
   <div class="container relative">
     <div class="w-full bg-light1 mx-auto p-12 shadow-2xl md:w-10/12">
