@@ -1,8 +1,8 @@
 {
   
   "sections": {
-    "rsg_announcement": {
-      "type": "rsg-announcement",
+    "aaa_announcement": {
+      "type": "aaa-announcement",
       "settings": {
         "dismissable": "true"
       },
@@ -16,6 +16,35 @@
       },
       "block_order": [
         "message"
+      ]
+    },
+    "aaa_image_banner": {
+      "type": "aaa-image-banner",
+      "settings":{},
+      "blocks":{
+        "heading" : {
+          "type": "heading",
+          "settings": {
+            "heading": "Now that is a catchy title"
+          }
+        },
+        "subheading" :{
+          "type": "subheading",
+          "settings": {
+            "subheading": "And drop in the deets"
+          }
+        },
+        "button_text" :{
+          "type": "button_text",
+          "settings": {
+            "subheading": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "button_text"
       ]
     },
     "image_banner": {
@@ -46,7 +75,8 @@
     }
   },
   "order": [
-    "rsg_announcement",
+    "aaa_announcement",
+    "aaa_image_banner",
     "image_banner"
   ]
 }

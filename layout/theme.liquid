@@ -39,36 +39,13 @@
     %}
 
     {% style %}
-      .bg-light1 {
-        background-color: {{ settings.color_background_light1 }}
-      }
-      .bg-light2 {
-        background-color: {{ settings.color_background_light2 }}
-      }
-      .bg-dark1 {
-        background-color: {{ settings.color_background_dark1 }}
-      }
-      .bg-dark2 {
-        background-color: {{ settings.color_background_dark2 }}
-      }
-      .bg-accent1 {
-        background-color: {{ settings.color_background_accent1 }}
-      }
-      .bg-accent2 {
-        background-color: {{ settings.color_background_accent2 }}
-      }
-      
-      .text-dark-default {
-        color: {{ settings.color_text_dark_default }}
-      }
-      .text-dark-muted {
-        color: rgba({{ settings.color_text_dark_default.red }}, {{ settings.color_text_dark_default.green }}, {{ settings.color_text_dark_default.blue }}, 0.75) 
-      }
-      .text-light-default {
-        color: {{ settings.color_text_light_default }}
-      }
-      .text-light-muted {
-        color: rgba({{ settings.color_text_light_default.red }}, {{ settings.color_text_light_default.green }}, {{ settings.color_text_light_default.blue }}, 0.75)
+      :root {
+        --color-background-accent1: {{ settings.color_background_accent1 }};
+        --color-background-accent2: {{ settings.color_background_accent2 }};
+        --color-background-light1: {{ settings.color_background_light1 }};
+        --color-background-light2: {{ settings.color_background_light2 }}; 
+        --color-text-light-default: {{ settings.color_text_light_default.red }}, {{ settings.color_text_light_default.green }}, {{ settings.color_text_light_default.blue }};
+        --color-text-dark-default: {{ settings.color_text_dark_default.red }}, {{ settings.color_text_dark_default.green }}, {{ settings.color_text_dark_default.blue }};
       }
 
 

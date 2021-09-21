@@ -18,7 +18,25 @@ module.exports = {
         '2xl': '6rem',
       },
     },
-    extend: {},
+    extend: {
+      boxShadow:{
+        button: "0 0 0 0.2rem rgba(0, 0, 0, 1)",
+      },
+      colors: {
+        accent1: "var(--color-background-accent1)",
+        accent2: "var(--color-background-accent2)",
+        light1 : "var(--color-background-light1)",
+        light2 : "var(--color-background-light2)",
+        dark  : {
+          DEFAULT: "rgba(var(--color-text-dark-default), 1)",
+          muted: "rgba(var(--color-text-dark-default), 0.70)",
+        },
+        light  : {
+          DEFAULT: "rgba(var(--color-text-light-default), 1)",
+          muted: "rgba(var(--color-text-light-default), 0.70)",
+        } 
+      }
+    },
   },
   variants: {
     extend: {},
