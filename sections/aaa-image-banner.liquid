@@ -1,40 +1,32 @@
-{% style  %}
-.btn-thing{
-  background-color: pink;
-  color: var(--color-text-light-default);
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-}
-
-.btn-thing:hover {
-  background-color: green;
-}
-
-.hover-test {
-  padding: 81px;
-  background-color: pink;
-}
-
-.hover-test:hover {
-  background-color: #0f1;
-}
-{% endstyle %}
-
-
-<section class="h-screen bg-gray-200 flex items-center">
-  <div class="container">
-    <div class="w-10/12 bg-light1 mx-auto p-12">
-      <div class="flex flex-col items-center">
-        <h2 class="text-6xl text-dark-default py-2 md:text-7xl mb-4">
-          This is a headline
-        </h2>
-        <div class="hover-test">
-          Click me
-        </div>
+<section class="h-screen bg-gray-200 flex items-center relative mt-16">
+  <div class="absolute top-0 left-0 flex flex-col h-full w-full md:flex-row">
+    <div class="bg-accent1 h-full w-full">
+      left
+    </div>
+    <div class="bg-light2 h-full w-full">
+      right
+    </div>
+  </div>
+  <div class="container relative">
+    <div class="w-full bg-light1 mx-auto p-12 shadow-2xl md:w-10/12">
+      <div class="">
+        {% if section.blocks[0].settings.heading != blank %}
+          <h2 class="text-4xl text-gray-900 py-2 md:text-6xl">
+            {{ section.blocks[0].settings.heading | escape }}
+          </h2>
+        {% endif %}
+        {% if section.blocks[1].settings.subheading != blank %}
+          <p class="text-lg text-dark-muted py-2 mb-4">
+            {{ section.blocks[1].settings.subheading | escape }}
+          </p>
+        {% endif %}
+        {% if section.blocks[2].settings.button_text != blank %}
+          <div class="flex {{ section.settings.button_alignment }}">
+            <a href="" class="btn-primary">
+              {{ section.blocks[2].settings.button_text | escape }}
+            </a>
+          </div>
+        {% endif %}
       </div>
     </div>    
   </div>
@@ -44,60 +36,107 @@
   {
     "name": "AAA Image Banner",
     "tag": "section",
-    "settings": [{
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "t:sections.image-banner.settings.image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "t:sections.image-banner.settings.image_2.label"
+      },
+      {
         "type": "radio",
-        "id": "dismiss",
-        "label": "Dissmissable",
-        "options": [{
-            "value": "yes",
+        "id": "heading_alignment",
+        "label": "Heading alignment",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Center"
+          }
+        ],
+        "default": "text-left"
+      },
+      {
+        "type": "radio",
+        "id": "button_alignment",
+        "label": "Button alignment",
+        "options": [
+          {
+            "value": "justify-start",
+            "label": "Left"
+          },
+          {
+            "value": "justify-center",
+            "label": "Center"
+          },
+          {
+            "value": "justify-end",
+            "label": "Right"
+          }
+        ],
+        "default": "justify-start"
+      },
+      {
+        "type": "radio",
+        "id": "space_before_section",
+        "label": "Add space before section?",
+        "options": [
+          {
+            "value": "mt-16",
             "label": "Yes"
           },
           {
-            "value": "no",
+            "value": "mt-0",
             "label": "No"
           }
         ],
-        "default": "yes"
-      },
-      {
-        "type": "select",
-        "id": "background",
-        "label": "Background",
-        "options": [{
-            "value": "light1",
-            "label": "Light 1"
-          },
-          {
-            "value": "light2",
-            "label": "Light 2"
-          },
-          {
-            "value": "accent1",
-            "label": "Accent 1"
-          },
-          {
-            "value": "accent2",
-            "label": "Accent 2"
-          }
-        ],
-        "default": "light2"
+        "default": "mt-0"
       }
     ],
     "max_blocks": 3,
     "blocks": [{
-      "type": "message",
-      "name": "Message",
+      "type": "heading",
+      "name": "Heading",
       "settings": [{
         "type": "text",
-        "id": "message",
-        "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
-        "default": "Welcome to our store"
+        "id": "heading",
+        "label": "Heading",
+        "default": "Now that's a catchy heading"
+      }]
+    },
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "settings": [{
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading",
+        "default": "And then tell us all about it"
+      }]
+    },
+    {
+      "type": "button_text",
+      "name": "Button text",
+      "settings": [{
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text",
+        "default": "Shop now"
       }]
     }],
     "presets": [{
-      "name": "AAA Announcement",
+      "name": "AAA Image Banner",
       "blocks": [{
-        "type": "message"
+        "type": "heading",
+        "type": "subheading",
+        "type": "button_text"
       }]
     }]
   }

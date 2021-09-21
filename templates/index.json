@@ -21,8 +21,31 @@
     "aaa_image_banner": {
       "type": "aaa-image-banner",
       "settings":{},
-      "blocks":{},
-      "block_order": []
+      "blocks":{
+        "heading" : {
+          "type": "heading",
+          "settings": {
+            "heading": "Now that is a catchy title"
+          }
+        },
+        "subheading" :{
+          "type": "subheading",
+          "settings": {
+            "subheading": "And drop in the deets"
+          }
+        },
+        "button_text" :{
+          "type": "button_text",
+          "settings": {
+            "subheading": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "subheading",
+        "button_text"
+      ]
     },
     "image_banner": {
       "type": "image-banner",

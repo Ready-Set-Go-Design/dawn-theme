@@ -3,30 +3,13 @@
 @import "tailwindcss/utilities";
 
 @layer components{
-  /* .btn-primary{
-    background-color: var(--color-background-accent1);
-    color: var(--color-text-light-default);
-    @apply px-6 py-3 text-base transition-all hover:bg-white;
-  }; */
-}
-
-/* @layer base {
-  :root {
-    --color-text-dark-default: #121212;
-    --color-text-dark-muted: #4D4D4D; 
-    --color-text-light-default: #FFFFFF;
-    --color-text-light-muted: #FFFFFF;
-
-    --color-background-light1: #FFFFFF;
-    --color-background-light2: #F3F3F3;
-
-    --color-background-dark1: #7D7D7D;
-    --color-background-dark2: #4D4D4D;
-
-    --color-border-light1: #D0D0D0;
-    --color-border-dark1: #7D7D7D;
-
-    --color-accent1: #121212;
-    --color-accent2: #3752B2;
+  .btn-primary{
+    @apply bg-accent1 text-white px-6 py-3 text-base border-2 border-gray-900 transition-all hover:shadow-button;
   }
-} */
+
+  .btn-secondary{
+    background-color: var(--color-background-light1);
+    color: var(--color-text-dark-default);
+    @apply bg-light1 text-gray-900 px-6 py-3 text-base border-2 border-gray-900 transition-all hover:bg-gray-50;
+  }
+}
