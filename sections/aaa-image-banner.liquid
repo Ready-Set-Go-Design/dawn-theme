@@ -10,23 +10,24 @@
   <div class="container relative">
     <div class="w-full bg-light1 mx-auto p-12 shadow-2xl md:w-10/12">
       <div class="">
-        {% if section.blocks[0].settings.heading != blank %}
-          <h2 class="text-4xl text-gray-900 py-2 md:text-6xl">
-            {{ section.blocks[0].settings.heading | escape }}
-          </h2>
-        {% endif %}
-        {% if section.blocks[1].settings.subheading != blank %}
-          <p class="text-lg text-dark-muted py-2 mb-4">
-            {{ section.blocks[1].settings.subheading | escape }}
-          </p>
-        {% endif %}
-        {% if section.blocks[2].settings.button_text != blank %}
-          <div class="flex {{ section.settings.button_alignment }}">
-            <a href="" class="btn-primary">
-              {{ section.blocks[2].settings.button_text | escape }}
-            </a>
-          </div>
-        {% endif %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'heading' %}
+              <h2 class="text-4xl text-gray-900 py-2 md:text-6xl">
+                {{ block.settings.heading | escape }}
+              </h2>
+            {% when 'subheading' %}
+              <p class="text-lg text-dark-muted py-2 mb-4">
+                {{ block.settings.subheading | escape }}
+              </p>
+            {% when 'button_text' %}
+              <div class="flex {{ section.settings.button_alignment }}">
+                <a href="" class="btn-primary">
+                  {{ block.settings.button_text | escape }}
+                </a>
+              </div>
+          {% endcase %}
+        {% endfor %}
       </div>
     </div>    
   </div>
