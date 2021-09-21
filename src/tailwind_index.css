@@ -2,26 +2,27 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@media screen(sm) {
-  .tester {
-    @apply text-blue-400 font-sans w-16;
+@layer base {
+  :root {
+    --color-text-dark-default: #121212;
+    --color-text-dark-muted: #4d4d4d;
+    --color-text-light-default: #ffffff;
+    --color-text-light-muted: #ffffff;
+
+    --color-background-light1: #ffffff;
+    --color-background-light2: #f3f3f3;
+
+    --color-background-dark1: #7d7d7d;
+    --color-background-dark2: #4d4d4d;
+
+    --color-border-light1: #d0d0d0;
+    --color-border-dark1: #7d7d7d;
+
+    --color-accent1: #121212;
+    --color-accent2: #3752b2;
   }
 }
 
-@media screen(md) {
-  .tester {
-    @apply text-blue-400 font-sans w-16 text-2xl;
-  }
-}
-
-@media screen(lg) {
-  .tester {
-    @apply text-blue-400 font-serif w-32 text-base;
-  }
-}
-
-@media screen(xl) {
-  .tester {
-    @apply text-blue-400 font-serif text-4xl;
-  }
+.btn_test {
+  @apply bg-gray-400;
 }

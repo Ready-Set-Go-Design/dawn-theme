@@ -707,6 +707,7 @@
         }
       }
     },
+    
     "image-banner": {
       "name": "Obrázkový banner",
       "settings": {

@@ -12,6 +12,55 @@
     "settings": [
       {
         "type": "header",
+        "content": "RSG theme colors"
+      },
+      {
+        "type": "color",
+        "id": "color_background_light1",
+        "default": "#FFFFFF",
+        "label": "Background light 1",
+        "info": "Used as a background color"
+      },
+      {
+        "type": "color",
+        "id": "color_background_light2",
+        "default": "#FFFFFF",
+        "label": "Background light 2",
+        "info": "Used as a background color"
+      },
+      {
+        "type": "color",
+        "id": "color_background_accent1",
+        "default": "#FFFFFF",
+        "label": "Background accent 1",
+        "info": "Used for buttons"},
+      {
+        "type": "color",
+        "id": "color_background_accent2",
+        "default": "#FFFFFF",
+        "label": "Background accent 2",
+        "info": "Used to bring attention to page elements, like sale prices"
+      },
+      {
+        "type": "header",
+        "content": "RSG text colors"
+      },
+      {
+        "type": "color",
+        "id": "color_text_dark_default",
+        "default": "#FFFFFF",
+        "label": "Text dark default",
+        "info": "Used on all light backgrounds"
+      },
+      {
+        "type": "color",
+        "id": "color_text_light_default",
+        "default": "#FFFFFF",
+        "label": "Text light default",
+        "info": "Used on all dark backgrounds"
+      },
+      {
+        "type": "header",
         "content": "t:settings_schema.colors.settings.header__1.content"
       },
       {
