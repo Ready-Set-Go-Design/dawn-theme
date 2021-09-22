@@ -660,6 +660,8 @@ video {
 }
 
 .btn-primary {
+  margin-left: 1rem;
+  margin-right: 1rem;
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgba(17, 24, 39, var(--tw-border-opacity));
@@ -679,6 +681,33 @@ video {
 
 .btn-primary:hover {
   --tw-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 1);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.btn-secondary{
+  background-color: var(--color-background-light1);
+  color: var(--color-text-dark-default);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgba(17, 24, 39, var(--tw-border-opacity));
+  background-color: var(--color-background-light1);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.btn-secondary:hover {
+  --tw-shadow: inset 0 0 0 0.2rem rgba(0, 0, 0, 1);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -705,6 +734,10 @@ video {
 
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.-ml-4 {
+  margin-left: -1rem;
 }
 
 .mt-16 {

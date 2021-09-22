@@ -25,26 +25,22 @@
         "heading" : {
           "type": "heading",
           "settings": {
-            "heading": "Now that is a catchy title"
-          }
-        },
-        "subheading" :{
-          "type": "subheading",
-          "settings": {
+            "heading": "Now that is a catchy title",
             "subheading": "And drop in the deets"
           }
         },
-        "button_text" :{
-          "type": "button_text",
+        "buttons" :{
+          "type": "buttons",
           "settings": {
-            "subheading": "Shop now"
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_label_2": "Check out our deals"
           }
         }
       },
       "block_order": [
         "heading",
-        "subheading",
-        "button_text"
+        "buttons"
       ]
     },
     "image_banner": {

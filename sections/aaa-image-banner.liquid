@@ -41,18 +41,28 @@
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'heading' %}
-              <h2 class="text-4xl text-gray-900 py-2 md:text-6xl">
-                {{ block.settings.heading | escape }}
-              </h2>
-            {% when 'subheading' %}
-              <p class="text-lg text-dark-muted py-2 mb-4">
-                {{ block.settings.subheading | escape }}
-              </p>
-            {% when 'button_text' %}
-              <div class="flex {{ section.settings.button_alignment }}">
-                <a href="" class="btn-primary">
-                  {{ block.settings.button_text | escape }}
-                </a>
+              {% if block.settings.heading != blank %}
+                <h2 class="{{ block.settings.heading_alignment }} {% if block.settings.subheading == blank %} mb-4 {% endif %} text-4xl text-gray-900 py-2 md:text-6xl" >
+                  {{ block.settings.heading | escape }}
+                </h2>
+              {% endif %}
+              {% if block.settings.subheading != blank %}
+                <p class="{{ block.settings.heading_alignment }} text-lg text-dark-muted py-2 mb-4">
+                  {{ block.settings.subheading | escape }}
+                </p>
+              {% endif %}
+            {% when 'buttons' %}
+              <div class="flex {{ block.settings.button_alignment }} -ml-4">
+                {%- if block.settings.button_label_1 != blank -%}
+                  <a href="{{ block.settings.button_link_1 }}" {% if block.settings.button_style_secondary_1 %} class="btn-secondary" {% else %} class="btn-primary" {% endif %}>
+                    {{ block.settings.button_label_1 | escape }}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a href="{{ block.settings.button_link_2 }}" {% if block.settings.button_style_secondary_2 %} class="btn-secondary" {% else %} class="btn-primary" {% endif %}>
+                    {{ block.settings.button_label_2 | escape }}
+                  </a>
+                {%- endif -%}
               </div>
           {% endcase %}
         {% endfor %}
@@ -78,42 +88,6 @@
       },
       {
         "type": "radio",
-        "id": "heading_alignment",
-        "label": "Heading alignment",
-        "options": [
-          {
-            "value": "text-left",
-            "label": "Left"
-          },
-          {
-            "value": "text-center",
-            "label": "Center"
-          }
-        ],
-        "default": "text-left"
-      },
-      {
-        "type": "radio",
-        "id": "button_alignment",
-        "label": "Button alignment",
-        "options": [
-          {
-            "value": "justify-start",
-            "label": "Left"
-          },
-          {
-            "value": "justify-center",
-            "label": "Center"
-          },
-          {
-            "value": "justify-end",
-            "label": "Right"
-          }
-        ],
-        "default": "justify-start"
-      },
-      {
-        "type": "radio",
         "id": "space_before_section",
         "label": "Add space before section?",
         "options": [
@@ -129,21 +103,33 @@
         "default": "mt-0"
       }
     ],
-    "max_blocks": 3,
+    "max_blocks": 2,
     "blocks": [{
       "type": "heading",
       "name": "Heading",
       "settings": [{
+        "type": "radio",
+        "id": "heading_alignment",
+        "label": "Heading alignment",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Center"
+          }
+        ],
+        "default": "text-left"
+      },
+      {
         "type": "text",
         "id": "heading",
         "label": "Heading",
         "default": "Now that's a catchy heading"
-      }]
-    },
-    {
-      "type": "subheading",
-      "name": "Subheading",
-      "settings": [{
+      },
+      {
         "type": "text",
         "id": "subheading",
         "label": "Subheading",
@@ -151,21 +137,75 @@
       }]
     },
     {
-      "type": "button_text",
-      "name": "Button text",
-      "settings": [{
-        "type": "text",
-        "id": "button_text",
-        "label": "Button text",
-        "default": "Shop now"
-      }]
+      "type": "buttons",
+      "name": "t:sections.image-banner.blocks.buttons.name",
+      "settings": [
+        {
+          "type": "radio",
+          "id": "button_alignment",
+          "label": "Button alignment",
+          "options": [
+            {
+              "value": "justify-start",
+              "label": "Left"
+            },
+            {
+              "value": "justify-center",
+              "label": "Center"
+            },
+            {
+              "value": "justify-end",
+              "label": "Right"
+            }
+          ],
+          "default": "justify-start"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_label_1.label",
+          "default": "Shop now",
+          "info": "t:sections.image-banner.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "default": false,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Button label",
+          "default": "This is different",
+          "info": "Buttons"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_link_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "default": true,
+          "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_2.label"
+        }
+      ]
     }],
     "presets": [{
       "name": "AAA Image Banner",
-      "blocks": [{
-        "type": "heading",
-        "type": "subheading",
-        "type": "button_text"
+      "blocks": [
+      {
+        "type": "heading"
+      },
+      {
+        "type": "buttons"
       }]
     }]
   }

@@ -20,7 +20,8 @@ module.exports = {
     },
     extend: {
       boxShadow:{
-        button: "0 0 0 0.2rem rgba(0, 0, 0, 1)",
+        button : "0 0 0 0.2rem rgba(0, 0, 0, 1)",
+        button_inner : "inset 0 0 0 0.2rem rgba(0, 0, 0, 1)",
       },
       colors: {
         accent1: "var(--color-background-accent1)",
