@@ -9,10 +9,10 @@
   <div class="container my-12">
     <div class="h-halfscreen grid grid-cols-3 grid-rows-2">
       {%- for block in section.blocks -%}
-        {% assign i = 0 %}
-        {% if i == 1 %}<div class="{{ class1 }}">{{ i }}, {{ block.section.message }}</div>{% endif %}
-        {% if i == 2 %}<div class="{{ class2 }}">{{ i }}, {{ block.section.message }}</div>{% endif %}
-        {% if i == 3 %}<div class="{{ class3 }}">{{ i }}, {{ block.section.message }}</div>{% endif %}
+        {% assign ind = forloop.index | minus:  1 %}
+        <div class="{{ classes[ind] }}">
+          {% render 'aaa-partial', blk: block %}
+        </div>
       {% endfor %}
     </div>
   </div>
