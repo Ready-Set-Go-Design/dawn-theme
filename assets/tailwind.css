@@ -926,12 +926,12 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:block {
-    display: block;
-  }
-
   .md\:h-screen {
     height: 100vh;
+  }
+
+  .md\:h-auto {
+    height: auto;
   }
 
   .md\:w-10\/12 {
