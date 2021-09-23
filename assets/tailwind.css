@@ -733,14 +733,14 @@ video {
   grid-row: span 2 / span 2;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mb-4 {
@@ -779,12 +779,12 @@ video {
   display: none;
 }
 
-.h-halfscreen {
-  height: 50vh;
-}
-
 .h-full {
   height: 100%;
+}
+
+.h-halfscreen {
+  height: 50vh;
 }
 
 .h-screen {
