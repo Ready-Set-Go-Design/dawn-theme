@@ -45,7 +45,32 @@
     },
     "aaa_collage": {
       "type": "aaa-collage",
-      "settings":{}
+      "settings":{},
+      "blocks": {
+        "message1": {
+          "type": "message",
+          "settings": {
+            "message": "This is the video"
+          }
+        },
+        "message2": {
+          "type": "message",
+          "settings": {
+            "message": "This is the image"
+          }
+        },
+        "message3": {
+          "type": "message",
+          "settings": {
+            "message": "This is the product"
+          }
+        }
+      },
+      "block_order": [
+        "message1",
+        "message2",
+        "message3"
+      ]
     },
     "image_banner": {
       "type": "image-banner",
