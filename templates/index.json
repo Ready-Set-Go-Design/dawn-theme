@@ -43,6 +43,12 @@
         "buttons"
       ]
     },
+    "aaa_collage": {
+      "type": "aaa-collage",
+      "settings":{},
+      "blocks":{},
+      "block_order": [] 
+    },
     "image_banner": {
       "type": "image-banner",
       "settings": {
@@ -73,6 +79,7 @@
   "order": [
     "aaa_announcement",
     "aaa_image_banner",
+    "aaa_collage",
     "image_banner"
   ]
 }
