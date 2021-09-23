@@ -19,6 +19,9 @@ module.exports = {
       },
     },
     extend: {
+      height:{
+        halfscreen : "50vh",
+      },
       boxShadow:{
         button : "0 0 0 0.2rem rgba(0, 0, 0, 1)",
         button_inner : "inset 0 0 0 0.2rem rgba(0, 0, 0, 1)",
