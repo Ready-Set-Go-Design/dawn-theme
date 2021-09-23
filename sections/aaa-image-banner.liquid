@@ -1,20 +1,3 @@
-
-{%- liquid
-assign class1 = "bg-gray-300 col-span-2 row-span-2 h-full w-full"
-assign class2 = "bg-gray-500"
-assign class3 = "bg-gray-700"
-assign classes = class1 | append: "," | append: class2 | append: "," | append: class3
--%}
-
-<section>
-<div class="container my-12">
-  <div class="h-halfscreen grid grid-cols-3 grid-rows-2">
-    {% for i in (0..2) %}
-      <div class="{{ classes[i]  }}">And here</div>
-    {% endfor %}
-  </div>
-</div>
-</section>
 <section class="h-screen bg-gray-200 flex items-center relative {{ section.settings.space_before_section }}">
   <div class="absolute top-0 left-0 flex flex-col h-screen w-full md:flex-row">
     {% if section.settings.image_1 == blank and section.settings.image_2 == blank %}
