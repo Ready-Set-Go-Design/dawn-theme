@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.grid{
+  margin:auto;
+}
+
 @layer components{
   .btn-primary{
     @apply bg-accent1 text-white px-6 py-3 text-center text-base border-2 border-gray-900 transition-all hover:shadow-button m-2;
