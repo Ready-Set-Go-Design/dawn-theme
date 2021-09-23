@@ -45,9 +45,7 @@
     },
     "aaa_collage": {
       "type": "aaa-collage",
-      "settings":{},
-      "blocks":{},
-      "block_order": [] 
+      "settings":{}
     },
     "image_banner": {
       "type": "image-banner",
