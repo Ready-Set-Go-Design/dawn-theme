@@ -4,12 +4,12 @@
 
 @layer components{
   .btn-primary{
-    @apply bg-accent1 text-white px-6 py-3 text-base border-2 border-gray-900 transition-all hover:shadow-button;
+    @apply bg-accent1 text-white px-6 py-3 text-base border-2 border-gray-900 transition-all hover:shadow-button mx-4;
   }
 
   .btn-secondary{
     background-color: var(--color-background-light1);
     color: var(--color-text-dark-default);
-    @apply bg-light1 text-gray-900 px-6 py-3 text-base border-2 border-gray-900 transition-all hover:bg-gray-50;
+    @apply bg-light1 text-gray-900 px-6 py-3 text-base border-2 border-gray-900 transition-all hover:shadow-button_inner mx-4;
   }
 }
