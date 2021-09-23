@@ -1,0 +1,83 @@
+{%- liquid
+  assign class1 = "bg-gray-300 col-span-2 row-span-2 h-full w-full"
+  assign class2 = "bg-gray-500"
+  assign class3 = "bg-gray-700"
+  assign classes = class1 | append: "," | append: class2 | append: "," | append: class3 | split: ","
+-%}
+
+<section>
+  <div class="container my-12">
+    <div class="h-halfscreen grid grid-cols-3 grid-rows-2">
+      {%- for block in section.blocks -%}
+        {% assign i = 0 %}
+        {% if i == 1 %}<div class="{{ class1 }}">{{ i }}, {{ block.section.message }}</div>{% endif %}
+        {% if i == 2 %}<div class="{{ class2 }}">{{ i }}, {{ block.section.message }}</div>{% endif %}
+        {% if i == 3 %}<div class="{{ class3 }}">{{ i }}, {{ block.section.message }}</div>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "AAA Collage",
+    "tag": "section",
+    "settings": [{
+        "type": "radio",
+        "id": "dismiss",
+        "label": "Dissmissable",
+        "options": [{
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
+        ],
+        "default": "yes"
+      },
+      {
+        "type": "select",
+        "id": "background",
+        "label": "Background",
+        "options": [{
+            "value": "light1",
+            "label": "Light 1"
+          },
+          {
+            "value": "light2",
+            "label": "Light 2"
+          },
+          {
+            "value": "accent1",
+            "label": "Accent 1"
+          },
+          {
+            "value": "accent2",
+            "label": "Accent 2"
+          }
+        ],
+        "default": "light2"
+      }
+    ],
+    "max_blocks": 3,
+    "blocks": [{
+      "type": "message",
+      "name": "Message",
+      "settings": [{
+        "type": "text",
+        "id": "message",
+        "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
+        "default": "Welcome to our store"
+      }]
+    }],
+    "presets": [{
+      "name": "AAA Collage",
+      "blocks": [{
+        "type": "message"
+      }]
+    }]
+  }
+
+{% endschema %}
