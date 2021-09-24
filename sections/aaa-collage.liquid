@@ -2,15 +2,16 @@
   assign class1 = "bg-gray-300 col-span-2 row-span-2 h-full w-full"
   assign class2 = "bg-gray-500"
   assign class3 = "bg-gray-700"
-  assign classes = class1 | append: "," | append: class2 | append: "," | append: class3 | split: ","
+  
+
 -%}
 
 <section>
   <div class="container my-12">
     <div class="h-halfscreen grid grid-cols-3 grid-rows-2">
       {%- for block in section.blocks -%}
-        {% assign ind = forloop.index | minus:  1 %}
-        <div class="{{ classes[ind] }}">
+        {% assign class_ref = 'class' | append: forloop.index %}
+        <div class="{{ [class_ref] }}">
           {% render 'aaa-partial', blk: block %}
         </div>
       {% endfor %}
