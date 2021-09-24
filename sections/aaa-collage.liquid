@@ -1,48 +1,46 @@
 {%- liquid
   if section.blocks.size == 3
     if section.settings.layout == "large-on-left"
-      assign class1 = "bg-gray-300 col-span-4 h-full w-full row-span-2"
+      assign class1 = "bg-gray-300 h-3/4screen col-span-4 w-full row-span-2"
       assign class2 = "bg-gray-500 col-span-2 h-full w-full"
       assign class3 = "bg-gray-700 col-span-2 h-full w-full"
     elsif section.settings.layout == "large-on-right"
-      assign class1 = "bg-gray-300 col-start-3 col-span-4 row-span-2 h-full w-full"
+      assign class1 = "bg-gray-300 h-3/4screen col-start-3 col-span-4 row-span-2 w-full"
       assign class2 = "bg-gray-500 col-start-1 row-start-1 col-span-2 h-full w-full"
       assign class3 = "bg-gray-700 col-start-1 col-span-2 h-full w-full"  
     endif
   elsif section.blocks.size == 2
     if section.settings.layout == "large-on-left"
-      assign class1 = "bg-gray-300 col-span-3 h-full w-full"
+      assign class1 = "bg-gray-300 h-3/4screen col-span-3 w-full"
       assign class2 = "bg-gray-500 col-span-3 h-full w-full"
-      assign class3 = "hidden"
     elsif section.settings.layout == "large-on-right"
-      assign class1 = "bg-gray-300 col-start-4 col-span-3 h-full w-full"
+      assign class1 = "bg-gray-300 h-3/4screen col-start-4 col-span-3 w-full"
       assign class2 = "bg-gray-500 col-start-1 row-start-1 col-span-3 h-full w-full"
-      assign class3 = "hidden"  
     endif
   endif  
-  assign classes = class1 | append: "," | append: class2 | append: "," | append: class3 | split: ","
+  
 -%}
 
 <section>
   <div class="container my-12">
-    <div class="h-3/4screen grid gap-1 grid-cols-6">
+    <div class="grid gap-1 grid-cols-6">
       {%- for block in section.blocks -%}
-        {% assign ind = forloop.index | minus: 1 %}
+        {% assign class_ref = 'class' | append: forloop.index %}
         {% case block.type %}
           {% when 'video' %}
-            <div class="{{ classes[ind] }}">
+            <div class="{{ [class_ref] }}">
               {% render 'aaa-video', block: block %}
             </div>
           {% when 'collection' %}
-            <div class="{{ classes[ind] }}">
+            <div class="{{ [class_ref] }}">
               {% render 'aaa-collection', block: block %}
             </div>
           {% when 'product' %}
-            <div class="{{ classes[ind] }}">
+            <div class="{{ [class_ref] }}">
               {% render 'aaa-product', block: block %}
             </div>
           {% when 'image' %}
-            <div class="{{ classes[ind] }}">
+            <div class="{{ [class_ref] }}">
               {% render 'aaa-image', block: block %}
             </div>
         {% endcase %}

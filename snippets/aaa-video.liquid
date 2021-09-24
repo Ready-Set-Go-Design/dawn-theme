@@ -1,4 +1,17 @@
-<div>Video
-
-<p>{{ block.settings.message }}</p>
-</div>
+<div class="h-full w-full relative">
+  {% if  block.settings.cover_image == blank %}
+    {{ "collection-5" | placeholder_svg_tag: "w-full h-full" }}
+  {% else %}
+    {% render "aaa-image-tag" | img_src: block.settings.cover_image img_class: "h-full w-full object-cover" %}
+    <div class="absolute top-0 left-0 h-full w-full flex flex-col justify-center items-center z-10">
+      <div>       
+        <a href="{{ block.settings.video_url }}" class="flex justify-center items-center w-16 h-16 bg-white rounded-full transition-all hover:shadow-button">
+          {% render "icon-play" %}
+        </a>
+      </div>
+      <div>
+        {{ block.settings.description }}
+      </div>
+    </div>
+  {% endif %}
+</div> 

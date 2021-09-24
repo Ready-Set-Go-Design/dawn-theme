@@ -11,6 +11,10 @@
     @apply bg-accent1 text-white px-6 py-3 text-center text-base border-2 border-gray-900 transition-all hover:shadow-button m-2;
   }
 
+  .btn-icon{
+    @apply flex justify-center items-center w-16 h-16 bg-white rounded-full transition-all hover:shadow-button;
+  }
+
   .btn-secondary{
     @apply bg-light1 text-gray-900 px-6 py-3 text-center text-base border-2 border-gray-900 transition-all hover:shadow-button_inner m-2;
   }
