@@ -1,83 +1,141 @@
 {%- liquid
-  assign class1 = "bg-gray-300 col-span-2 row-span-2 h-full w-full"
-  assign class2 = "bg-gray-500"
-  assign class3 = "bg-gray-700"
+  if section.settings.layout == "large-on-left"
+    assign class1 = "bg-gray-300 col-span-4 h-full w-full row-span-2"
+    assign class2 = "bg-gray-500 col-span-2"
+    assign class3 = "bg-gray-700 col-span-2"
+  elsif section.settings.layout == "large-on-right"
+    assign class1 = "bg-gray-300 col-start-3 col-span-4 h-full w-full row-span-2"
+    assign class2 = "bg-gray-500 col-start-1 row-start-1 col-span-2"
+    assign class3 = "bg-gray-700 col-start-1 col-span-2"  
+  endif  
   assign classes = class1 | append: "," | append: class2 | append: "," | append: class3 | split: ","
 -%}
 
 <section>
   <div class="container my-12">
-    <div class="h-halfscreen grid grid-cols-3 grid-rows-2">
+    <div class="h-3/4screen grid gap-1 grid-cols-6 grid-rows-2">
       {%- for block in section.blocks -%}
-        {% assign ind = forloop.index | minus:  1 %}
-        <div class="{{ classes[ind] }}">
-          {% render 'aaa-partial', blk: block %}
-        </div>
+        {% assign ind = forloop.index | minus: 1 %}
+        {% case block.type %}
+          {% when 'video' %}
+            <div class="{{ classes[ind] }}">
+              {% render 'aaa-video', blk: block %}
+            </div>
+          {% when 'collection' %}
+            <div class="{{ classes[ind] }}">
+              {% render 'aaa-collection', blk: block %}
+            </div>
+          {% when 'product' %}
+            <div class="{{ classes[ind] }}">
+              {% render 'aaa-product', blk: block %}
+            </div>
+          {% when 'image' %}
+            <div class="{{ classes[ind] }}">
+              {% render 'aaa-image', blk: block %}
+            </div>
+        {% endcase %}
       {% endfor %}
     </div>
   </div>
 </section>
 
 {% schema %}
-  {
-    "name": "AAA Collage",
-    "tag": "section",
-    "settings": [{
-        "type": "radio",
-        "id": "dismiss",
-        "label": "Dissmissable",
-        "options": [{
-            "value": "yes",
-            "label": "Yes"
-          },
-          {
-            "value": "no",
-            "label": "No"
-          }
-        ],
-        "default": "yes"
-      },
-      {
-        "type": "select",
-        "id": "background",
-        "label": "Background",
-        "options": [{
-            "value": "light1",
-            "label": "Light 1"
-          },
-          {
-            "value": "light2",
-            "label": "Light 2"
-          },
-          {
-            "value": "accent1",
-            "label": "Accent 1"
-          },
-          {
-            "value": "accent2",
-            "label": "Accent 2"
-          }
-        ],
-        "default": "light2"
-      }
-    ],
-    "max_blocks": 3,
-    "blocks": [{
-      "type": "message",
-      "name": "Message",
-      "settings": [{
-        "type": "text",
-        "id": "message",
-        "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
-        "default": "Welcome to our store"
-      }]
-    }],
-    "presets": [{
-      "name": "AAA Collage",
-      "blocks": [{
-        "type": "message"
-      }]
-    }]
-  }
+{
+	"name": "AAA Collage",
+	"tag": "section",
+	"settings": [{
+		"type": "select",
+		"id": "layout",
+		"label": "Layout styles",
+		"options": [{
+				"value": "large-on-left",
+				"label": "Large on the left"
+			},
+			{
+				"value": "large-on-right",
+				"label": "Large on the right"
+			}
+		],
+		"default": "large-on-right"
+	}],
+	"max_blocks": 3,
+	"blocks": [{
+			"type": "video",
+			"name": "t:sections.collage.blocks.video.name",
+			"settings": [{
+					"type": "image_picker",
+					"id": "cover_image",
+					"label": "t:sections.collage.blocks.video.settings.cover_image.label"
+				},
+				{
+					"type": "video_url",
+					"id": "video_url",
+					"accept": [
+						"youtube",
+						"vimeo"
+					],
+					"default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+					"label": "t:sections.collage.blocks.video.settings.video_url.label",
+					"placeholder": "t:sections.collage.blocks.video.settings.video_url.placeholder",
+					"info": "t:sections.collage.blocks.video.settings.video_url.info"
+				},
+				{
+					"type": "text",
+					"id": "description",
+					"default": "Describe the video",
+					"label": "t:sections.collage.blocks.video.settings.description.label",
+					"info": "t:sections.collage.blocks.video.settings.description.info"
+				}
+			]
+		},
+		{
+			"type": "collection",
+			"name": "t:sections.collage.blocks.collection.name",
+			"settings": [{
+				"type": "collection",
+				"id": "collection",
+				"label": "t:sections.collage.blocks.collection.settings.collection.label"
+			}]
+		},
+		{
+			"type": "image",
+			"name": "t:sections.collage.blocks.image.name",
+			"settings": [{
+				"type": "image_picker",
+				"id": "image",
+				"label": "t:sections.collage.blocks.image.settings.image.label"
+			}]
+		},
+		{
+			"type": "product",
+			"name": "t:sections.collage.blocks.product.name",
+			"settings": [{
+					"type": "product",
+					"id": "product",
+					"label": "t:sections.collage.blocks.product.settings.product.label"
+				},
+				{
+					"type": "checkbox",
+					"id": "second_image",
+					"default": false,
+					"label": "t:sections.collage.blocks.product.settings.second_image.label"
+				}
+			]
+		}
+	],
+	"presets": [{
+		"name": "AAA Collage",
+		"blocks": [{
+				"type": "video"
+			},
+			{
+				"type": "collection"
+			},
+			{
+				"type": "product"
+			}
+		]
+	}]
+}
 
 {% endschema %}

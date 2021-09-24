@@ -13,14 +13,15 @@ module.exports = {
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-        '2xl': '6rem',
+        lg: '2rem',
+        xl: '3rem',
+        '2xl': '4rem',
       },
     },
     extend: {
       height:{
-        halfscreen : "50vh",
+        '3/4screen' : "75vh",
+        '1/2screen' : "50vh",
       },
       boxShadow:{
         button : "0 0 0 0.2rem rgba(0, 0, 0, 1)",
