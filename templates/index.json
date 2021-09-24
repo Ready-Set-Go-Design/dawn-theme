@@ -47,29 +47,29 @@
       "type": "aaa-collage",
       "settings":{},
       "blocks": {
-        "message1": {
-          "type": "message",
+        "video": {
+          "type": "video",
           "settings": {
-            "message": "This is the video"
+            "video": "Video"
           }
         },
-        "message2": {
-          "type": "message",
+        "product": {
+          "type": "collection",
           "settings": {
-            "message": "This is the image"
+            "collection": "Collection"
           }
         },
-        "message3": {
-          "type": "message",
+        "collection": {
+          "type": "product",
           "settings": {
-            "message": "This is the product"
+            "product": "Product"
           }
         }
       },
       "block_order": [
-        "message1",
-        "message2",
-        "message3"
+        "video",
+        "product",
+        "collection"
       ]
     },
     "image_banner": {

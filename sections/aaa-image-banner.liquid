@@ -1,10 +1,10 @@
 <section class="h-screen bg-gray-200 flex items-center relative {{ section.settings.space_before_section }}">
   <div class="absolute top-0 left-0 flex flex-col h-screen w-full md:flex-row">
     {% if section.settings.image_1 == blank and section.settings.image_2 == blank %}
-      <div class="bg-light1 h-halfscreen md:h-screen w-full flex flex-col items-start justify-start">
+      <div class="bg-light1 h-1/2screen md:h-screen w-full flex flex-col items-start justify-start">
         {{ "collection-1" | placeholder_svg_tag: "w-full h-full md:h-auto" }}
       </div>
-      <div class="bg-light2 h-halfscreen md:h-screen w-full flex flex-col items-end justify-end">
+      <div class="bg-light2 h-1/2screen md:h-screen w-full flex flex-col items-end justify-end">
         {{ "collection-3" | placeholder_svg_tag: "w-full h-full md:h-auto" }}
       </div>
     {% else %}  
