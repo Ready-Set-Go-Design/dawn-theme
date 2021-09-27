@@ -1,5 +1,7 @@
 {%- for link in section.settings.menu.links -%}
-    <li>
+  <div>TOP</div>
+  {% render 'header-link', header_link: link, level: -1 %}
+    {% comment %} <li>
       {%- if link.links != blank -%}
         <details-disclosure>
           <details>
@@ -41,5 +43,5 @@
           <span {%- if link.current %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
         </a>
       {%- endif -%}
-    </li>
+    </li> {% endcomment %}
   {%- endfor -%}

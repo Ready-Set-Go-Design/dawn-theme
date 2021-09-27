@@ -1,14 +1,60 @@
-<ul class="menu-drawer__menu list-menu" role="list">
-<div>
-{% if link.links %}
-    <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-        {{ link.title | escape }}
-        {% render 'icon-arrow' %}
-        {% render 'icon-caret' %}
-      </summary>
+{% if level == 0 %}
+	{% assign summary_class = "header__menu-item list-menu__item link focus-inset" %}
+	{% capture ul_class %}class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1"{% endcapture %}
+	
+{% elsif level == 1 %}
+	{% assign summary_class = "header__menu-item link link--text list-menu__item focus-inset caption-large" %}
+	{% capture ul_class %}class="header__submenu list-menu motion-reduce"{% endcapture %}
+{% elsif level > 1 %}
+
+{% endif %}
+
+{% if header_link.current %}
+	{% assign current_class = "header__active-menu-item" %}
+	{% capture aria_current %}aria-current="page"{% endcapture %}
+{% else %}
+	{% assign current_class = "" %}
+	{% assign aria_current = "" %}
+{% endif %}
+
+{%- if header_link.child_active %}
+	{% assign child_active_class = "header__active-menu-item" %}
+{% else %}
+	{% assign child_active_class = "" %}
+{% endif %}
+
+{% if header_link.links %}
+	{% assign link_class = "header__menu-item header__menu-item list-menu__item link link--text focus-inset" %}
+{% else %}
+	{% assign link_class = "header__menu-item list-menu__item link link--text focus-inset caption-large" %}
+{% endif %}
 
 
-{% endif%}
-
-
-</div>
+<li>
+	{% if header_link.links == blank %}
+		<a href="{{ header_link.url }}" class="{{ link_class }}" {{ aria_current }}>
+			<span class="{{ current_class }}">{{ header_link.title | escape }}{{ newlevel }}</span>
+		</a>
+		{% else %}
+			{% if level == 0 %}
+				<details-disclosure>
+			{% endif %}
+			<details>
+				<summary class="{{ summary_class }}">
+					<span class="{{ child_active_class }}">{{ header_link.title | escape }}</span>
+					{% render 'icon-caret' %}
+				</summary>    
+				
+				<ul {{ ul_class }}>
+					{% assign nextLevel = level | plus: 1 %}
+					{% for childLink in header_link.links %}
+						{% render 'header-link', header_link: childLink, level: nextLevel %}
+					{% endfor %}
+				</ul>
+    
+	{% endif%}
+				</details>
+	{% if level == 0 %}
+		</details-disclosure>
+	{% endif %}
+</li>
