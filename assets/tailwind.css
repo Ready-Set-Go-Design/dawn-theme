@@ -770,10 +770,6 @@ video {
   height: 100vh;
 }
 
-.h-96 {
-  height: 24rem;
-}
-
 .h-halfscreen {
   height: 50vh;
 }
