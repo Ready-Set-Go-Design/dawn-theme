@@ -1,0 +1,189 @@
+{%- liquid
+  if section.settings.mobile_layout == "collage" and section.blocks.size == 3
+    if section.settings.layout == "large-on-left"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-3 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-3 md:col-span-2"
+    elsif section.settings.layout == "large-on-right"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-3 md:col-start-1 md:row-start-1 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-3 md:col-start-1 md:col-span-2"  
+    endif
+  
+  elsif section.settings.mobile_layout == "column" and section.blocks.size == 3
+    if section.settings.layout == "large-on-left"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-6 md:col-span-2"
+    elsif section.settings.layout == "large-on-right"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-start-1 md:row-start-1 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-6 md:col-start-1 md:col-span-2"  
+    endif
+  
+  elsif section.blocks.size == 2
+    if section.settings.layout == "large-on-left"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 "
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-span-2"
+    elsif section.settings.layout == "large-on-right"
+      assign class1 = "bg-light2  w-full col-span-6 md:col-start-3 md:col-span-4"
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-start-1 md:row-start-1 md:col-span-2"
+    endif
+  endif
+  
+-%}
+
+<section>
+  <div class="container mb-2 {% if section.settings.heading != blank %} mt-16 {% endif %}">
+    <h2 class="heading2 {% if section.settings.heading %}mb-6 md:mb-10{% endif %}">{{ section.settings.heading | escape }}</h2>
+    <div class="grid gap-2 grid-cols-6 auto-rows-fr">
+      {%- for block in section.blocks -%}
+        {% assign class_ref = 'class' | append: forloop.index %}
+        {% case block.type %}
+          {% when 'video' %}
+            <div class="{{ [class_ref] }}">
+              {% render 'aaa-video', block: block %}
+            </div>
+          {% when 'collection' %}
+            <div class="{{ [class_ref] }}">
+              {% render 'aaa-collection', block: block %}
+            </div>
+          {% when 'product' %}
+            <div class="{{ [class_ref] }}">
+              {% render 'aaa-product', block: block %}
+            </div>
+          {% when 'image' %}
+            <div class="{{ [class_ref] }}">
+              {% render 'aaa-image', block: block %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "AAA Collage",
+	"tag": "section",
+	"settings": [
+  {
+    "type": "text",
+    "id": "heading",
+    "default": "Multimedia collage",
+    "label": "t:sections.collage.settings.heading.label"
+  },
+  {
+		"type": "select",
+		"id": "layout",
+		"label": "Layout styles",
+		"options": [{
+				"value": "large-on-left",
+				"label": "Large on the left"
+			},
+			{
+				"value": "large-on-right",
+				"label": "Large on the right"
+			}
+		],
+		"default": "large-on-right"
+	},
+  {
+    "type": "select",
+    "id": "mobile_layout",
+    "options": [
+      {
+        "value": "collage",
+        "label": "t:sections.collage.settings.mobile_layout.options__1.label"
+      },
+      {
+        "value": "column",
+        "label": "t:sections.collage.settings.mobile_layout.options__2.label"
+      }
+    ],
+    "default": "collage",
+    "label": "t:sections.collage.settings.mobile_layout.label"
+  }
+  ],
+	"max_blocks": 3,
+	"blocks": [
+    {
+			"type": "video",
+			"name": "t:sections.collage.blocks.video.name",
+			"settings": [{
+					"type": "image_picker",
+					"id": "cover_image",
+					"label": "t:sections.collage.blocks.video.settings.cover_image.label"
+				},
+				{
+					"type": "video_url",
+					"id": "video_url",
+					"accept": [
+						"youtube",
+						"vimeo"
+					],
+					"default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+					"label": "t:sections.collage.blocks.video.settings.video_url.label",
+					"placeholder": "t:sections.collage.blocks.video.settings.video_url.placeholder",
+					"info": "t:sections.collage.blocks.video.settings.video_url.info"
+				},
+				{
+					"type": "text",
+					"id": "description",
+					"default": "Describe the video",
+					"label": "t:sections.collage.blocks.video.settings.description.label",
+					"info": "t:sections.collage.blocks.video.settings.description.info"
+				}
+			]
+		},
+		{
+			"type": "collection",
+			"name": "t:sections.collage.blocks.collection.name",
+			"settings": [{
+				"type": "collection",
+				"id": "collection",
+				"label": "t:sections.collage.blocks.collection.settings.collection.label"
+			}]
+		},
+		{
+			"type": "image",
+			"name": "t:sections.collage.blocks.image.name",
+			"settings": [{
+				"type": "image_picker",
+				"id": "image",
+				"label": "t:sections.collage.blocks.image.settings.image.label"
+			}]
+		},
+		{
+			"type": "product",
+			"name": "t:sections.collage.blocks.product.name",
+			"settings": [{
+					"type": "product",
+					"id": "product",
+					"label": "t:sections.collage.blocks.product.settings.product.label"
+				},
+				{
+					"type": "checkbox",
+					"id": "second_image",
+					"default": false,
+					"label": "t:sections.collage.blocks.product.settings.second_image.label"
+				}
+			]
+		}
+	],
+	"presets": [{
+		"name": "AAA Collage",
+		"blocks": [{
+				"type": "video"
+			},
+			{
+				"type": "collection"
+			},
+			{
+				"type": "product"
+			}
+		]
+	}]
+}
+
+{% endschema %}

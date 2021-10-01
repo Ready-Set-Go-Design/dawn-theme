@@ -1,23 +1,5 @@
 {
-  
   "sections": {
-    "aaa_announcement": {
-      "type": "aaa-announcement",
-      "settings": {
-        "dismissable": "true"
-      },
-      "blocks": {
-        "message": {
-          "type": "message",
-          "settings": {
-            "message": "This is your store"
-          }
-        }
-      },
-      "block_order": [
-        "message"
-      ]
-    },
     "aaa_image_banner": {
       "type": "aaa-image-banner",
       "settings":{},
@@ -41,6 +23,35 @@
       "block_order": [
         "heading",
         "buttons"
+      ]
+    },
+    "aaa_collage": {
+      "type": "aaa-collage",
+      "settings":{},
+      "blocks": {
+        "video": {
+          "type": "video",
+          "settings": {
+            "video": "Video"
+          }
+        },
+        "product": {
+          "type": "collection",
+          "settings": {
+            "collection": "Collection"
+          }
+        },
+        "collection": {
+          "type": "product",
+          "settings": {
+            "product": "Product"
+          }
+        }
+      },
+      "block_order": [
+        "video",
+        "product",
+        "collection"
       ]
     },
     "image_banner": {
@@ -71,8 +82,8 @@
     }
   },
   "order": [
-    "aaa_announcement",
     "aaa_image_banner",
+    "aaa_collage",
     "image_banner"
   ]
 }
