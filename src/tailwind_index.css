@@ -2,20 +2,73 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.grid{
+.grid {
   margin:auto;
+}
+
+@layer base {
+
+  .content-for-layout > section:first-child > section {
+    @apply mt-0;
+  }
+ 
+ .heading0{
+   @apply text-[3.25rem] leading-[1.2] md:text-[4rem];
+ }
+
+ .heading1{
+  @apply text-3xl leading-[1.2] tracking-wider md:text-4xl;
+ }
+
+ .heading2{
+  @apply text-xl leading-[1.2] tracking-wider md:text-2xl;
+ }
+
+ .heading3{
+  @apply text-[1.0625rem] leading-[1.2] md:text-lg;
+ }
+
+ .text-body1{
+  @apply text-base leading-[1.5];
+ }
+
+ .text-body2{
+  @apply text-sm leading-[1.5];
+ }
+
+ .text-caption{
+  @apply text-[0.8125rem] leading-[1.5];
+ }
+
+ .text-micro{
+   @apply text-xs leading-[1.5];
+ }
+
+ .text-button{
+   @apply text-[0.9375rem] leading-[1];
+ }
+
+
+
 }
 
 @layer components{
   .btn-primary{
-    @apply bg-accent1 text-white px-6 py-3 text-center text-base border-2 border-gray-900 transition-all hover:shadow-button m-2;
+    @apply bg-accent1 text-white px-6 py-3 text-center text-button border-2 border-gray-900 transition-all hover:shadow-button m-2;
   }
 
   .btn-icon{
-    @apply flex justify-center items-center w-16 h-16 bg-white rounded-full transition-all hover:shadow-button;
+    @apply flex justify-center items-center w-24 h-24 bg-white shadow-lg rounded-full transition-all ease-out hover:scale-125;
   }
 
   .btn-secondary{
-    @apply bg-light1 text-gray-900 px-6 py-3 text-center text-base border-2 border-gray-900 transition-all hover:shadow-button_inner m-2;
+    @apply bg-light1 text-gray-900 px-6 py-3 text-center text-button border-2 border-gray-900 transition-all hover:shadow-button m-2;
+  }
+
+  .hover-effect{
+    @apply transition-all ease-out duration-300 group-hover:scale-105
+  }
+  .underlink{
+    @apply before:w-full before:h-px before:bg-black;
   }
 }

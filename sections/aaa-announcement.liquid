@@ -17,7 +17,7 @@
 <section class="text-center border-b {{ bg_class }}">
   <div class="container">
   {%- for block in section.blocks -%}
-    <p class="{{ text_class_default }} py-2 text-xs">
+    <p class="{{ text_class_default }} py-2 text-body2">
       {{ block.settings.message | escape }}
     </p>    
   {%- endfor -%}

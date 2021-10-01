@@ -1,29 +1,42 @@
 {%- liquid
-  if section.blocks.size == 3
+  if section.settings.mobile_layout == "collage" and section.blocks.size == 3
     if section.settings.layout == "large-on-left"
-      assign class1 = "bg-gray-300 h-3/4screen col-span-4 w-full row-span-2"
-      assign class2 = "bg-gray-500 col-span-2 h-full w-full"
-      assign class3 = "bg-gray-700 col-span-2 h-full w-full"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-3 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-3 md:col-span-2"
     elsif section.settings.layout == "large-on-right"
-      assign class1 = "bg-gray-300 h-3/4screen col-start-3 col-span-4 row-span-2 w-full"
-      assign class2 = "bg-gray-500 col-start-1 row-start-1 col-span-2 h-full w-full"
-      assign class3 = "bg-gray-700 col-start-1 col-span-2 h-full w-full"  
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-3 md:col-start-1 md:row-start-1 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-3 md:col-start-1 md:col-span-2"  
     endif
+  
+  elsif section.settings.mobile_layout == "column" and section.blocks.size == 3
+    if section.settings.layout == "large-on-left"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-6 md:col-span-2"
+    elsif section.settings.layout == "large-on-right"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 md:row-span-2"
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-start-1 md:row-start-1 md:col-span-2"
+      assign class3 = "bg-light2 h-full w-full col-span-6 md:col-start-1 md:col-span-2"  
+    endif
+  
   elsif section.blocks.size == 2
     if section.settings.layout == "large-on-left"
-      assign class1 = "bg-gray-300 h-3/4screen col-span-3 w-full"
-      assign class2 = "bg-gray-500 col-span-3 h-full w-full"
+      assign class1 = "bg-light2 w-full col-span-6 md:col-span-4 "
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-span-2"
     elsif section.settings.layout == "large-on-right"
-      assign class1 = "bg-gray-300 h-3/4screen col-start-4 col-span-3 w-full"
-      assign class2 = "bg-gray-500 col-start-1 row-start-1 col-span-3 h-full w-full"
+      assign class1 = "bg-light2  w-full col-span-6 md:col-start-3 md:col-span-4"
+      assign class2 = "bg-light2 h-full w-full col-span-6 md:col-start-1 md:row-start-1 md:col-span-2"
     endif
-  endif  
+  endif
   
 -%}
 
 <section>
-  <div class="container my-12">
-    <div class="grid gap-1 grid-cols-6">
+  <div class="container mb-2 {% if section.settings.heading != blank %} mt-16 {% endif %}">
+    <h2 class="heading2 {% if section.settings.heading %}mb-6 md:mb-10{% endif %}">{{ section.settings.heading | escape }}</h2>
+    <div class="grid gap-2 grid-cols-6 auto-rows-fr">
       {%- for block in section.blocks -%}
         {% assign class_ref = 'class' | append: forloop.index %}
         {% case block.type %}
@@ -53,7 +66,14 @@
 {
 	"name": "AAA Collage",
 	"tag": "section",
-	"settings": [{
+	"settings": [
+  {
+    "type": "text",
+    "id": "heading",
+    "default": "Multimedia collage",
+    "label": "t:sections.collage.settings.heading.label"
+  },
+  {
 		"type": "select",
 		"id": "layout",
 		"label": "Layout styles",
@@ -66,10 +86,28 @@
 				"label": "Large on the right"
 			}
 		],
-		"default": "large-on-left"
-	}],
+		"default": "large-on-right"
+	},
+  {
+    "type": "select",
+    "id": "mobile_layout",
+    "options": [
+      {
+        "value": "collage",
+        "label": "t:sections.collage.settings.mobile_layout.options__1.label"
+      },
+      {
+        "value": "column",
+        "label": "t:sections.collage.settings.mobile_layout.options__2.label"
+      }
+    ],
+    "default": "collage",
+    "label": "t:sections.collage.settings.mobile_layout.label"
+  }
+  ],
 	"max_blocks": 3,
-	"blocks": [{
+	"blocks": [
+    {
 			"type": "video",
 			"name": "t:sections.collage.blocks.video.name",
 			"settings": [{
