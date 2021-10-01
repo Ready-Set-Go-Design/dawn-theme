@@ -5,13 +5,13 @@
 {% assign inner_submenu_class = "menu-drawer__inner-submenu" %}
 {% assign link_class = "menu-drawer__menu-item list-menu__item link link--text focus-inset" %}
 
-{% if drawer_link.child_active %}
+{% if drawer_link.child_active == true %}
 	{% assign summary_child_active = "menu-drawer__menu-item--active" %}	
 {% else %}
 	{% assign summary_child_active = "" %}
 {% endif %}
 
-{% if drawer_link.current %}
+{% if drawer_link.current == true %}
 	{% assign current_class = "header__active-menu-item" %}
 	{% capture aria_current %}aria-current="page"{% endcapture %}
 {% else %}
@@ -19,46 +19,38 @@
 	{% assign aria_current = "" %}
 {% endif %}
 
-{%- if drawer_link.child_active %}
-	{% assign child_active_class = "header__active-menu-item" %}
-{% else %}
-	{% assign child_active_class = "" %}
-{% endif %}
-
-{% if drawer_link.active %}
+{% if drawer_link.active == true %}
 	{% assign link_class_active = "menu-drawer__menu-item--active" %}
 {% else %}
 	{% assign link_class_active = "" %}
 {% endif %}
 
-<script>console.log("{{ drawer_link }}");</script>
+<script>console.log({{ drawer_link }});</script>
 <li>
-    {%- if drawer_link.links == blank -%}
-			<a href="{{ drawer_link.url }}" class="{{ link_class }}{{ link_class_active }}" {{ aria_current }}>
-        {{ drawer_link.title | escape }}what
-      </a>
-		{%- else -%}
-      <div>as</div>
-      <details>
-        <summary class="{{ summary_class }} {{ summary_child_active }}">
-          {{ drawer_link.title | escape }}jj
-          {% render 'icon-arrow' %}
-          {% render 'icon-caret' %}
-        </summary>
-        <div id="link-{{ drawer_link.title | escape }}" class="{{ submenu_class }}" tabindex="-1">
-          <div class="{{ inner_submenu_class }}">
-            <button {{ button_class }}>
-              {% render 'icon-arrow' %}
-              {{ drawer_link.title | escape }}back
-            </button>
-            <ul {{ ul_class }}>
-							{% assign nextLevel = level | plus: 1 %}
-              {%- for childlink in drawer_link.links -%}
-                {% render 'header-drawer-link', drawer_link: childLink, level: nextLevel %}
-              {%- endfor -%}
-            </ul>
-          </div>
+  {% if drawer_link.links == blank %}
+    <a href="{{ drawer_link.url }}" class="{{ link_class }} {{ link_class_active }}" {{ aria_current }}>
+      {{ drawer_link.title | escape }}
+    </a>
+  {% else %}
+    <details>
+      <summary class="{{ summary_class }} {{ summary_child_active }}">
+        {{ drawer_link.title | escape }}
+        {% render 'icon-arrow' %}
+        {% render 'icon-caret' %}
+      </summary>
+      <div id="link-{{ drawer_link.title | escape }}" class="{{ submenu_class }}" tabindex="-1">
+        <div class="{{ inner_submenu_class }}">
+          <button {{ button_class }}>
+            {% render 'icon-arrow' %}
+            {{ drawer_link.title | escape }}
+          </button>
+          <ul {{ ul_class }}>
+            {% for childlink in drawer_link.links %}
+              {% render 'header-drawer-link', drawer_link: childLink, level: 0 %}
+            {% endfor %}
+          </ul>
         </div>
-      </details>
-    {%- endif -%}
-  </li>
+      </div>
+    </details>
+  {% endif %}
+</li>
