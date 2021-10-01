@@ -20,18 +20,21 @@
       "type_header_font": "assistant_n4",
       "type_body_font": "assistant_n4",
       "sections": {
-        "announcement-bar": {
-          "type": "announcement-bar",
-          "blocks": {
-            "announcement-bar-0": {
-              "type": "announcement",
-              "settings": {
-                "color_scheme": "background-1"
+        "aaa-announcement":{
+          "type":"aaa-announcement",
+          "settings": {
+            "dismissable": "true"
+          },
+          "blocks":{
+            "message1":{
+              "type": "message",
+              "settings":{
+                "message": "hot damn"
               }
             }
           },
           "block_order": [
-            "announcement-bar-0"
+            "message1"
           ]
         }
       }

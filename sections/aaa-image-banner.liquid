@@ -32,7 +32,7 @@
                 </p>
               {% endif %}
             {% when 'buttons' %}
-              <div class="flex flex-col {{ block.settings.button_alignment }} -ml-4 md:flex-row">
+              <div class="flex flex-col {{ block.settings.button_alignment }} space-y-4 md:space-x-4 md:space-y-0 md:flex-row">
                 {%- if block.settings.button_label_1 != blank -%}
                   <a href="{{ block.settings.button_link_1 }}" class="{% if block.settings.button_style_secondary_1 %} btn-secondary {% else %} btn-primary {% endif %} w-full md:w-auto">
                     {{ block.settings.button_label_1 | escape }}

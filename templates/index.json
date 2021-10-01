@@ -1,23 +1,5 @@
 {
-  
   "sections": {
-    "aaa_announcement": {
-      "type": "aaa-announcement",
-      "settings": {
-        "dismissable": "true"
-      },
-      "blocks": {
-        "message": {
-          "type": "message",
-          "settings": {
-            "message": "This is your store"
-          }
-        }
-      },
-      "block_order": [
-        "message"
-      ]
-    },
     "aaa_image_banner": {
       "type": "aaa-image-banner",
       "settings":{},
@@ -100,7 +82,6 @@
     }
   },
   "order": [
-    "aaa_announcement",
     "aaa_image_banner",
     "aaa_collage",
     "image_banner"
