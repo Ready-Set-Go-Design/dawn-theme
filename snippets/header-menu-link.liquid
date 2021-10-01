@@ -26,8 +26,6 @@
 	{% assign link_class = "header__menu-item list-menu__item link link--text focus-inset caption-large" %}
 {% endif %}
 
-{{ header_link }}
-
 <li>
 	{% if header_link.links == blank %}
 		<a href="{{ header_link.url }}" class="{{ link_class }}" {{ aria_current }}>
