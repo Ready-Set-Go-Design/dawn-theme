@@ -1,63 +1,45 @@
-<section class="h-screen bg-gray-200 flex items-center relative {{ section.settings.space_before_section }}">
+<section class="h-screen bg-gray-900 flex items-end md:items-center relative mt-16">
   <div class="absolute top-0 left-0 flex flex-col h-screen w-full md:flex-row">
     {% if section.settings.image_1 == blank and section.settings.image_2 == blank %}
-      <div class="bg-light1 h-halfscreen md:h-screen w-full flex flex-col items-start justify-start">
-        {{ "collection-1" | placeholder_svg_tag: "w-full h-full md:h-auto" }}
-      </div>
-      <div class="bg-light2 h-halfscreen md:h-screen w-full flex flex-col items-end justify-end">
-        {{ "collection-3" | placeholder_svg_tag: "w-full h-full md:h-auto" }}
+      <div class="bg-light2 h-screen w-full flex flex-col items-start justify-start">
+        {{ "lifestyle-2" | placeholder_svg_tag: "w-full h-full" }}
       </div>
     {% else %}  
       {% for i in (1..2) %}
           {% assign image = "image_" | append: i %}
           {% if section.settings[image] %}
             <div class="h-full w-full flex flex-col items-center justify-center">
-              <img class="h-full w-full object-cover"
-              src="{{ section.settings[image] | img_url: '1500x' }}"
-              srcset="
-              {%- if section.settings[image].width >= 375 -%}{{ section.settings[image] | img_url: '375x' }} 375w,{%- endif -%}
-              {%- if section.settings[image].width >= 750 -%}{{ section.settings[image] | img_url: '750x' }} 750w,{%- endif -%}
-              {%- if section.settings[image].width >= 1100 -%}{{ section.settings[image] | img_url: '1100x' }} 1100w,{%- endif -%}
-              {%- if section.settings[image].width >= 1500 -%}{{ section.settings[image] | img_url: '1500x' }} 1500w,{%- endif -%}
-              {%- if section.settings[image].width >= 1780 -%}{{ section.settings[image] | img_url: '1780x' }} 1780w,{%- endif -%}
-              {%- if section.settings[image].width >= 2000 -%}{{ section.settings[image] | img_url: '2000x' }} 2000w,{%- endif -%}
-              {%- if section.settings[image].width >= 3000 -%}{{ section.settings[image] | img_url: '3000x' }} 3000w,{%- endif -%}
-              {%- if section.settings[image].width >= 3840 -%}{{ section.settings[image] | img_url: '3840x' }} 3840w,{%- endif -%}"
-              loading="lazy" 
-              alt="{{ section.settings[image].alt | escape }}"
-              width="{{ section.settings[image].width }}"
-              height="{{ section.settings[image].width | divided_by: section.settings[image].aspect_ratio }}"
-              >
+              {% render "aaa-image-tag" | img_src: section.settings[image] img_class: "h-full w-full object-cover" %}
             </div>
           {% endif %}
       {% endfor %}  
     {% endif %}
   </div>
-  <div class="container relative">
+  <div class="container relative mb-16 md:mb-0">
     <div class="w-full bg-light1 mx-auto p-12 shadow-2xl md:w-10/12">
       <div class="">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'heading' %}
               {% if block.settings.heading != blank %}
-                <h2 class="{{ block.settings.heading_alignment }} {% if block.settings.subheading == blank %} mb-4 {% endif %} text-4xl text-gray-900 py-2 md:text-6xl" >
+                <h2 class="{{ block.settings.heading_alignment }} {% if block.settings.subheading == blank %} mb-4 {% endif %} heading0 text-gray-900 py-2" >
                   {{ block.settings.heading | escape }}
                 </h2>
               {% endif %}
               {% if block.settings.subheading != blank %}
-                <p class="{{ block.settings.heading_alignment }} text-lg text-dark-muted py-2 mb-4">
+                <p class="{{ block.settings.heading_alignment }} text-body1 text-dark-muted py-2 mb-4">
                   {{ block.settings.subheading | escape }}
                 </p>
               {% endif %}
             {% when 'buttons' %}
-              <div class="flex flex-col {{ block.settings.button_alignment }} -ml-4 md:flex-row">
+              <div class="flex flex-col {{ block.settings.button_alignment }} space-y-4 md:space-x-4 md:space-y-0 md:flex-row">
                 {%- if block.settings.button_label_1 != blank -%}
                   <a href="{{ block.settings.button_link_1 }}" class="{% if block.settings.button_style_secondary_1 %} btn-secondary {% else %} btn-primary {% endif %} w-full md:w-auto">
                     {{ block.settings.button_label_1 | escape }}
                   </a>
                 {%- endif -%}
                 {%- if block.settings.button_label_2 != blank -%}
-                  <a href="{{ block.settings.button_link_2 }}" class="{% if block.settings.button_style_secondary_1 %} btn-secondary {% else %} btn-primary {% endif %} w-full md:w-auto">
+                  <a href="{{ block.settings.button_link_2 }}" class="{% if block.settings.button_style_secondary_2 %} btn-secondary {% else %} btn-primary {% endif %} w-full md:w-auto">
                     {{ block.settings.button_label_2 | escape }}
                   </a>
                 {%- endif -%}
@@ -83,22 +65,6 @@
         "type": "image_picker",
         "id": "image_2",
         "label": "t:sections.image-banner.settings.image_2.label"
-      },
-      {
-        "type": "radio",
-        "id": "space_before_section",
-        "label": "Add space before section?",
-        "options": [
-          {
-            "value": "mt-16",
-            "label": "Yes"
-          },
-          {
-            "value": "mt-0",
-            "label": "No"
-          }
-        ],
-        "default": "mt-0"
       }
     ],
     "max_blocks": 2,

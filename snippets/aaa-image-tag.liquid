@@ -1,0 +1,17 @@
+<img
+class="{{ img_class }}"
+src="{{ img_src | img_url: '1500x' }}"
+srcset="
+{%- if img_src.width >= 375 -%}{{ img_src | img_url: '375x' }} 375w,{%- endif -%}
+{%- if img_src.width >= 750 -%}{{ img_src | img_url: '750x' }} 750w,{%- endif -%}
+{%- if img_src.width >= 1100 -%}{{ img_src | img_url: '1100x' }} 1100w,{%- endif -%}
+{%- if img_src.width >= 1500 -%}{{ img_src | img_url: '1500x' }} 1500w,{%- endif -%}
+{%- if img_src.width >= 1780 -%}{{ img_src | img_url: '1780x' }} 1780w,{%- endif -%}
+{%- if img_src.width >= 2000 -%}{{ img_src | img_url: '2000x' }} 2000w,{%- endif -%}
+{%- if img_src.width >= 3000 -%}{{ img_src | img_url: '3000x' }} 3000w,{%- endif -%}
+{%- if img_src.width >= 3840 -%}{{ img_src | img_url: '3840x' }} 3840w,{%- endif -%}"
+loading="lazy" 
+alt="{{ img_src.alt | escape }}"
+width="{{ img_src.width }}"
+height="{{ img_src.width | divided_by: img_src.aspect_ratio }}"
+>
