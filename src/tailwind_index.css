@@ -54,6 +54,24 @@
   .underline-offset-2 {
     text-underline-offset: 0.5em;
   }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full border-accent1 shadow-sm focus:border-accent1 focus:ring-accent1 focus:ring-1;
+  }
 }
 
 @layer components {

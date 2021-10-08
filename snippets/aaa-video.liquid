@@ -1,14 +1,14 @@
 {% if  block.settings.cover_image == blank %}
   <div class="h-full w-full relative group">
     {{ "product-1" | placeholder_svg_tag: "w-full h-full fill-current" }}
-    <div class="absolute top-0 left-0 z-10 h-full w-full flex justify-center items-center">
+    <div class="absolute top-0 left-0 z-auto h-full w-full flex justify-center items-center">
       <div class="btn-icon">{% render "icon-play" %}</div>
     </div>
   </div>
     {% else %}
   <div class="h-full w-full relative group overflow-hidden">
     {% render "aaa-image-tag" | img_src: block.settings.cover_image img_class: "h-full w-full object-cover hover-effect" %}
-    <div class="absolute top-0 left-0 h-full w-full flex flex-col justify-center items-center z-10">
+    <div class="absolute top-0 left-0 h-full w-full flex flex-col justify-center items-center z-auto">
       <div>       
         <a href="{{ block.settings.video_url }}" class="btn-icon">
           {% render "icon-play" %}
