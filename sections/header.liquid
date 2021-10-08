@@ -22,9 +22,11 @@
   <header class="container flex justify-between items-center text-body2 py-4">  
 <!-- ================  Mobile menu links  ================  -->    
     {%- if section.settings.menu != blank -%}
+    <!-- Hamburger icon -->
     <div class="flex md:hidden space-x-4 items-center justify-end">
       <button class="menu-icon" aria-label="Mobile menu">{% render 'aaa-icon-hamburger' %}</button>
     </div>
+<!-- mobile menu -->
     <div class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
       <div class="flex flex-col h-full">
         <button class="menu-icon" aria-label="close">{% render 'aaa-icon-close' %}</button>
