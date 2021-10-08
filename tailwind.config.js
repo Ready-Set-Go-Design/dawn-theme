@@ -26,6 +26,9 @@ module.exports = {
         '3/4screen' : "75vh",
         '1/2screen' : "50vh",
       },
+      width:{
+        '3/4screen' : '74vw',
+      },
       boxShadow:{
         button : "0 0 0 0.2rem rgba(0, 0, 0, 1)",
         button_inner : "inset 0 0 0 0.2rem rgba(0, 0, 0, 1)",

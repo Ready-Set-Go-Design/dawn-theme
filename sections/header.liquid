@@ -1,12 +1,3 @@
-{% if section.settings.enable_sticky_header %}  
-  <style>
-    .wtf {
-      position: sticky;
-      top: 0px;
-    }
-  </style>
-{% endif %}
-
 <link rel="stylesheet" href="{{ 'header-styles.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -27,12 +18,41 @@
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'sticky-header.js' | asset_url }}" defer="defer"></script>
 
-<!-- <{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"> -->
 <section class="border-b-2 border-light2 relative z-20 bg-light1">  
-  <!-- <header class="header header--{{ section.settings.logo_position }} page-width{% if section.settings.menu != blank %} header--has-menu{% endif %}"> -->
   <header class="container flex justify-between items-center text-body2 py-4">  
+<!-- ================  Mobile menu links  ================  -->    
     {%- if section.settings.menu != blank -%}
-      <header-drawer data-breakpoint="tablet">
+    <div class="flex md:hidden space-x-4 items-center justify-end">
+      <button class="menu-icon" aria-label="Mobile menu">{% render 'aaa-icon-hamburger' %}</button>
+    </div>
+    <div class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
+      <div class="flex flex-col h-full">
+        <button class="menu-icon" aria-label="close">{% render 'aaa-icon-close' %}</button>
+        <nav class="flex-1">
+          <ul class="text-body2">
+            {% render 'header-menu-links', links: section.settings.menu.links %} 
+          </ul>
+        </nav>
+        <div class="bg-light2 p-3">
+          {%- if shop.customer_accounts_enabled -%}
+            <a  class="group flex items-center space-x-2 mb-3" href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">
+              <div class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</div>
+              <div class="text-body2">Login in</div>
+              {%- liquid
+                if customer
+                  echo 'customer.account_fallback' | t
+                else
+                  echo 'customer.log_in' | t
+                endif
+              -%}
+            </a>
+          {%- endif -%}
+          {% render 'header-social-links' %}
+        </div>
+
+      </div>
+    </div>
+      <!-- <header-drawer data-breakpoint="tablet">
         <details class="menu-drawer-container">
           <summary class="header__icon header__icon--menu header__icon--summary link focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
             <span>
@@ -78,12 +98,12 @@
             </div>
           </div>
         </details>
-      </header-drawer>
+      </header-drawer> -->
     {%- endif -%}
 <!-- ================    SEARCH BAR   ================  -->
     {% render 'header-search' %}
 <!-- ================    Header logo   ================  -->
-    <h1>
+    <h1 class="flex-1 md:flex-initial">
       <a href="{{ routes.root_url }}" class="focus-visible:ring-2 focus-visible:ring-accent2 inline-block">
         {%- if section.settings.logo != blank -%}
           {%- assign image_size = section.settings.logo_width | append: 'x' -%}
@@ -100,24 +120,23 @@
         {%- endif -%}
       </a>
     </h1>
-
+<!-- ================    Desktop Menu links   ================  -->
     {%- if section.settings.menu != blank -%}
-      <nav class="header__inline-menu">
+      <nav class="hidden md:block">
         <ul class="flex space-x-4 text-body2" role="list">
-          {% comment %}
-            ================
-            MENU LINKS
-            ================ 
-          {% endcomment %}
           {% render 'header-menu-links', links: section.settings.menu.links %}
         </ul>
       </nav>
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
-    {% render 'header-icons' %}
+  <div class="flex space-x-4 items-center justify-end">
+    <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-search' %}</button>
+    <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
+    <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
+  </div>
+    <!-- {% render 'header-icons' %} -->
   </header>
 </section>
-<!-- </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}> -->
 
 {%- render 'cart-notification', color_scheme: section.settings.color_scheme -%}
 
@@ -166,7 +185,6 @@
 {% schema %}
 {
   "name": "t:sections.header.name",
-  "class": "wtf",
   "settings": [
     {
       "type": "select",
