@@ -1,17 +1,17 @@
-<link rel="stylesheet" href="{{ 'header-styles.css' | asset_url }}">
+<!-- <link rel="stylesheet" href="{{ 'header-styles.css' | asset_url }}"> -->
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<!-- <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'"> -->
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
-<noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
+<!-- <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript> -->
 
 <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
@@ -52,53 +52,6 @@
 
       </div>
     </div>
-      <!-- <header-drawer data-breakpoint="tablet">
-        <details class="menu-drawer-container">
-          <summary class="header__icon header__icon--menu header__icon--summary link focus-inset" aria-label="{{ 'sections.header.menu' | t }}">
-            <span>
-              {% render 'icon-hamburger' %}
-              {% render 'icon-close' %}
-            </span>
-          </summary>
-
-          <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
-            <div class="menu-drawer__inner-container">
-              <div class="menu-drawer__navigation-container">
-                <nav class="menu-drawer__navigation">
-                  <ul class="menu-drawer__menu list-menu" role="list">
-                    {% comment %}
-                      ================
-                      MENU DRAWER LINKS
-                      ================ 
-                    {% endcomment %}
-                    {% render 'header-drawer-links', links: section.settings.menu.links %}                 
-                  </ul>
-                </nav>
-                <div class="menu-drawer__utility-links">
-                  {%- if shop.customer_accounts_enabled -%}
-                    <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="menu-drawer__account link focus-inset h5">
-                      {% render 'icon-account' %}
-                      {%- liquid
-                        if customer
-                          echo 'customer.account_fallback' | t
-                        else
-                          echo 'customer.log_in' | t
-                        endif
-                      -%}
-                    </a>
-                  {%- endif -%}
-                  {% comment %}
-                    ================
-                    SOCIAL LINKS
-                    ================ 
-                  {% endcomment %}
-                  {% render 'header-social-links' %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </details>
-      </header-drawer> -->
     {%- endif -%}
 <!-- ================    SEARCH BAR   ================  -->
     {% render 'header-search' %}
@@ -130,7 +83,7 @@
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
   <div class="flex space-x-4 items-center justify-end">
-    <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-search' %}</button>
+    <button class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
     <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
     <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
   </div>

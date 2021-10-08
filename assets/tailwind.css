@@ -1110,16 +1110,16 @@ details > summary > svg {
   padding: 3rem;
 }
 
+.p-3 {
+  padding: 0.75rem;
+}
+
 .p-8 {
   padding: 2rem;
 }
 
 .p-2 {
   padding: 0.5rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
 }
 
 .py-2 {
