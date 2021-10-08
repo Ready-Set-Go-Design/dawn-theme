@@ -1,11 +1,11 @@
-<div class="fixed inset-0 bg-accent2 z-20">
-  <div class="absolute w-full bg-light1 border-b border-light2">
+<div class="fixed inset-0 bg-accent2 z-20" x-cloak x-data x-show="$store.showSearch">
+  <div class="absolute w-full bg-light1 border-b border-light2" @click.away="$store.showSearch = false">
     <div class="container my-5">
       <div class="flex space-x-2">
         <form class="flex-1">
           <input class="placeholder-dark-placeholder" id="search_in_modal" type="search" name="" value="" placeholder="Search for products">
         </form>
-        <button class="menu-icon" aria-label="Mobile close">{% render 'aaa-icon-close' %}</button>
+        <button x-data @click="$store.showSearch = false" class="menu-icon" aria-label="Mobile close">{% render 'aaa-icon-close' %}</button>
       </div>
     </div>
   </div>

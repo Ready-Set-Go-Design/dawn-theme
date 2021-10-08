@@ -21,15 +21,9 @@
 {% comment %} <script src="{{ 'header.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <script src="{{ 'alpine.js' | asset_url }}" defer="defer"></script>
 <script type="text/javascript">
-  document.addEventListener('alpine:init', () => {
-    
-    Alpine.store('mobileMenu', {
-        on: false,
-
-        toggle() {
-          this.on = ! this.on
-        }
-    })
+  document.addEventListener('alpine:init', () => {  
+    Alpine.store('showMobileMenu', false);
+    Alpine.store('showSearch', false);
 })
 </script>
 
@@ -40,12 +34,12 @@
     {%- if section.settings.menu != blank -%}
     <!-- Hamburger icon -->
     <div class="flex md:hidden space-x-4 items-center justify-end">
-      <button class="menu-icon" aria-label="Mobile menu" x-data @click="$store.mobileMenu.toggle()">{% render 'aaa-icon-hamburger' %}</button>      
+      <button class="menu-icon" aria-label="Mobile menu" x-data @click="$store.showMobileMenu = true">{% render 'aaa-icon-hamburger' %}</button>      
     </div>
 <!-- mobile menu -->
-    <div x-data x-show="$store.mobileMenu.on" x-cloak class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
+    <div x-data x-show="$store.showMobileMenu" x-cloak @click.away="$store.showMobileMenu = false" class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
       <div class="flex flex-col h-full">
-        <button class="menu-icon" aria-label="close" x-data @click="$store.mobileMenu.toggle()">{% render 'aaa-icon-close' %}</button>
+        <button class="menu-icon" aria-label="close" x-data @click="$store.showMobileMenu = false">{% render 'aaa-icon-close' %}</button>
         <nav class="flex-1">
           <ul class="text-body2">
             {% render 'header-menu-links', links: section.settings.menu.links %} 
@@ -102,7 +96,7 @@
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
   <div class="flex space-x-4 items-center justify-end">
-    <button class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
+    <button x-data @click="$store.showSearch = true" class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
     <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
     <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
   </div>
@@ -139,6 +133,8 @@
 
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+  {{ routes.search_url }}
+  {{ routes.predictive_search_url }}
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
