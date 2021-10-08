@@ -41,10 +41,12 @@ module.exports = {
         dark  : {
           DEFAULT: "rgba(var(--color-text-dark-default), 1)",
           muted: "rgba(var(--color-text-dark-default), 0.70)",
+          placeholder: "rgba(var(--color-text-dark-default), 0.50)",
         },
         light  : {
           DEFAULT: "rgba(var(--color-text-light-default), 1)",
           muted: "rgba(var(--color-text-light-default), 0.70)",
+          placeholder: "rgba(var(--color-text-light-default), 0.50)",
         } 
       }
     },

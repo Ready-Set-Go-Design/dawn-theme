@@ -40,8 +40,7 @@
     {%- if section.settings.menu != blank -%}
     <!-- Hamburger icon -->
     <div class="flex md:hidden space-x-4 items-center justify-end">
-      <button class="menu-icon" aria-label="Mobile menu" x-data @click="$store.mobileMenu.toggle()">{% render 'aaa-icon-hamburger' %}</button>
-      
+      <button class="menu-icon" aria-label="Mobile menu" x-data @click="$store.mobileMenu.toggle()">{% render 'aaa-icon-hamburger' %}</button>      
     </div>
 <!-- mobile menu -->
     <div x-data x-show="$store.mobileMenu.on" x-cloak class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">

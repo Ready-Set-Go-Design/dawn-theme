@@ -2,10 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-[x-cloak] {
-  display: none;
-}
-
 .grid {
   margin: auto;
 }
@@ -53,6 +49,10 @@
 
   .underline-offset-2 {
     text-underline-offset: 0.5em;
+  }
+
+  [x-cloak] {
+    display: none;
   }
 
   [type='text'],

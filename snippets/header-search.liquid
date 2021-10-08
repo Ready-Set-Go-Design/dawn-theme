@@ -1,10 +1,11 @@
 <div class="fixed inset-0 bg-accent2 z-20">
   <div class="absolute w-full bg-light1 border-b border-light2">
     <div class="container my-5">
-      <div>
-        <form>
-          <input class="" id="search_in_modal" type="search" name="" value="" placeholder="hello">
+      <div class="flex space-x-2">
+        <form class="flex-1">
+          <input class="placeholder-dark-placeholder" id="search_in_modal" type="search" name="" value="" placeholder="Search for products">
         </form>
+        <button class="menu-icon" aria-label="Mobile close">{% render 'aaa-icon-close' %}</button>
       </div>
     </div>
   </div>
