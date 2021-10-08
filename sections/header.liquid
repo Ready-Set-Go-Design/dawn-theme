@@ -18,23 +18,41 @@
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'sticky-header.js' | asset_url }}" defer="defer"></script>
 
+{% comment %} <script src="{{ 'header.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+<script src="{{ 'alpine.js' | asset_url }}" defer="defer"></script>
+<script type="text/javascript">
+  document.addEventListener('alpine:init', () => {
+    
+    Alpine.store('mobileMenu', {
+        on: false,
+
+        toggle() {
+          this.on = ! this.on
+        }
+    })
+})
+</script>
+
+
 <section class="border-b-2 border-light2 relative z-20 bg-light1">  
   <header class="container flex justify-between items-center text-body2 py-4">  
 <!-- ================  Mobile menu links  ================  -->    
     {%- if section.settings.menu != blank -%}
     <!-- Hamburger icon -->
     <div class="flex md:hidden space-x-4 items-center justify-end">
-      <button class="menu-icon" aria-label="Mobile menu">{% render 'aaa-icon-hamburger' %}</button>
+      <button class="menu-icon" aria-label="Mobile menu" x-data @click="$store.mobileMenu.toggle()">{% render 'aaa-icon-hamburger' %}</button>
+      
     </div>
 <!-- mobile menu -->
-    <div class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
+    <div x-data x-show="$store.mobileMenu.on" x-cloak class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
       <div class="flex flex-col h-full">
-        <button class="menu-icon" aria-label="close">{% render 'aaa-icon-close' %}</button>
+        <button class="menu-icon" aria-label="close" x-data @click="$store.mobileMenu.toggle()">{% render 'aaa-icon-close' %}</button>
         <nav class="flex-1">
           <ul class="text-body2">
             {% render 'header-menu-links', links: section.settings.menu.links %} 
           </ul>
         </nav>
+        
         <div class="bg-light2 p-3">
           {%- if shop.customer_accounts_enabled -%}
             <a  class="group flex items-center space-x-2 mb-3" href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}">

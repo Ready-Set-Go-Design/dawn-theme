@@ -2,96 +2,98 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+[x-cloak] {
+  display: none;
+}
+
 .grid {
-  margin:auto;
+  margin: auto;
 }
 
 @layer base {
   .content-for-layout > section:first-child > section {
-      @apply mt-0;
-    }
-  
-  .heading0{
+    @apply mt-0;
+  }
+
+  .heading0 {
     @apply text-[3.25rem] leading-[1.2] md:text-[4rem];
   }
 
-  .heading1{
+  .heading1 {
     @apply text-3xl leading-[1.2] tracking-wider md:text-4xl;
   }
 
-  .heading2{
+  .heading2 {
     @apply text-xl leading-[1.2] tracking-wider md:text-2xl;
   }
 
-  .heading3{
+  .heading3 {
     @apply text-[1.0625rem] leading-[1.2] md:text-lg;
   }
 
-  .text-body1{
+  .text-body1 {
     @apply text-base leading-[1.5];
   }
 
-  .text-body2{
+  .text-body2 {
     @apply text-sm leading-[1.5];
   }
 
-  .text-caption{
+  .text-caption {
     @apply text-[0.8125rem] leading-[1.5];
   }
 
-  .text-micro{
+  .text-micro {
     @apply text-xs leading-[1.5];
   }
 
-  .text-button{
+  .text-button {
     @apply text-[0.9375rem] leading-[1];
   }
 
   .underline-offset-2 {
     text-underline-offset: 0.5em;
   }
-
 }
 
-@layer components{
-  .btn-primary{
+@layer components {
+  .btn-primary {
     @apply bg-accent1 text-white px-6 py-3 text-center text-button border-2 border-gray-900 transition-all hover:shadow-button;
   }
 
-  .btn-icon{
+  .btn-icon {
     @apply flex justify-center items-center w-24 h-24 bg-white shadow-lg rounded-full transition-all ease-out hover:scale-125;
   }
 
-  .btn-secondary{
+  .btn-secondary {
     @apply bg-light1 text-gray-900 px-6 py-3 text-center text-button border-2 border-gray-900 transition-all hover:shadow-button;
   }
 
-  .menu-icon{
+  .menu-icon {
     @apply h-10 w-10 flex justify-center items-center transition-all group-hover:scale-110 hover:scale-110 fill-current text-accent1;
   }
 
-  .hover-effect{
+  .hover-effect {
     @apply transition-all ease-out duration-300 group-hover:scale-105;
   }
 
-  .underlink{
+  .underlink {
     @apply before:w-full before:h-px before:bg-black;
   }
 
-  details[open] > summary{
+  details[open] > summary {
     @apply justify-between;
   }
 
-  details > summary{
+  details > summary {
     @apply justify-start;
   }
 
-  details[open] > summary > svg{
+  details[open] > summary > svg {
     @apply transition-all duration-300 rotate-180;
   }
 
-
-  details > summary > svg{
+  details > summary > svg {
     @apply transition-all duration-300 rotate-0;
   }
 }
