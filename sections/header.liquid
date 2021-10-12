@@ -1,22 +1,22 @@
 <!-- <link rel="stylesheet" href="{{ 'header-styles.css' | asset_url }}"> -->
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<!-- <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'"> -->
 <!-- <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'"> -->
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+<!-- <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
+{%- endif -%} -->
 
 <!-- <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript> -->
 
-<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+<!-- <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'sticky-header.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'sticky-header.js' | asset_url }}" defer="defer"></script> -->
 
 {% comment %} <script src="{{ 'header.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 <script src="{{ 'alpine.js' | asset_url }}" defer="defer"></script>
@@ -28,17 +28,25 @@
 </script>
 
 
-<section class="border-b-2 border-light2 relative z-20 bg-light1">  
-  <header class="container flex justify-between items-center text-body2 py-4">  
+<section x-data class="border-b-2 border-light2 relative z-20 bg-light1">  
+  <header class="flex justify-between items-center text-body2 py-4 px-4 md:px-8">  
 <!-- ================  Mobile menu links  ================  -->    
     {%- if section.settings.menu != blank -%}
     <!-- Hamburger icon -->
     <div class="flex md:hidden space-x-4 items-center justify-end">
-      <button class="menu-icon" aria-label="Mobile menu" x-data @click="$store.showMobileMenu = true">{% render 'aaa-icon-hamburger' %}</button>      
+      <button class="menu-icon" aria-label="Mobile menu" @click="$store.showMobileMenu = true">{% render 'aaa-icon-hamburger' %}</button>      
     </div>
 <!-- mobile menu -->
-    <div x-data x-show="$store.showMobileMenu" x-cloak @click.away="$store.showMobileMenu = false" class="h-screen fixed max-w-xs w-10/12 bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden">
-      <div class="flex flex-col h-full">
+    <div 
+      class="h-screen absolute left-0 top-0 p-4 max-w-md w-full bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden"
+      x-show="$store.showMobileMenu" 
+      x-transition:enter="transition"
+      x-transition:enter-start="-translate-x-full"
+      x-transition:enter-end="translate-x-0"
+      x-transition:leave="transition -translate-x-full"
+      x-cloak 
+      @click.away="$store.showMobileMenu = false">
+      <div class="flex flex-col h-full space-y-8">
         <button class="menu-icon" aria-label="close" x-data @click="$store.showMobileMenu = false">{% render 'aaa-icon-close' %}</button>
         <nav class="flex-1">
           <ul class="text-body2">
@@ -95,7 +103,7 @@
       </nav>
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
-  <div class="flex space-x-4 items-center justify-end">
+  <div class="flex items-center justify-end">
     <button x-data @click="$store.showSearch = true" class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
     <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
     <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
@@ -133,8 +141,6 @@
 
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
-  {{ routes.search_url }}
-  {{ routes.predictive_search_url }}
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",

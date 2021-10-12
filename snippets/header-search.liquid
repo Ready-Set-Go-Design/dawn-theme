@@ -1,7 +1,7 @@
-<div class="fixed inset-0 bg-accent2 z-20" x-cloak x-data x-show="$store.showSearch">
+<div class="absolute top-0 left-0 h-screen w-screen bg-accent2 z-20" x-cloak x-data x-show="$store.showSearch">
   <div class="absolute w-full bg-light1 border-b border-light2" @click.away="$store.showSearch = false">
     <div class="container my-5">
-      <div class="flex space-x-2">
+      <div class="flex space-x-2 w-1/2 mx-auto">
         <form class="flex-1">
           <input class="placeholder-dark-placeholder" id="search_in_modal" type="search" name="" value="" placeholder="Search for products">
         </form>

@@ -1,13 +1,8 @@
-	<!-- header__menu-item list-menu__item link focus-inset
-	flex items-center space-x-2 p-2 hover:underline underline-offset-2 focus:ring-2 focus:ring-accent2 focus:ring-offset-2 
-submenu
-header__submenu list-menu list-menu--disclosure caption-large motion-reduce
--->
 {% if level == 0 %}
-	{% assign summary_class = "level0 flex items-center py-3 pl-3 pr-3 md:pr-0 justify-between hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
+	{% assign summary_class = "flex items-center py-3 pl-3 pr-3 md:pr-0 justify-between hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
 	{% capture ul_class %}class="bg-light1 text-body2 static md:absolute md:w-40 md:translate-y-4 md:border-2 md:border-light2" role="list" tabindex="-1"{% endcapture %}
 {% elsif level == 1 %}
-	{% assign summary_class = "level1 flex items-center transition-all justify-between p-3 hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
+	{% assign summary_class = "flex items-center transition-all justify-between p-3 hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
 	{% capture ul_class %}class=""{% endcapture %}
 {% endif %}
 
@@ -26,7 +21,7 @@ header__submenu list-menu list-menu--disclosure caption-large motion-reduce
 {% endif %}
 
 {% if header_link.links %}
-	{% assign link_class = "levelbase flex items-center p-3 hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
+	{% assign link_class = "flex items-center p-3 hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
 {% else %}
 	{% assign link_class = "" %}
 {% endif %}
