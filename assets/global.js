@@ -402,7 +402,7 @@ class MenuDrawer extends HTMLElement {
   }
 }
 
-customElements.define('menu-drawer', MenuDrawer);
+// customElements.define('menu-drawer', MenuDrawer);
 
 class HeaderDrawer extends MenuDrawer {
   constructor() {
@@ -424,7 +424,7 @@ class HeaderDrawer extends MenuDrawer {
   }
 }
 
-customElements.define('header-drawer', HeaderDrawer);
+// customElements.define('header-drawer', HeaderDrawer);
 
 class ModalDialog extends HTMLElement {
   constructor() {

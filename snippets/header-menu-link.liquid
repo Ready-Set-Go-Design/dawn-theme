@@ -26,15 +26,17 @@
 	{% assign link_class = "" %}
 {% endif %}
 
+{% assign level_class = "level" | append: level %}
+
 <li>
 	{% if header_link.links == blank %}
-		<a href="{{ header_link.url }}" class="{{ link_class }}" {{ aria_current }}>
+		<a href="{{ header_link.url }}" class="{{ link_class }} {{ level_class }}" {{ aria_current }}>
 			<span class="{{ current_class }}">{{ header_link.title | escape }}</span>
 		</a>
 	{% else %}
 		{% if level == 0 %}<details-disclosure>{% endif %}
 		<details>
-			<summary class="{{ summary_class }}">
+			<summary class="{{ summary_class }} {{ level_class }}">
 				<span class="{{ child_active_class }}">{{ header_link.title | escape }}</span>
 				{% render 'aaa-icon-chevron-down' %}
 			</summary>    
