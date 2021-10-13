@@ -132,27 +132,19 @@
     padding-left: 1rem !important;
   }
 
-  details{
+  nav details{
     cursor: pointer;
   }
 
-  details[open] > summary {
-    @apply justify-between;
-  }
-
-  details > ul {
-    @apply justify-start;
-  }
-
-  details[open] > ul {
+  nav details[open] > ul {
     @apply animate-fadeup;
   }
 
-  details[open] > summary > svg {
+  nav details[open] > summary > svg {
     @apply transition-all duration-300 rotate-180;
   }
 
-  details > summary > svg {
+  nav details > summary > svg {
     @apply transition-all duration-300 rotate-0;
   }
 

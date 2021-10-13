@@ -1047,16 +1047,8 @@ select {
   padding-left: 1rem !important;
 }
 
-details{
+nav details{
   cursor: pointer;
-}
-
-details[open] > summary {
-  justify-content: space-between;
-}
-
-details > ul {
-  justify-content: flex-start;
 }
 
 @-webkit-keyframes fadeup {
@@ -1079,12 +1071,12 @@ details > ul {
   }
 }
 
-details[open] > ul {
+nav details[open] > ul {
   -webkit-animation: fadeup 300ms ease-out 1;
           animation: fadeup 300ms ease-out 1;
 }
 
-details[open] > summary > svg {
+nav details[open] > summary > svg {
   --tw-rotate: 180deg;
   transform: var(--tw-transform);
   transition-property: all;
@@ -1093,7 +1085,7 @@ details[open] > summary > svg {
   transition-duration: 300ms;
 }
 
-details > summary > svg {
+nav details > summary > svg {
   --tw-rotate: 0deg;
   transform: var(--tw-transform);
   transition-property: all;
@@ -1377,6 +1369,21 @@ details > summary > svg {
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
 }
 
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
+}
+
+.bg-blue-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(96, 165, 250, var(--tw-bg-opacity));
+}
+
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+}
+
 .fill-current {
   fill: currentColor;
 }
@@ -1433,6 +1440,10 @@ details > summary > svg {
 
 .text-center {
   text-align: center;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .uppercase {
