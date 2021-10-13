@@ -20,6 +20,16 @@ module.exports = {
       },
     },
     extend: {
+      keyframes:{
+        fadeup: {
+          '0%'  : {opacity: '0%'},
+          '100%':{ opacity: '100%'},
+        },
+      },
+      animation: {
+        fadeup: 'fadeup 300ms ease-out 1',
+        fadedown: 'fadedown 300ms ease-out 1',
+      },
       underline:{
         'offset-2' : '2em',
       },

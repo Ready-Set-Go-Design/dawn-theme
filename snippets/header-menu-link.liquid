@@ -1,9 +1,9 @@
 {% if level == 0 %}
-	{% assign summary_class = "flex items-center py-3 pl-3 pr-3 md:pr-0 justify-between hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
-	{% capture ul_class %}class="bg-light1 text-body2 static md:absolute md:w-40 md:translate-y-4 md:border-2 md:border-light2" role="list" tabindex="-1"{% endcapture %}
+	{% assign summary_class = "flex items-center p-3 md:pr-0 justify-between hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
+	{% capture ul_class %}class="overflow-hidden bg-light1 text-body2 static md:border-2 md:border-light2 md:absolute md:w-40 md:translate-y-4" role="list" tabindex="-1"{% endcapture %}
 {% elsif level == 1 %}
 	{% assign summary_class = "flex items-center transition-all justify-between p-3 hover:underline underline-offset-2 focus-visible:ring-2 focus-visible:ring-accent2" %}
-	{% capture ul_class %}class=""{% endcapture %}
+	{% capture ul_class %}class="overflow-hidden"{% endcapture %}
 {% endif %}
 
 {% if header_link.current %}
@@ -30,14 +30,13 @@
 
 <li>
 	{% if header_link.links == blank %}
-		<a href="{{ header_link.url }}" class="{{ link_class }} {{ level_class }}" {{ aria_current }}>
-			<span class="{{ current_class }}">{{ header_link.title | escape }}</span>
+		<a href="{{ header_link.url }}" class="{{ link_class }} {{ level_class }} {{ current_class }}" {{ aria_current }}>
+			{{ header_link.title | escape }}
 		</a>
 	{% else %}
-		{% if level == 0 %}<details-disclosure>{% endif %}
 		<details>
 			<summary class="{{ summary_class }} {{ level_class }}">
-				<span class="{{ child_active_class }}">{{ header_link.title | escape }}</span>
+				<div class="{{ child_active_class }}">{{ header_link.title | escape }}</div>
 				{% render 'aaa-icon-chevron-down' %}
 			</summary>    
 				
@@ -49,6 +48,5 @@
 			</ul>
     
 		</details>
-	{% endif%}
-	{% if level == 0 %}</details-disclosure>{% endif %}
+		{% endif%}
 </li>

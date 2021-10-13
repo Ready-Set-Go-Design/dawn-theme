@@ -15,7 +15,7 @@
 <noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript> -->
 
-<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+<!-- <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script> -->
 <!-- <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'sticky-header.js' | asset_url }}" defer="defer"></script> -->
@@ -39,7 +39,7 @@
     </div>
 <!-- mobile menu -->
     <div 
-      class="h-screen absolute left-0 top-0 p-4 max-w-md w-full bg-light1 top-0 left-0 border-r-2 border-light2 z-20 block md:hidden"
+      class="h-screen absolute left-0 top-0 p-4 max-w-md w-full bg-light1 border-r-2 border-light2 z-20 block md:hidden"
       x-show="$store.showMobileMenu" 
       x-transition:enter="transition"
       x-transition:enter-start="-translate-x-full"
@@ -98,6 +98,12 @@
     </h1>
 <!-- ================    Desktop Menu links   ================  -->
     {%- if section.settings.menu != blank -%}
+      <!-- This random div is necessary for tailwind to render the level classes -->
+      <div class="level0 level1 level2 hidden">
+        
+      </div>
+      
+      <!-- End random div -->
       <nav class="hidden md:block">
         <ul class="flex space-x-4 text-body2" role="list">
           {% render 'header-menu-links', links: section.settings.menu.links %}

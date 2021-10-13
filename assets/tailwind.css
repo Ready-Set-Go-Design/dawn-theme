@@ -1014,12 +1014,74 @@ select {
   transform: var(--tw-transform);
 }
 
+.skip-to-content-link:focus {
+  z-index: 9999;
+  position: inherit;
+  overflow: auto;
+  width: auto;
+  height: auto;
+  clip: auto;
+}
+
+.visually-hidden{
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+
+.level0 {
+  background-color: var(--color-background-light1);
+}
+
+.level1 {
+  background-color: var(--color-background-light1);
+}
+
+.level2 {
+  background-color: var(--color-background-light1);
+  padding-left: 1rem !important;
+}
+
+details{
+  cursor: pointer;
+}
+
 details[open] > summary {
   justify-content: space-between;
 }
 
-details > summary {
+details > ul {
   justify-content: flex-start;
+}
+
+@-webkit-keyframes fadeup {
+  0% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes fadeup {
+  0% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+details[open] > ul {
+  -webkit-animation: fadeup 300ms ease-out 1;
+          animation: fadeup 300ms ease-out 1;
 }
 
 details[open] > summary > svg {
@@ -1363,19 +1425,6 @@ details > summary > svg {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
-.pl-3 {
-  padding-left: 0.75rem;
-}
-
-.pr-3 {
-  padding-right: 0.75rem;
 }
 
 .text-left {

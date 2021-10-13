@@ -99,12 +99,53 @@
     @apply before:w-full before:h-px before:bg-black;
   }
 
+  .skip-to-content-link:focus {
+    z-index: 9999;
+    position: inherit;
+    overflow: auto;
+    width: auto;
+    height: auto;
+    clip: auto;
+  }
+
+  .visually-hidden{
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    word-wrap: normal !important;
+  }
+
+  .level0{
+    @apply bg-light1;
+  }
+
+  .level1 {
+    @apply bg-light1;
+  }
+
+  .level2 {
+    @apply bg-light1;
+    padding-left: 1rem !important;
+  }
+
+  details{
+    cursor: pointer;
+  }
+
   details[open] > summary {
     @apply justify-between;
   }
 
-  details > summary {
+  details > ul {
     @apply justify-start;
+  }
+
+  details[open] > ul {
+    @apply animate-fadeup;
   }
 
   details[open] > summary > svg {
@@ -114,4 +155,7 @@
   details > summary > svg {
     @apply transition-all duration-300 rotate-0;
   }
+
+
+
 }
