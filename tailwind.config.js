@@ -20,6 +20,9 @@ module.exports = {
       },
     },
     extend: {
+      zIndex:{
+        '-1' : '-1', 
+      },
       keyframes:{
         fadeup: {
           '0%'  : {opacity: '0%'},
