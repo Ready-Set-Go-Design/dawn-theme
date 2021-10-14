@@ -27,8 +27,7 @@ module.exports = {
         },
       },
       animation: {
-        fadeup: 'fadeup 300ms ease-out 1',
-        fadedown: 'fadedown 300ms ease-out 1',
+        fadeup: 'fadeup 200ms ease-out 1',
       },
       underline:{
         'offset-2' : '2em',

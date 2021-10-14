@@ -144,6 +144,10 @@
     @apply transition-all duration-300 rotate-180;
   }
 
+  nav details > summary > svg {
+    @apply transition-all duration-300 rotate-0;
+  }
+
   @media (min-width:768px){
     nav details[open] > summary.level0:before {
       cursor: default;
@@ -158,11 +162,4 @@
       z-index: 1;
     }
   }
-
-  nav details > summary > svg {
-    @apply transition-all duration-300 rotate-0;
-  }
-
-
-
 }

@@ -28,9 +28,37 @@
   })
 </script>
 
+{%- liquid
+  if section.settings.logo_position == "middle-left"
+    assign header_class = "grid grid-cols-12 auto-rows-fr"
+    assign logo_class = "col-span-2"
+    assign nav_class ="col-span-8"
+    assign seach_class="justify-self-end"
+    assign profile_cart_class ="justify-self-end"
+  elsif section.settings.logo_position == "middle-center"
+    assign header_class = "flex justify-between items-center relative"
+    assign logo_class = "flex items-center justify-center absolute w-full left-0"
+    assign nav_class ="order-1 flex-1"
+    assign seach_class="order-2"
+    assign profile_cart_class ="order-2"
+  elsif section.settings.logo_position == "top-left"
+    assign header_class = "grid grid-cols-12 auto-rows-fr"
+    assign logo_class = "order-1 col-span-10"
+    assign seach_class="order-2 justify-self-end"
+    assign profile_cart_class="order-3"
+    assign nav_class ="order-4 col-span-12 -ml-3"
+  elsif section.settings.logo_position == "top-center"
+    assign header_class = "grid grid-cols-12 auto-rows-fr"    
+    assign seach_class="order 1"
+    assign logo_class = "order-2 col-span-10 justify-self-center"
+    assign profile_cart_class="order-3 justify-self-end"
+    assign nav_class ="order-4 col-span-12 justify-self-center"
+  endif
+%}
+
 
 <section x-data class="border-b-2 border-light2 relative z-20 bg-light1">  
-  <header class="flex justify-between items-center text-body2 py-4 px-4 md:px-8">  
+  <header class="{{ header_class }} text-body2 py-4 px-4 md:px-8">  
 <!-- ================  Mobile menu links  ================  -->    
     {%- if section.settings.menu != blank -%}
     <!-- Hamburger icon -->
@@ -79,7 +107,7 @@
 <!-- ================    SEARCH BAR   ================  -->
     {% render 'header-search' %}
 <!-- ================    Header logo   ================  -->
-    <h1 class="flex-1 md:flex-initial">
+    <h1 class="{{ logo_class }}">
       <a href="{{ routes.root_url }}" class="focus-visible:ring-2 focus-visible:ring-accent2 inline-block">
         {%- if section.settings.logo != blank -%}
           {%- assign image_size = section.settings.logo_width | append: 'x' -%}
@@ -99,23 +127,22 @@
 <!-- ================    Desktop Menu links   ================  -->
     {%- if section.settings.menu != blank -%}
       <!-- This random div is necessary for tailwind to render the level classes -->
-      <div class="level0 level1 level2 hidden">
-        
-      </div>
-      
+      <div class="level0 level1 level2 hidden"></div>      
       <!-- End random div -->
-      <nav class="hidden md:block">
+      <nav class="hidden md:block {{ nav_class }}">
         <ul class="flex space-x-4 text-body2" role="list">
           {% render 'header-menu-links', links: section.settings.menu.links %}
         </ul>
       </nav>
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
-  <div class="flex items-center justify-end">
-    <button x-data @click="$store.showSearch = true" class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
-    <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
-    <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
-  </div>
+    <div class="{{ seach_class }}">
+      <button x-data @click="$store.showSearch = true" class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
+    </div>
+    <div class="flex {{ profile_cart_class }}">
+      <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
+      <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
+    </div>
     <!-- {% render 'header-icons' %} -->
   </header>
 </section>
@@ -220,6 +247,10 @@
           "label": "t:sections.header.settings.logo_position.options__1.label"
         },
         {
+          "value": "middle-center",
+          "label": "t:sections.header.settings.logo_position.options__1.label"
+        },
+        {
           "value": "top-left",
           "label": "t:sections.header.settings.logo_position.options__2.label"
         },
@@ -228,7 +259,7 @@
           "label": "t:sections.header.settings.logo_position.options__3.label"
         }
       ],
-      "default": "middle-left",
+      "default": "middle-center",
       "label": "t:sections.header.settings.logo_position.label"
     },
     {
