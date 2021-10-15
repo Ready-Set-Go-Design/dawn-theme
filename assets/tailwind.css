@@ -1469,11 +1469,6 @@ nav details > summary > svg {
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
 }
 
-.bg-green-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
-}
-
 .fill-current {
   fill: currentColor;
 }
