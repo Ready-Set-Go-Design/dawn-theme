@@ -843,14 +843,14 @@ select {
   display: none;
 }
 
-[type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], textarea, select {
+[type="text"], [type="email"], [type="url"], [type="password"], [type="number"], [type="date"], [type="datetime-local"], [type="month"], [type="search"], [type="tel"], [type="time"], [type="week"], [multiple], textarea, select {
   width: 100%;
   border-color: var(--color-background-accent1);
   --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-[type='text']:focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus {
+[type="text"]:focus, [type="email"]:focus, [type="url"]:focus, [type="password"]:focus, [type="number"]:focus, [type="date"]:focus, [type="datetime-local"]:focus, [type="month"]:focus, [type="search"]:focus, [type="tel"]:focus, [type="time"]:focus, [type="week"]:focus, [multiple]:focus, textarea:focus, select:focus {
   border-color: var(--color-background-accent1);
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -1023,7 +1023,7 @@ select {
   clip: auto;
 }
 
-.visually-hidden{
+.visually-hidden {
   position: absolute !important;
   overflow: hidden;
   width: 1px;
@@ -1049,7 +1049,7 @@ nav .level2 {
   padding-left: 1rem !important;
 }
 
-nav details{
+nav details {
   cursor: pointer;
 }
 
@@ -1096,7 +1096,7 @@ nav details > summary > svg {
   transition-duration: 300ms;
 }
 
-@media (min-width:768px){
+@media (min-width: 768px) {
   nav details[open] > summary.level0:before {
     cursor: default;
     content: " ";
@@ -1117,6 +1117,10 @@ nav details > summary > svg {
 
 .static {
   position: static;
+}
+
+.fixed {
+  position: fixed;
 }
 
 .absolute {
@@ -1183,22 +1187,6 @@ nav details > summary > svg {
   grid-column: span 3 / span 3;
 }
 
-.col-span-2 {
-  grid-column: span 2 / span 2;
-}
-
-.col-span-8 {
-  grid-column: span 8 / span 8;
-}
-
-.col-span-10 {
-  grid-column: span 10 / span 10;
-}
-
-.col-span-12 {
-  grid-column: span 12 / span 12;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1229,28 +1217,36 @@ nav details > summary > svg {
   margin-bottom: 1rem;
 }
 
-.-ml-3 {
-  margin-left: -0.75rem;
-}
-
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-
 .mr-4 {
   margin-right: 1rem;
 }
 
-.ml-12 {
-  margin-left: 3rem;
+.-mr-4 {
+  margin-right: -1rem;
+}
+
+.-mr-3 {
+  margin-right: -0.75rem;
+}
+
+.-ml-3 {
+  margin-left: -0.75rem;
 }
 
 .ml-10 {
   margin-left: 2.5rem;
 }
 
-.-mr-4 {
-  margin-right: -1rem;
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.-ml-2 {
+  margin-left: -0.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .block {
@@ -1350,10 +1346,6 @@ nav details > summary > svg {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
-.grid-cols-12 {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-}
-
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -1428,14 +1420,6 @@ nav details > summary > svg {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.justify-self-end {
-  justify-self: end;
-}
-
-.justify-self-center {
-  justify-self: center;
 }
 
 .overflow-hidden {
@@ -1535,8 +1519,12 @@ nav details > summary > svg {
   padding-right: 0.5rem;
 }
 
-.pr-8 {
-  padding-right: 2rem;
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
 }
 
 .text-left {
@@ -1712,6 +1700,10 @@ nav details > summary > svg {
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-wrap {
+    flex-wrap: wrap;
   }
 
   .md\:items-center {
