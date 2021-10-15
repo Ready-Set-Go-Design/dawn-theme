@@ -1139,10 +1139,6 @@ nav details > summary > svg {
   left: 0px;
 }
 
-.right-0 {
-  right: 0px;
-}
-
 .isolate {
   isolation: isolate;
 }
@@ -1187,14 +1183,33 @@ nav details > summary > svg {
   grid-column: span 3 / span 3;
 }
 
+.col-span-11 {
+  grid-column: span 11 / span 11;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-span-5 {
+  grid-column: span 5 / span 5;
+}
+
+.col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.col-start-2 {
+  grid-column-start: 2;
+}
+
+.col-start-1 {
+  grid-column-start: 1;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
 }
 
 .mb-2 {
@@ -1293,12 +1308,8 @@ nav details > summary > svg {
   width: 100%;
 }
 
-.w-screen {
-  width: 100vw;
-}
-
-.w-1\/2 {
-  width: 50%;
+.w-3\/4 {
+  width: 75%;
 }
 
 .max-w-md {
@@ -1307,6 +1318,10 @@ nav details > summary > svg {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .-translate-x-full {
@@ -1344,6 +1359,10 @@ nav details > summary > svg {
 
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 .grid-cols-4 {
@@ -1394,8 +1413,16 @@ nav details > summary > svg {
   justify-content: space-between;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -1604,11 +1631,6 @@ nav details > summary > svg {
   margin: auto;
 }
 
-.mobile-frame {
-  overflow: hidden;
-  position: fixed;
-}
-
 .hover\:underline:hover {
   text-decoration: underline;
 }
@@ -1650,6 +1672,10 @@ nav details > summary > svg {
     grid-column-start: 3;
   }
 
+  .md\:col-start-2 {
+    grid-column-start: 2;
+  }
+
   .md\:row-span-2 {
     grid-row: span 2 / span 2;
   }
@@ -1664,10 +1690,6 @@ nav details > summary > svg {
 
   .md\:mb-0 {
     margin-bottom: 0px;
-  }
-
-  .md\:mr-8 {
-    margin-right: 2rem;
   }
 
   .md\:block {
@@ -1694,6 +1716,18 @@ nav details > summary > svg {
     width: 10rem;
   }
 
+  .md\:w-3\/4 {
+    width: 75%;
+  }
+
+  .md\:flex-shrink {
+    flex-shrink: 1;
+  }
+
+  .md\:flex-grow-0 {
+    flex-grow: 0;
+  }
+
   .md\:translate-y-4 {
     --tw-translate-y: 1rem;
     transform: var(--tw-transform);
@@ -1709,6 +1743,10 @@ nav details > summary > svg {
 
   .md\:items-center {
     align-items: center;
+  }
+
+  .md\:gap-4 {
+    gap: 1rem;
   }
 
   .md\:space-x-4 > :not([hidden]) ~ :not([hidden]) {

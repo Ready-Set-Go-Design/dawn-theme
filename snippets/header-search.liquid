@@ -1,12 +1,8 @@
-
-
-<div class="absolute top-0 left-0 h-screen w-screen z-20" x-cloak x-data x-show="$store.showSearch">
-  <div class="absolute w-full bg-light1 border-b border-light2 animate-fadeup" @click.away="$store.showSearch = false">
-    <div class="flex justify-center relative my-5 px-4 md:px-8">
-      {%- if settings.predictive_search_enabled -%}
-        <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+<div class="absolute left-0 grid grid-cols-6 justify-items-center md:gap-4 w-full h-full bg-light1 border-b border-light2 animate-fadeup z-20" x-cloak x-data x-show="$store.showSearch" @click.away="$store.showSearch = false">
+    {%- if settings.predictive_search_enabled -%}
+        <predictive-search class="col-span-5 md:col-span-4 md:col-start-2 flex justify-center items-center relative h-full px-4 md:px-8 w-full" data-loading-text="{{ 'accessibility.loading' | t }}">
       {%- endif -%}
-      <form class="w-1/2 search" id="search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <form class="w-full search" id="search-form" action="{{ routes.search_url }}" method="get" role="search">
         <input class="placeholder-dark-placeholder" id="search-field-in-modal" type="search"
           type="search"
           name="q"
@@ -40,7 +36,6 @@
       {%- if settings.predictive_search_enabled -%}
       </predictive-search>
     {%- endif -%} 
-      <button x-data @click="$store.showSearch = false" class="menu-icon absolute top-0 right-0 mr-4 md:mr-8" aria-label="Mobile close">{% render 'aaa-icon-close' %}</button>
-    </div>
-  </div>
-</div>
+      <button x-data @click="$store.showSearch = false" class="menu-icon col-span-1 h-full" aria-label="Mobile close">{% render 'aaa-icon-close' %}</button>
+  </div> 
+

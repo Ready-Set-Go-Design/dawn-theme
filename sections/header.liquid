@@ -34,27 +34,27 @@
 {%- liquid
   if section.settings.logo_position == "middle-left"
     assign header_class = "flex items-center"
-    assign logo_class = "order-1 flex-1 mr-4 flex items-center"
+    assign logo_class = "order-1 flex-grow md:flex-grow-0 mr-4 flex items-center"
     assign nav_class ="order-2 hidden md:block flex-1"
-    assign seach_class="order-3"
-    assign profile_cart_class ="order-4 -mr-4"
+    assign search_class="order-3"
+    assign profile_cart_class ="order-4 -mr-3"
   elsif section.settings.logo_position == "middle-center"
     assign header_class = "flex justify-between items-center relative"
     assign logo_class = "flex items-center justify-center absolute w-full h-full left-0 -z-1"
     assign nav_class ="order-1 hidden md:block flex-1"
-    assign seach_class="order-2"
+    assign search_class="order-2"
     assign profile_cart_class ="order-3 -mr-4"
   elsif section.settings.logo_position == "top-left"
     assign header_class = "flex md:flex-wrap items-center"
     assign logo_class = "order-1 flex-1"
-    assign seach_class="order-2"
+    assign search_class="order-2"
     assign profile_cart_class="order-3 -mr-3"
     assign nav_class ="order-4 hidden md:block w-full -ml-3"
   elsif section.settings.logo_position == "top-center"
     assign header_class = "flex flex-wrap"    
     assign search_class="order-1 flex items-center"
     assign logo_class = "order-2 flex-1 flex items-center justify-center ml-10"
-    assign profile_cart_class="order-3 flex items-center -mr-4"
+    assign profile_cart_class="order-3 flex items-center -mr-3"
     assign nav_class ="order-4 hidden w-full md:flex justify-center"
   endif
 %}
@@ -269,7 +269,7 @@
           "label": "t:sections.header.settings.logo_position.options__3.label"
         }
       ],
-      "default": "top-left",
+      "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label"
     },
     {
