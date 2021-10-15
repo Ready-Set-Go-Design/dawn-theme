@@ -1,0 +1,52 @@
+{% if level == 0 %}
+	{% assign summary_class = "flex items-center p-3 md:pr-0 justify-between hover:underline underline-offset-2 focus-visble:outline-none focus-visible:ring-2 focus-visible:ring-accent2" %}
+	{% capture ul_class %}class="overflow-hidden bg-light1 text-body2 static md:border-2 md:border-light2 md:absolute md:w-40 md:translate-y-4 z-10 isolate" role="list" tabindex="-1"{% endcapture %}
+{% elsif level == 1 %}
+	{% assign summary_class = "flex items-center transition-all justify-between p-3 hover:underline underline-offset-2 focus-visble:outline-none focus-visible:ring-2 focus-visible:ring-accent2" %}
+	{% capture ul_class %}class="overflow-hidden"{% endcapture %}
+{% endif %}
+
+{% if header_link.current %}
+	{% assign current_class = "underline" %}
+	{% capture aria_current %}aria-current="page"{% endcapture %}
+{% else %}
+	{% assign current_class = "" %}
+	{% assign aria_current = "" %}
+{% endif %}
+
+{%- if header_link.child_active %}
+	{% assign child_active_class = "underline" %}
+{% else %}
+	{% assign child_active_class = "" %}
+{% endif %}
+
+{% if header_link.links %}
+	{% assign link_class = "flex items-center p-3 hover:underline underline-offset-2 focus-visble:outline-none focus-visible:ring-2 focus-visible:ring-accent2" %}
+{% else %}
+	{% assign link_class = "" %}
+{% endif %}
+
+{% assign level_class = "level" | append: level %}
+
+<li>
+	{% if header_link.links == blank %}
+		<a href="{{ header_link.url }}" class="{{ link_class }} {{ level_class }} {{ current_class }}" {{ aria_current }}>
+			{{ header_link.title | escape }}
+		</a>
+	{% else %}
+		<details>
+			<summary class="{{ summary_class }} {{ level_class }}">
+				<div class="{{ child_active_class }}">{{ header_link.title | escape }}</div>
+				{% render 'aaa-icon-chevron-down' %}
+			</summary>    
+				
+			<ul {{ ul_class }}>
+				{% assign nextLevel = level | plus: 1 %}
+				{% for childLink in header_link.links %}
+					{% render 'header-menu-link', header_link: childLink, level: nextLevel %}
+				{% endfor %}
+			</ul>
+    
+		</details>
+		{% endif%}
+</li>

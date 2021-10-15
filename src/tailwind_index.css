@@ -3,72 +3,163 @@
 @import "tailwindcss/utilities";
 
 .grid {
-  margin:auto;
+  margin: auto;
 }
 
 @layer base {
-
   .content-for-layout > section:first-child > section {
     @apply mt-0;
   }
- 
- .heading0{
-   @apply text-[3.25rem] leading-[1.2] md:text-[4rem];
- }
 
- .heading1{
-  @apply text-3xl leading-[1.2] tracking-wider md:text-4xl;
- }
+  .heading0 {
+    @apply text-[3.25rem] leading-[1.2] md:text-[4rem];
+  }
 
- .heading2{
-  @apply text-xl leading-[1.2] tracking-wider md:text-2xl;
- }
+  .heading1 {
+    @apply text-3xl leading-[1.2] tracking-wider md:text-4xl;
+  }
 
- .heading3{
-  @apply text-[1.0625rem] leading-[1.2] md:text-lg;
- }
+  .heading2 {
+    @apply text-xl leading-[1.2] tracking-wider md:text-2xl;
+  }
 
- .text-body1{
-  @apply text-base leading-[1.5];
- }
+  .heading3 {
+    @apply text-[1.0625rem] leading-[1.2] md:text-lg;
+  }
 
- .text-body2{
-  @apply text-sm leading-[1.5];
- }
+  .text-body1 {
+    @apply text-base leading-[1.5];
+  }
 
- .text-caption{
-  @apply text-[0.8125rem] leading-[1.5];
- }
+  .text-body2 {
+    @apply text-sm leading-[1.5];
+  }
 
- .text-micro{
-   @apply text-xs leading-[1.5];
- }
+  .text-caption {
+    @apply text-[0.8125rem] leading-[1.5];
+  }
 
- .text-button{
-   @apply text-[0.9375rem] leading-[1];
- }
+  .text-micro {
+    @apply text-xs leading-[1.5];
+  }
 
+  .text-button {
+    @apply text-[0.9375rem] leading-[1];
+  }
 
+  .underline-offset-2 {
+    text-underline-offset: 0.5em;
+  }
 
+  [x-cloak] {
+    display: none;
+  }
+
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full border-accent1 shadow-sm focus:border-accent1 focus:ring-accent1 focus:ring-1;
+  }
 }
 
-@layer components{
-  .btn-primary{
+@layer components {
+  .btn-primary {
     @apply bg-accent1 text-white px-6 py-3 text-center text-button border-2 border-gray-900 transition-all hover:shadow-button;
   }
 
-  .btn-icon{
+  .btn-icon {
     @apply flex justify-center items-center w-24 h-24 bg-white shadow-lg rounded-full transition-all ease-out hover:scale-125;
   }
 
-  .btn-secondary{
+  .btn-secondary {
     @apply bg-light1 text-gray-900 px-6 py-3 text-center text-button border-2 border-gray-900 transition-all hover:shadow-button;
   }
 
-  .hover-effect{
-    @apply transition-all ease-out duration-300 group-hover:scale-105
+  .menu-icon {
+    @apply h-10 w-10 flex justify-center items-center transition-all group-hover:scale-110 hover:scale-110 fill-current text-accent1;
   }
-  .underlink{
+
+  .hover-effect {
+    @apply transition-all ease-out duration-300 group-hover:scale-105;
+  }
+
+  .underlink {
     @apply before:w-full before:h-px before:bg-black;
+  }
+
+  .skip-to-content-link:focus {
+    z-index: 9999;
+    position: inherit;
+    overflow: auto;
+    width: auto;
+    height: auto;
+    clip: auto;
+  }
+
+  .visually-hidden{
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    clip: rect(0 0 0 0);
+    word-wrap: normal !important;
+  }
+
+  nav .level0{
+    @apply bg-light1;
+  }
+
+  nav .level1 {
+    @apply bg-light1 m-1;
+  }
+
+  nav .level2 {
+    @apply bg-light1 m-1;
+    padding-left: 1rem !important;
+  }
+
+  nav details{
+    cursor: pointer;
+  }
+
+  nav details[open] > ul {
+    @apply animate-fadeup;
+  }
+
+  nav details[open] > summary > svg {
+    @apply transition-all duration-300 rotate-180;
+  }
+
+  nav details > summary > svg {
+    @apply transition-all duration-300 rotate-0;
+  }
+
+  @media (min-width:768px){
+    nav details[open] > summary.level0:before {
+      cursor: default;
+      content: " ";
+      background: rgba(0, 0, 0, 0);
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+    }
   }
 }
