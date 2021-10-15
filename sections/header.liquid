@@ -30,29 +30,29 @@
 
 {%- liquid
   if section.settings.logo_position == "middle-left"
-    assign header_class = "grid grid-cols-12 auto-rows-fr"
-    assign logo_class = "col-span-2"
-    assign nav_class ="col-span-8"
-    assign seach_class="justify-self-end"
-    assign profile_cart_class ="justify-self-end"
+    assign header_class = "flex items-center"
+    assign logo_class = "order-1 mr-4 flex items-center"
+    assign nav_class ="md:block order-2 flex-1"
+    assign seach_class="order-3"
+    assign profile_cart_class ="order-4 -mr-4"
   elsif section.settings.logo_position == "middle-center"
     assign header_class = "flex justify-between items-center relative"
     assign logo_class = "flex items-center justify-center absolute w-full h-full left-0 -z-1"
-    assign nav_class ="order-1 flex-1"
+    assign nav_class ="md:block order-1 flex-1"
     assign seach_class="order-2"
-    assign profile_cart_class ="order-2"
+    assign profile_cart_class ="order-3 -mr-4"
   elsif section.settings.logo_position == "top-left"
-    assign header_class = "grid grid-cols-12 auto-rows-fr"
-    assign logo_class = "order-1 col-span-10"
-    assign seach_class="order-2 justify-self-end"
-    assign profile_cart_class="order-3"
-    assign nav_class ="order-4 col-span-12 -ml-3"
+    assign header_class = "flex flex-wrap"
+    assign logo_class = "order-1 flex-1"
+    assign seach_class="order-2"
+    assign profile_cart_class="order-3 -mr-4"
+    assign nav_class ="md:block order-4 w-full -ml-3"
   elsif section.settings.logo_position == "top-center"
-    assign header_class = "grid grid-cols-12 auto-rows-fr"    
-    assign seach_class="order 1"
-    assign logo_class = "order-2 col-span-10 justify-self-center"
-    assign profile_cart_class="order-3 justify-self-end"
-    assign nav_class ="order-4 col-span-12 justify-self-center"
+    assign header_class = "flex flex-wrap"    
+    assign seach_class="order-1 flex items-center"
+    assign logo_class = "order-2 flex-1 flex items-center justify-center ml-10"
+    assign profile_cart_class="order-3 flex items-center -mr-4"
+    assign nav_class ="order-4 w-full md:flex justify-center"
   endif
 %}
 
@@ -129,7 +129,7 @@
       <!-- This random div is necessary for tailwind to render the level classes -->
       <div class="level0 level1 level2 hidden"></div>      
       <!-- End random div -->
-      <nav class="hidden md:block {{ nav_class }}">
+      <nav class="hidden {{ nav_class }}">
         <ul class="flex space-x-4 text-body2" role="list">
           {% render 'header-menu-links', links: section.settings.menu.links %}
         </ul>
@@ -259,7 +259,7 @@
           "label": "t:sections.header.settings.logo_position.options__3.label"
         }
       ],
-      "default": "middle-center",
+      "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label"
     },
     {
