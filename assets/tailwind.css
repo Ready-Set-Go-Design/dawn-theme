@@ -1237,16 +1237,16 @@ nav details > summary > svg {
   margin-left: 2.5rem;
 }
 
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-
 .-ml-2 {
   margin-left: -0.5rem;
 }
 
 .mr-2 {
   margin-right: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .block {
@@ -1480,10 +1480,6 @@ nav details > summary > svg {
 
 .p-12 {
   padding: 3rem;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .p-3 {
