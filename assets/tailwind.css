@@ -1604,6 +1604,11 @@ nav details > summary > svg {
   margin: auto;
 }
 
+.mobile-frame {
+  overflow: hidden;
+  position: fixed;
+}
+
 .hover\:underline:hover {
   text-decoration: underline;
 }

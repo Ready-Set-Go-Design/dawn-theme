@@ -52,7 +52,7 @@
     assign nav_class ="order-4 hidden md:block w-full -ml-3"
   elsif section.settings.logo_position == "top-center"
     assign header_class = "flex flex-wrap"    
-    assign seach_class="order-1 flex items-center"
+    assign search_class="order-1 flex items-center"
     assign logo_class = "order-2 flex-1 flex items-center justify-center ml-10"
     assign profile_cart_class="order-3 flex items-center -mr-4"
     assign nav_class ="order-4 hidden w-full md:flex justify-center"
@@ -141,14 +141,19 @@
       </nav>
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
-    <div class="{{ seach_class }}">
-      <button x-data @click="$store.showSearch = true" class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
+    <div class="{{ search_class }}">
+      <button 
+        x-data
+        @click="$store.showSearch = true; setTimeout(() => { document.querySelector('#search-field-in-modal').focus(); }, 150); " 
+        @keydown.escape.window="console.log('escape'); $store.showSearch == true && document.querySelector('#search-field-in-modal').value.trim() == '' ? $store.showSearch = false : true"
+        class="menu-icon" 
+        aria-label="Search"
+      >{% render 'aaa-icon-search' %}</button>
     </div>
     <div class="flex {{ profile_cart_class }}">
       <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
       <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
     </div>
-    <!-- {% render 'header-icons' %} -->
   </header>
 </section>
 
