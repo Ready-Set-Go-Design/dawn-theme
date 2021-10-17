@@ -1183,28 +1183,12 @@ nav details > summary > svg {
   grid-column: span 3 / span 3;
 }
 
-.col-span-11 {
-  grid-column: span 11 / span 11;
-}
-
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
-
 .col-span-5 {
   grid-column: span 5 / span 5;
 }
 
-.col-span-4 {
-  grid-column: span 4 / span 4;
-}
-
-.col-start-2 {
-  grid-column-start: 2;
-}
-
-.col-start-1 {
-  grid-column-start: 1;
+.col-span-1 {
+  grid-column: span 1 / span 1;
 }
 
 .mx-auto {
@@ -1236,12 +1220,12 @@ nav details > summary > svg {
   margin-right: 1rem;
 }
 
-.-mr-4 {
-  margin-right: -1rem;
-}
-
 .-mr-3 {
   margin-right: -0.75rem;
+}
+
+.-mr-4 {
+  margin-right: -1rem;
 }
 
 .-ml-3 {
@@ -1308,10 +1292,6 @@ nav details > summary > svg {
   width: 100%;
 }
 
-.w-3\/4 {
-  width: 75%;
-}
-
 .max-w-md {
   max-width: 28rem;
 }
@@ -1359,10 +1339,6 @@ nav details > summary > svg {
 
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.grid-cols-12 {
-  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 .grid-cols-4 {
@@ -1419,10 +1395,6 @@ nav details > summary > svg {
 
 .gap-2 {
   gap: 0.5rem;
-}
-
-.gap-4 {
-  gap: 1rem;
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -1656,6 +1628,22 @@ nav details > summary > svg {
     position: absolute;
   }
 
+  .md\:left-0 {
+    left: 0px;
+  }
+
+  .md\:-z-1 {
+    z-index: -1;
+  }
+
+  .md\:order-2 {
+    order: 2;
+  }
+
+  .md\:order-1 {
+    order: 1;
+  }
+
   .md\:col-span-4 {
     grid-column: span 4 / span 4;
   }
@@ -1692,6 +1680,10 @@ nav details > summary > svg {
     margin-bottom: 0px;
   }
 
+  .md\:ml-10 {
+    margin-left: 2.5rem;
+  }
+
   .md\:block {
     display: block;
   }
@@ -1702,6 +1694,10 @@ nav details > summary > svg {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:h-full {
+    height: 100%;
   }
 
   .md\:w-10\/12 {
@@ -1716,12 +1712,8 @@ nav details > summary > svg {
     width: 10rem;
   }
 
-  .md\:w-3\/4 {
-    width: 75%;
-  }
-
-  .md\:flex-shrink {
-    flex-shrink: 1;
+  .md\:w-full {
+    width: 100%;
   }
 
   .md\:flex-grow-0 {
@@ -1743,6 +1735,10 @@ nav details > summary > svg {
 
   .md\:items-center {
     align-items: center;
+  }
+
+  .md\:justify-center {
+    justify-content: center;
   }
 
   .md\:gap-4 {
