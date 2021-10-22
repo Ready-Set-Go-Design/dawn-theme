@@ -7,11 +7,10 @@ class PredictiveSearch extends HTMLElement {
     this.predictiveSearchResults = this.querySelector('[data-predictive-search]');
 
     this.setupEventListeners();
-    console.log("somewhere");
   }
 
   setupEventListeners() {
-    const form = this.querySelector('#search-form');
+    const form = this.querySelector('form');
     form.addEventListener('submit', this.onFormSubmit.bind(this));
 
     this.input.addEventListener('input', debounce((event) => {
@@ -29,9 +28,10 @@ class PredictiveSearch extends HTMLElement {
   }
 
   onChange() {
-    const searchTerm = this.getQuery();
-
-    if (!searchTerm.length) {
+    const searchTerm = this.getQuery().trim();
+    console.log(searchTerm);
+    if (!searchTerm.length || searchTerm.length == 0) {
+      console.log("closing")
       this.close(true);
       return;
     }
@@ -89,16 +89,12 @@ class PredictiveSearch extends HTMLElement {
   }
 
   switchOption(direction) {
-    console.log("switch option")
     if (!this.getAttribute('open')) return;
-    console.log("after return check")
     
     const moveUp = direction === 'up';
     const selectedElement = this.querySelector('[aria-selected="true"]');
     const allElements = this.querySelectorAll('li');
     let activeElement = this.querySelector('li');
-
-    console.log(selectedElement, allElements, activeElement)
 
     if (moveUp && !selectedElement) return;
 

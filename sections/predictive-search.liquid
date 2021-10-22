@@ -1,5 +1,3 @@
-{{ 'component-predictive-search.css' | asset_url | stylesheet_tag }}
-
 {%- if predictive_search.performed -%}
   <div id="predictive-search-results" class="bg-light1 p-4 shadow-lg animate-fadeup">
     {%- if predictive_search.resources.products.size > 0 -%} 
