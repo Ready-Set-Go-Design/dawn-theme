@@ -89,12 +89,16 @@ class PredictiveSearch extends HTMLElement {
   }
 
   switchOption(direction) {
+    console.log("switch option")
     if (!this.getAttribute('open')) return;
+    console.log("after return check")
     
     const moveUp = direction === 'up';
     const selectedElement = this.querySelector('[aria-selected="true"]');
     const allElements = this.querySelectorAll('li');
     let activeElement = this.querySelector('li');
+
+    console.log(selectedElement, allElements, activeElement)
 
     if (moveUp && !selectedElement) return;
 

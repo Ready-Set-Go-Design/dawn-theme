@@ -145,7 +145,8 @@
       <button 
         x-data
         @click="$store.showSearch = true; setTimeout(() => { document.querySelector('#search-field-in-modal').focus(); }, 150); " 
-        @keydown.escape.window="console.log('escape'); $store.showSearch == true && document.querySelector('#search-field-in-modal').value.trim() == '' ? $store.showSearch = false : true"
+        @keydown.escape.window="$store.showSearch == true && document.querySelector('#search-field-in-modal').value.trim() == '' ? $store.showSearch = false : true"
+        @keydown.s.window="$store.showSearch == false ? $store.showSearch = true : false; setTimeout(() => { document.querySelector('#search-field-in-modal').focus(); }, 150); "
         class="menu-icon" 
         aria-label="Search"
       >{% render 'aaa-icon-search' %}</button>
