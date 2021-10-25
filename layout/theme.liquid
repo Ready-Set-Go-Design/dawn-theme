@@ -30,6 +30,7 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'alpine.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
 
     {%- liquid
@@ -125,14 +126,14 @@
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
 
-    {%- if settings.predictive_search_enabled -%}
+    {% comment %} {%- if settings.predictive_search_enabled -%}
       <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
 
-  <body class="gradient">
+  <body>
     <a class="skip-to-content-link btn-primary visually-hidden" href="#MainContent">
       {{ "accessibility.skip_to_text" | t }}
     </a>

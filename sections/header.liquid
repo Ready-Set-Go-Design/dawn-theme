@@ -20,39 +20,36 @@
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'sticky-header.js' | asset_url }}" defer="defer"></script> -->
 
-<script src="{{ 'alpine.js' | asset_url }}" defer="defer"></script>
+
 <script type="text/javascript">
   document.addEventListener('alpine:init', () => {  
     Alpine.store('showMobileMenu', false);
     Alpine.store('showSearch', false);
   })
+
+
+
 </script>
 
 {%- liquid
   if section.settings.logo_position == "middle-left"
     assign header_class = "flex items-center"
-    assign logo_class = "order-1 mr-4 flex items-center"
-    assign nav_class ="md:block order-2 flex-1"
-    assign seach_class="order-3"
-    assign profile_cart_class ="order-4 -mr-4"
-  elsif section.settings.logo_position == "middle-center"
-    assign header_class = "flex justify-between items-center relative"
-    assign logo_class = "flex items-center justify-center absolute w-full h-full left-0 -z-1"
-    assign nav_class ="md:block order-1 flex-1"
-    assign seach_class="order-2"
-    assign profile_cart_class ="order-3 -mr-4"
+    assign logo_class = "order-1 flex-grow md:flex-grow-0 mr-4 flex items-center"
+    assign nav_class ="order-2 hidden md:block flex-1"
+    assign search_class="order-3"
+    assign profile_cart_class ="order-4"
   elsif section.settings.logo_position == "top-left"
-    assign header_class = "flex flex-wrap"
+    assign header_class = "flex md:flex-wrap items-center"
     assign logo_class = "order-1 flex-1"
-    assign seach_class="order-2"
-    assign profile_cart_class="order-3 -mr-4"
-    assign nav_class ="md:block order-4 w-full -ml-3"
+    assign search_class="order-2"
+    assign profile_cart_class="order-3"
+    assign nav_class ="order-4 hidden md:block w-full -ml-3"
   elsif section.settings.logo_position == "top-center"
     assign header_class = "flex flex-wrap"    
-    assign seach_class="order-1 flex items-center"
-    assign logo_class = "order-2 flex-1 flex items-center justify-center ml-10"
-    assign profile_cart_class="order-3 flex items-center -mr-4"
-    assign nav_class ="order-4 w-full md:flex justify-center"
+    assign logo_class = "order-1 md:order-2 flex-1 flex items-center md:justify-center md:ml-10"
+    assign search_class="order-2 md:order-1 flex items-center"
+    assign profile_cart_class="order-3"
+    assign nav_class ="order-4 hidden w-full md:flex justify-center"
   endif
 %}
 
@@ -63,21 +60,23 @@
     {%- if section.settings.menu != blank -%}
     <!-- Hamburger icon -->
     <div class="flex md:hidden space-x-4 items-center justify-end">
-      <button class="menu-icon" aria-label="Mobile menu" @click="$store.showMobileMenu = true">{% render 'aaa-icon-hamburger' %}</button>      
+      <button class="menu-icon -ml-2 mr-2" aria-label="Mobile menu" 
+      @click="$store.showMobileMenu = true;
+      document.body.classList.add('overflow-none', 'fixed');">{% render 'aaa-icon-hamburger' %}</button>      
     </div>
 <!-- mobile menu -->
     <div 
-      class="h-screen absolute left-0 top-0 p-4 max-w-md w-full bg-light1 border-r-2 border-light2 z-20 block md:hidden"
-      x-show="$store.showMobileMenu" 
+      class="h-screen absolute left-0 top-0 pl-3 pr-4 py-4 max-w-md w-full bg-light1 border-r-2 border-light2 z-20 block md:hidden"
+      x-show="$store.showMobileMenu"
       x-transition:enter="transition"
       x-transition:enter-start="-translate-x-full"
       x-transition:enter-end="translate-x-0"
       x-transition:leave="transition -translate-x-full"
       x-cloak 
-      @resize.window="$store.showMobileMenu = window.innerWidth > 752 ? false : $store.showMobileMenu"
-      @click.away="$store.showMobileMenu = false">
+      @resize.window="$store.showMobileMenu = window.innerWidth > 752 ? false : $store.showMobileMenu; $store.showMobileMenu == true ? document.body.classList.add('mobile-frame') : document.body.classList.remove('mobile-frame');"
+      @click.away="$store.showMobileMenu = false; document.body.classList.remove('overflow-none', 'fixed');">
       <div class="flex flex-col h-full space-y-8">
-        <button class="menu-icon" aria-label="close" x-data @click="$store.showMobileMenu = false">{% render 'aaa-icon-close' %}</button>
+        <button class="menu-icon" aria-label="close" x-data @click="$store.showMobileMenu = false; document.body.classList.remove('overflow-none', 'fixed');">{% render 'aaa-icon-close' %}</button>
         <nav class="flex-1">
           <ul class="text-body2">
             {% render 'header-menu-links', links: section.settings.menu.links %} 
@@ -129,21 +128,27 @@
       <!-- This random div is necessary for tailwind to render the level classes -->
       <div class="level0 level1 level2 hidden"></div>      
       <!-- End random div -->
-      <nav class="hidden {{ nav_class }}">
+      <nav class="{{ nav_class }}">
         <ul class="flex space-x-4 text-body2" role="list">
           {% render 'header-menu-links', links: section.settings.menu.links %}
         </ul>
       </nav>
     {%- endif -%}
 <!-- ================    Header icons   ================  -->
-    <div class="{{ seach_class }}">
-      <button x-data @click="$store.showSearch = true" class="menu-icon" aria-label="Search">{% render 'aaa-icon-search' %}</button>
+    <div class="{{ search_class }}">
+      <button 
+        x-data
+        @click="$store.showSearch = true; setTimeout(() => { document.querySelector('#search-field-in-modal').focus(); }, 150); " 
+        @keydown.escape.window="$store.showSearch == true && document.querySelector('#search-field-in-modal').value.trim() == '' ? $store.showSearch = false : true"
+        @keydown.s.window="$store.showSearch == false ? $store.showSearch = true : false; setTimeout(() => { document.querySelector('#search-field-in-modal').focus(); }, 150); "
+        class="menu-icon" 
+        aria-label="Search"
+      >{% render 'aaa-icon-search' %}</button>
     </div>
-    <div class="flex {{ profile_cart_class }}">
+    <div class="flex items-center -mr-3 {{ profile_cart_class }}">
       <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
       <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
     </div>
-    <!-- {% render 'header-icons' %} -->
   </header>
 </section>
 
@@ -244,10 +249,6 @@
       "options": [
         {
           "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
           "label": "t:sections.header.settings.logo_position.options__1.label"
         },
         {

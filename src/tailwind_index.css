@@ -55,18 +55,18 @@
     display: none;
   }
 
-  [type='text'],
-  [type='email'],
-  [type='url'],
-  [type='password'],
-  [type='number'],
-  [type='date'],
-  [type='datetime-local'],
-  [type='month'],
-  [type='search'],
-  [type='tel'],
-  [type='time'],
-  [type='week'],
+  [type="text"],
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
   [multiple],
   textarea,
   select {
@@ -108,7 +108,7 @@
     clip: auto;
   }
 
-  .visually-hidden{
+  .visually-hidden {
     position: absolute !important;
     overflow: hidden;
     width: 1px;
@@ -119,7 +119,7 @@
     word-wrap: normal !important;
   }
 
-  nav .level0{
+  nav .level0 {
     @apply bg-light1;
   }
 
@@ -132,7 +132,7 @@
     padding-left: 1rem !important;
   }
 
-  nav details{
+  nav details {
     cursor: pointer;
   }
 
@@ -148,7 +148,7 @@
     @apply transition-all duration-300 rotate-0;
   }
 
-  @media (min-width:768px){
+  @media (min-width: 768px) {
     nav details[open] > summary.level0:before {
       cursor: default;
       content: " ";
@@ -162,4 +162,114 @@
       z-index: 1;
     }
   }
+
+  .predictive-search {
+    @apply hidden absolute border border-light1 bg-light2 z-10 w-full;
+  }
+
+  .predictive-search__list-item[aria-selected="true"] > *,
+  .predictive-search__list-item:hover > * {
+    /* @apply text-dark bg-light2; */
+  }
+
+  .predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading, 
+  .predictive-search__list-item:hover .predictive-search__item-heading {
+    /* @apply underline; */
+  }
+
+  .predictive-search__item--link {
+    /* @apply grid gap-4 grid-cols-5; */
+  }
+
+  predictive-search[open] .predictive-search,  
+  predictive-search[loading] .predictive-search {
+    @apply block;
+  }
+
+  predictive-search .spinner {
+    @apply w-6 h-6 leading-none;
+  }
+
+  .predictive-search__heading .spinner {
+    /* @apply my-0 ml-1 mr-8; */
+  }
+
+  predictive-search:not([loading]) .predictive-search__heading .spinner,
+  predictive-search:not([loading]) .predictive-search__loading-state,
+  predictive-search:not([loading]) .predictive-search-status__loading {
+    @apply hidden;
+  }
+
+  predictive-search[loading] .predictive-search__loading-state {
+    @apply flex justify-center p-4;
+  }
+
+  predictive-search[loading] .predictive-search__heading ~ .predictive-search__loading-state,
+  predictive-search[loading] .predictive-search__results-list:first-child {
+    @apply hidden;
+  }
 }
+
+/* 
+.predictive-search {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.1rem);
+  width: calc(100% + 0.2rem);
+  left: -0.1rem;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  background-color: rgb(var(--color-background));
+  z-index: 3;
+}
+
+.predictive-search__list-item[aria-selected="true"] > *,
+.predictive-search__list-item:hover > * {
+  color: rgb(var(--color-foreground));
+  background-color: rgba(var(--color-foreground), 0.04);
+}
+
+.predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading, .predictive-search__list-item:hover .predictive-search__item-heading {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.predictive-search__item--link {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  grid-column-gap: 2rem;
+  grid-template-areas: "product-image product-content";
+}
+
+predictive-search[open] .predictive-search,
+predictive-search[loading] .predictive-search {
+  display: block;
+}
+
+predictive-search .spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 0;
+}
+
+.predictive-search__heading .spinner {
+  margin: 0 0.2rem 0 2rem;
+}
+
+predictive-search:not([loading]) .predictive-search__heading .spinner,
+predictive-search:not([loading]) .predictive-search__loading-state,
+predictive-search:not([loading]) .predictive-search-status__loading {
+  display: none;
+}
+
+predictive-search[loading] .predictive-search__loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+predictive-search[loading]
+  .predictive-search__heading
+  ~ .predictive-search__loading-state,
+predictive-search[loading] .predictive-search__results-list:first-child {
+  display: none;
+} */

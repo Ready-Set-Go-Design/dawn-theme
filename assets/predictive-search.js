@@ -1,6 +1,7 @@
 class PredictiveSearch extends HTMLElement {
   constructor() {
     super();
+    
     this.cachedResults = {};
     this.input = this.querySelector('input[type="search"]');
     this.predictiveSearchResults = this.querySelector('[data-predictive-search]');
@@ -9,7 +10,7 @@ class PredictiveSearch extends HTMLElement {
   }
 
   setupEventListeners() {
-    const form = this.querySelector('form.search');
+    const form = this.querySelector('form');
     form.addEventListener('submit', this.onFormSubmit.bind(this));
 
     this.input.addEventListener('input', debounce((event) => {
@@ -27,9 +28,10 @@ class PredictiveSearch extends HTMLElement {
   }
 
   onChange() {
-    const searchTerm = this.getQuery();
-
-    if (!searchTerm.length) {
+    const searchTerm = this.getQuery().trim();
+    console.log(searchTerm);
+    if (!searchTerm.length || searchTerm.length == 0) {
+      console.log("closing")
       this.close(true);
       return;
     }
