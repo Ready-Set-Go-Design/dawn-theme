@@ -162,8 +162,55 @@
       z-index: 1;
     }
   }
+
+  .predictive-search {
+    @apply hidden absolute border border-light1 bg-light2 z-10 w-full;
+  }
+
+  .predictive-search__list-item[aria-selected="true"] > *,
+  .predictive-search__list-item:hover > * {
+    /* @apply text-dark bg-light2; */
+  }
+
+  .predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading, 
+  .predictive-search__list-item:hover .predictive-search__item-heading {
+    /* @apply underline; */
+  }
+
+  .predictive-search__item--link {
+    /* @apply grid gap-4 grid-cols-5; */
+  }
+
+  predictive-search[open] .predictive-search,  
+  predictive-search[loading] .predictive-search {
+    @apply block;
+  }
+
+  predictive-search .spinner {
+    @apply w-6 h-6 leading-none;
+  }
+
+  .predictive-search__heading .spinner {
+    /* @apply my-0 ml-1 mr-8; */
+  }
+
+  predictive-search:not([loading]) .predictive-search__heading .spinner,
+  predictive-search:not([loading]) .predictive-search__loading-state,
+  predictive-search:not([loading]) .predictive-search-status__loading {
+    @apply hidden;
+  }
+
+  predictive-search[loading] .predictive-search__loading-state {
+    @apply flex justify-center p-4;
+  }
+
+  predictive-search[loading] .predictive-search__heading ~ .predictive-search__loading-state,
+  predictive-search[loading] .predictive-search__results-list:first-child {
+    @apply hidden;
+  }
 }
 
+/* 
 .predictive-search {
   display: none;
   position: absolute;
@@ -181,9 +228,7 @@
   background-color: rgba(var(--color-foreground), 0.04);
 }
 
-.predictive-search__list-item[aria-selected="true"]
-  .predictive-search__item-heading,
-.predictive-search__list-item:hover .predictive-search__item-heading {
+.predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading, .predictive-search__list-item:hover .predictive-search__item-heading {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
 }
@@ -227,4 +272,4 @@ predictive-search[loading]
   ~ .predictive-search__loading-state,
 predictive-search[loading] .predictive-search__results-list:first-child {
   display: none;
-}
+} */

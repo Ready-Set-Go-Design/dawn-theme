@@ -823,6 +823,18 @@ select {
   }
 }
 
+.heading3 {
+  font-size: 1.0625rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .heading3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
 .text-body1 {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1111,6 +1123,58 @@ nav details > summary > svg {
   }
 }
 
+.predictive-search {
+  position: absolute;
+  z-index: 10;
+  display: none;
+  width: 100%;
+  border-width: 1px;
+  border-color: var(--color-background-light1);
+  background-color: var(--color-background-light2);
+}
+
+.predictive-search__list-item[aria-selected="true"] > *,
+  .predictive-search__list-item:hover > * {
+  /* @apply text-dark bg-light2; */
+}
+
+.predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading, 
+  .predictive-search__list-item:hover .predictive-search__item-heading {
+  /* @apply underline; */
+}
+
+.predictive-search__item--link {
+  /* @apply grid gap-4 grid-cols-5; */
+}
+
+predictive-search[open] .predictive-search, predictive-search[loading] .predictive-search {
+  display: block;
+}
+
+predictive-search .spinner {
+  height: 1.5rem;
+  width: 1.5rem;
+  line-height: 1;
+}
+
+.predictive-search__heading .spinner {
+  /* @apply my-0 ml-1 mr-8; */
+}
+
+predictive-search:not([loading]) .predictive-search__heading .spinner, predictive-search:not([loading]) .predictive-search__loading-state, predictive-search:not([loading]) .predictive-search-status__loading {
+  display: none;
+}
+
+predictive-search[loading] .predictive-search__loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+predictive-search[loading] .predictive-search__heading ~ .predictive-search__loading-state, predictive-search[loading] .predictive-search__results-list:first-child {
+  display: none;
+}
+
 .visible {
   visibility: visible;
 }
@@ -1234,6 +1298,10 @@ nav details > summary > svg {
 
 .-mr-3 {
   margin-right: -0.75rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .block {
@@ -1409,6 +1477,12 @@ nav details > summary > svg {
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(2rem * var(--tw-space-x-reverse));
+  margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1481,6 +1555,10 @@ nav details > summary > svg {
   padding: 2rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1551,6 +1629,10 @@ nav details > summary > svg {
   text-decoration: underline;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 .placeholder-dark-placeholder::-moz-placeholder {
   color: rgba(var(--color-text-dark-default), 0.50);
 }
@@ -1596,10 +1678,17 @@ nav details > summary > svg {
   transition-duration: 150ms;
 }
 
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .grid {
   margin: auto;
 }
 
+/* 
 .predictive-search {
   display: none;
   position: absolute;
@@ -1617,9 +1706,7 @@ nav details > summary > svg {
   background-color: rgba(var(--color-foreground), 0.04);
 }
 
-.predictive-search__list-item[aria-selected="true"]
-  .predictive-search__item-heading,
-.predictive-search__list-item:hover .predictive-search__item-heading {
+.predictive-search__list-item[aria-selected="true"] .predictive-search__item-heading, .predictive-search__list-item:hover .predictive-search__item-heading {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
 }
@@ -1663,6 +1750,26 @@ predictive-search[loading]
   ~ .predictive-search__loading-state,
 predictive-search[loading] .predictive-search__results-list:first-child {
   display: none;
+} */
+
+.hover\:bg-light2:hover {
+  background-color: var(--color-background-light2);
+}
+
+.hover\:bg-accent2:hover {
+  background-color: var(--color-background-accent2);
+}
+
+.hover\:bg-accent1:hover {
+  background-color: var(--color-background-accent1);
+}
+
+.hover\:text-accent2:hover {
+  color: var(--color-background-accent2);
+}
+
+.hover\:text-light:hover {
+  color: rgba(var(--color-text-light-default), 1);
 }
 
 .hover\:underline:hover {

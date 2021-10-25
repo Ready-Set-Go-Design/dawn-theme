@@ -38,12 +38,6 @@
     assign nav_class ="order-2 hidden md:block flex-1"
     assign search_class="order-3"
     assign profile_cart_class ="order-4"
-  elsif section.settings.logo_position == "middle-center"
-    assign header_class = "flex justify-between items-center relative"
-    assign logo_class = "order-1 flex-grow flex items-center md:flex-grow-0 md:justify-center md:absolute md:w-full md:h-full md:left-0 md:-z-1"
-    assign nav_class ="order-1 hidden md:block flex-1"
-    assign search_class="order-2"
-    assign profile_cart_class ="order-3"
   elsif section.settings.logo_position == "top-left"
     assign header_class = "flex md:flex-wrap items-center"
     assign logo_class = "order-1 flex-1"
@@ -258,10 +252,6 @@
           "label": "t:sections.header.settings.logo_position.options__1.label"
         },
         {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
           "value": "top-left",
           "label": "t:sections.header.settings.logo_position.options__2.label"
         },
@@ -270,7 +260,7 @@
           "label": "t:sections.header.settings.logo_position.options__3.label"
         }
       ],
-      "default": "middle-center",
+      "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label"
     },
     {
