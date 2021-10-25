@@ -8,6 +8,7 @@
     {% render 'cart-notification' %}
 {% endcomment %}
 
+<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
 <cart-notification>
   <div class="cart-notification-wrapper page-width{% if color_scheme %} color-{{ color_scheme }}{% endif %}">
     <div id="cart-notification" class="cart-notification focus-inset" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">

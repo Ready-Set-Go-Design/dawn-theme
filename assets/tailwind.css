@@ -1000,6 +1000,10 @@ select {
   transform: var(--tw-transform);
 }
 
+.menu-icon {
+  position: relative;
+}
+
 .hover-effect {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1258,6 +1262,10 @@ nav details > summary > svg {
 
 .grid {
   display: grid;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
@@ -1663,6 +1671,59 @@ predictive-search[loading]
   ~ .predictive-search__loading-state,
 predictive-search[loading] .predictive-search__results-list:first-child {
   display: none;
+}
+
+.cart-count-bubble:empty {
+  display: none;
+}
+
+.cart-count-bubble {
+  position: absolute;
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  height: 1.7rem;
+  width: 1.7rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  bottom: 0.8rem;
+  left: 1rem;
+  line-height: 1.1;
+}
+
+.cart-contents-wrapper {
+  position: relative;
+}
+
+.cart-contents-wrapper .cart-contents {
+  display: block;
+}
+
+.cart-contents {
+  background-color: rgb(var(--color-background));
+  border-color: rgba(var(--color-foreground), 0.2);
+  border-style: solid;
+  border-width: 0 0 0.1rem;
+  padding: 2.5rem 3.5rem;
+  position: absolute;
+  right: 0;
+  transform: translateY(-100%);
+  visibility: hidden;
+  width: 100%;
+  z-index: -1;
+}
+
+.cart-contents.animate {
+  transition: transform var(--duration-short) ease,
+    visibility 0s var(--duration-short) ease;
+}
+
+.cart-contents.active {
+  transform: translateY(0);
+  transition: transform var(--duration-default) ease, visibility 0s;
+  visibility: visible;
 }
 
 .hover\:underline:hover {

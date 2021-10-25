@@ -1,0 +1,16 @@
+<div x-show="$store.showCart" x-cloak x-data class="cart-contents__wrapper" x-init="$watch('$store.showCart', value => refreshCart(value))">
+  <div :class="$store.showCart === true ? 'cart-contents animate active' : 'cart-contents'">
+    <span>
+      <button @click="$store.showCart = false">X</button>
+      Cart Contents
+    </span>
+    {% render 'cart-contents-shared' %}
+
+    <template x-if="$store.cartContents.contents.items.length > 0">
+    <div>
+      <button @click="window.location.href='/cart'">View Cart</button>
+      <button @click="window.location.href='/checkout'">Checkout</button>
+    </div>
+  </template>
+  </div>
+</div>

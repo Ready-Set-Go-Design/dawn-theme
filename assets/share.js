@@ -1,7 +1,11 @@
 if (!customElements.get('share-button')) {
-  customElements.define('share-button', class ShareButton extends DetailsDisclosure {
+  customElements.define('share-button', class ShareButton extends HTMLElement {
     constructor() {
       super();
+      this.mainDetailsToggle = this.querySelector('details');
+  
+      this.addEventListener('keyup', onKeyUpEscape);
+      this.mainDetailsToggle.addEventListener('focusout', this.onFocusOut.bind(this));
 
       this.elements = {
         shareButton: this.querySelector('button'),
@@ -47,6 +51,16 @@ if (!customElements.get('share-button')) {
         this.elements.closeButton.classList.remove('hidden');
         this.elements.closeButton.focus();
       });
+    }
+
+    onFocusOut() {
+      setTimeout(() => {
+        if (!this.contains(document.activeElement)) this.close();
+      })
+    }
+  
+    close() {
+      this.mainDetailsToggle.removeAttribute('open')
     }
   });
 }

@@ -22,13 +22,88 @@
 
 
 <script type="text/javascript">
-  document.addEventListener('alpine:init', () => {  
+  document.addEventListener('alpine:init', async () => {  
     Alpine.store('showMobileMenu', false);
     Alpine.store('showSearch', false);
+    Alpine.store('showCart', false);
+    Alpine.store('cartContents',
+      {
+        contents: {
+          "token": "",
+          "note": null,
+          "attributes": {},
+          "original_total_price": 0,
+          "total_price": 0,
+          "total_discount": 0,
+          "total_weight": 0,
+          "item_count": 0,
+          "items": [],
+          "requires_shipping": false,
+          "currency": "CAD",
+          "items_subtotal_price": 0,
+          "cart_level_discount_applications": []
+        },
+        updateContents(newContents) {
+          this.contents = newContents
+        },
+        cartCount() {
+          let count = 0;
+          this.contents.items.forEach(item => count += item.quantity);
+          return count;
+        }
+      }
+    );
+
+    var cartContents = await fetch('/cart.js').then(response => response.json()).then(data => { return data });
+    Alpine.store('cartContents').updateContents(cartContents);
   })
+</script>
+<script>
+  
+  const refreshCart = async (doProcess) => {
+    if (doProcess) {
+      var cartContents = await fetch('/cart.js').then(response => response.json()).then(data => { return data });
+      Alpine.store('cartContents').updateContents(cartContents);
+      console.log(cartContents);
+    }
+  }
 
+const updateProductQuantity = async (productId) => {
+  const productQuantity = document.querySelector("#quantity-"+productId).value
+  var updatePQ = await fetch('/cart/update.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ updates: { [productId]: productQuantity }})
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
 
+  refreshCart(true);
+}
 
+const removeProduct = async (productId) => {
+  var removeP = await fetch('/cart/update.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ updates: { [productId]: 0} })
+  })
+  .then(response => {
+    return response.json();
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
+  refreshCart(true);
+}
 </script>
 
 {%- liquid
@@ -153,12 +228,34 @@
     </div>
     <div class="flex items-center -mr-3 {{ profile_cart_class }}">
       <button class="menu-icon" aria-label="Sign in">{% render 'aaa-icon-person' %}</button>
-      <button class="menu-icon" aria-label="View Cart">{% render 'aaa-icon-cart' %}</button>
+
+      <button @click="$store.showCart = true;" class="menu-icon" aria-label="View Cart" id="cart-icon-bubble">
+      {%- liquid
+        if cart == empty
+          render 'aaa-icon-cart'
+        else
+          render 'aaa-icon-cart'
+        endif
+      -%}
+      <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+      <template x-if="$store.cartContents.cartCount() > 0">
+        <div class="cart-count-bubble">
+          <template x-if="$store.cartContents.cartCount() < 100">
+            <span aria-hidden="true" x-text="$store.cartContents.cartCount()"></span>
+          </template>
+          <span class="visually-hidden" x-text="$store.cartContents.cartCount()"></span>
+        </div>
+      </template>
+    </button>
     </div>
   </header>
 </section>
 
 {%- render 'cart-notification', color_scheme: section.settings.color_scheme -%}
+
+{% if template != 'cart' %}
+  {%- render 'cart-contents', color_scheme: section.settings.color_scheme -%}
+{% endif %}
 
 <!-- ================    Schema stuff   ================  -->
 
