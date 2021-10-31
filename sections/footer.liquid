@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="{{ 'component-newsletter.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -14,71 +15,117 @@
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient">
+<footer class="color- {{ section.settings.color_scheme }} py-10 border-t-2 border-light2">
   {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
-    <div class="footer__content-top page-width">
+    <div class="container space-y-8">
       {%- if section.blocks.size > 0 -%}
         {%- liquid
           if section.blocks.size == 9
-            assign footer_grid_class = 'grid--3-col-tablet'
+            assign footer_grid_class = 'md:grid-cols-3'
           elsif section.blocks.size > 6
-            assign footer_grid_class = 'grid--4-col-desktop'
-          elsif section.blocks.size > 4
-            assign footer_grid_class = 'grid--3-col-tablet'
+            assign footer_grid_class = 'md:grid-cols-4'
+          elsif section.blocks.size == 6
+            assign footer_grid_class = 'md:grid-cols-3'
+          elsif section.blocks.size >= 4 
+            assign footer_grid_class = 'md:grid-cols-4'
+          elsif section.blocks.size > 2 
+            assign footer_grid_class = 'md:grid-cols-3'
+          elsif section.blocks.size == 2 
+            assign footer_grid_class = 'md:grid-cols-2'
+          elsif section.blocks.size == 1 
+            assign footer_grid_class = 'md:grid-cols-1'
           endif
-        -%}
-        <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}">
-          {%- for block in section.blocks -%}
-            <div class="footer-block grid__item{% if block.type == 'link_list' and block.settings.heading != blank %} footer-block--menu{% endif %}" {{ block.shopify_attributes }}>
-              {%- if block.settings.heading != blank -%}
-                <h2 class="footer-block__heading">{{- block.settings.heading | escape -}}</h2>
-              {%- endif -%}
+        -%}        
+      <div class="grid grid-cols-1 {{ footer_grid_class }} gap-4">
+        {%- for block in section.blocks -%}
+          {%- liquid  
+            if block.settings.image_column_span == 1
+              assign image_column_span = 'md:col-span-1'
+            elsif block.settings.image_column_span == 2
+              assign image_column_span = 'md:col-span-2'
+            elsif block.settings.image_column_span == 3
+              assign image_column_span = 'md:col-span-3'
+            elsif block.settings.image_column_span == 4
+              assign image_column_span = 'md:col-span-4'
+            endif
 
-              {%- case block.type -%}
-                {%- when 'text' -%}
-                  <div class="footer-block__details-content rte">
-                    {{ block.settings.subtext }}
-                  </div>
-                {%- when 'link_list' -%}
-                  {%- if block.settings.menu != blank and block.settings.heading != blank -%}
-                    <ul class="footer-block__details-content list-unstyled">
-                      {%- for link in block.settings.menu.links -%}
-                        <li>
-                          <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
-                            {{ link.title }}
-                          </a>
-                        </li>
-                      {%- endfor -%}
-                    </ul>
+            if block.settings.text_column_span == 1
+              assign text_column_span = 'md:col-span-1'
+            elsif block.settings.text_column_span == 2
+              assign text_column_span = 'md:col-span-2'
+            elsif block.settings.text_column_span == 3
+              assign text_column_span = 'md:col-span-3'
+            elsif block.settings.text_column_span == 4
+              assign text_column_span = 'md:col-span-4'
+            endif
+
+            if block.settings.link_list_column_span == 1
+              assign link_list_column_span = 'md:col-span-1'
+            elsif block.settings.link_list_column_span == 2
+              assign link_list_column_span = 'md:col-span-2'
+            elsif block.settings.link_list_column_span == 3
+              assign link_list_column_span = 'md:col-span-3'
+            elsif block.settings.link_list_column_span == 4
+              assign link_list_column_span = 'md:col-span-4'
+            endif
+          -%}
+          {% if block.type == 'image' %}
+            <div class="{{ image_column_span }}" {{ block.shopify_attributes }}>
+          {% elsif block.type == 'text' %} 
+            <div class="{{ text_column_span }}" {{ block.shopify_attributes }}>
+          {% elsif block.type == 'link_list' %} 
+            <div class="{{ link_list_column_span }}" {{ block.shopify_attributes }}>
+          {% endif %}
+            {%- if block.settings.heading != blank -%}
+              <h2 class="text-body1">{{- block.settings.heading | escape -}}</h2>
+            {%- endif -%}
+
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                <div class="text-body1 mt-3">
+                  {{ block.settings.subtext }}
+                </div>
+              {%- when 'link_list' -%}
+                {%- if block.settings.menu != blank and block.settings.heading != blank -%}
+                  <ul class="">
+                    {%- for link in block.settings.menu.links -%}
+                      <li class="">
+                        <a href="{{ link.url }}" class="text-body1 {% if link.active %} underline{% endif %}">
+                          {{ link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              {%- when 'image' -%}
+                <div class="flex justify-center md:justify-{{ block.settings.alignment }}">
+                  {%- if block.settings.image != blank -%}
+                    {%- assign image_size = block.settings.image_width | append: 'x' -%}
+                    <img
+                      srcset= "{{ block.settings.image | img_url: image_size }}, {{ block.settings.image | img_url: image_size, scale: 2 }} 2x"
+                      src="{{ block.settings.image | img_url: '400x' }}"
+                      alt="{{ block.settings.image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ block.settings.image.width }}"
+                      height="{{ block.settings.image.height }}"
+                      style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                      class="object-contain"
+                    >
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                   {%- endif -%}
-                {%- when 'image' -%}
-                  <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
-                    {%- if block.settings.image != blank -%}
-                      {%- assign image_size = block.settings.image_width | append: 'x' -%}
-                      <img
-                        srcset= "{{ block.settings.image | img_url: image_size }}, {{ block.settings.image | img_url: image_size, scale: 2 }} 2x"
-                        src="{{ block.settings.image | img_url: '400x' }}"
-                        alt="{{ block.settings.image.alt | escape }}"
-                        loading="lazy"
-                        width="{{ block.settings.image.width }}"
-                        height="{{ block.settings.image.height }}"
-                        style="max-width: min(100%, {{ block.settings.image_width }}px);"
-                      >
-                    {%- else -%}
-                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                    {%- endif -%}
-                  </div>
-                {%- endcase -%}
-            </div>
-          {%- endfor -%}
-        </div>
+                </div>
+              {%- endcase -%}
+          </div>
+        {%- endfor -%}
+      </div>
       {%- endif -%}
 
-      <div class="footer-block--newsletter">
+      <div class="grid grid-cols-2 gap-4">
         {%- if section.settings.newsletter_enable -%}
-          <div class="footer-block__newsletter">
+          <div class="">
             {%- if section.settings.newsletter_heading != blank -%}
-              <h2 class="footer-block__heading">{{ section.settings.newsletter_heading | escape }}</h2>
+              <h2 class="text-body1">{{ section.settings.newsletter_heading | escape }}</h2>
             {%- endif -%}
             {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
               <input type="hidden" name="contact[tags]" value="newsletter">
@@ -123,75 +170,75 @@
         {%- endif -%}
 
         {%- if section.settings.show_social -%}
-          <ul class="footer__list-social list-unstyled list-social" role="list">
+          <ul class="flex flex-wrap justify-end" role="list">
             {%- if settings.social_twitter_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_twitter_link }}" class="link list-social__link" >
-                  {%- render 'icon-twitter' -%}
+              <li class="">
+                <a href="{{ settings.social_twitter_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-twitter' -%}
                   <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_facebook_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_facebook_link }}" class="link list-social__link" >
-                  {%- render 'icon-facebook' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_facebook_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-facebook' -%}
                   <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_pinterest_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_pinterest_link }}" class="link list-social__link" >
-                  {%- render 'icon-pinterest' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_pinterest_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-pinterest' -%}
                   <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_instagram_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_instagram_link }}" class="link list-social__link" >
-                  {%- render 'icon-instagram' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_instagram_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-instagram' -%}
                   <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_tiktok_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_tiktok_link }}" class="link list-social__link" >
-                  {%- render 'icon-tiktok' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_tiktok_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-tiktok' -%}
                   <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_tumblr_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_tumblr_link }}" class="link list-social__link" >
-                  {%- render 'icon-tumblr' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_tumblr_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-tumblr' -%}
                   <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_snapchat_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_snapchat_link }}" class="link list-social__link" >
-                  {%- render 'icon-snapchat' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_snapchat_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-snapchat' -%}
                   <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_youtube_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_youtube_link }}" class="link list-social__link" >
-                  {%- render 'icon-youtube' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_youtube_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-youtube' -%}
                   <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
                 </a>
               </li>
             {%- endif -%}
             {%- if settings.social_vimeo_link != blank -%}
-              <li class="list-social__item">
-                <a href="{{ settings.social_vimeo_link }}" class="link list-social__link" >
-                  {%- render 'icon-vimeo' -%}
+              <li class="link-icon">
+                <a href="{{ settings.social_vimeo_link }}" class="link-icon" >
+                  {%- render 'aaa-icon-vimeo' -%}
                   <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
                 </a>
               </li>
@@ -202,12 +249,13 @@
     </div>
   {%- endif -%}
 
-  <div class="footer__content-bottom">
-    <div class="footer__content-bottom-wrapper page-width">
-      <div class="footer__column footer__localization">
+  <div class="container mt-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+      <div class="grid grid-cols-2 gap-4 w-full">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+        <div>
           <noscript>
-            {%- form 'localization', id: 'FooterCountryFormNoScript', class: 'localization-form' -%}
+            {%- form 'localization', id: 'FooterCountryFormNoScript', class: '' -%}
               <div class="localization-form__select">
                 <h2 class="visually-hidden" id="FooterCountryLabelNoScript">{{ 'localization.country_label' | t }}</h2>
                 <select class="localization-selector link" name="country_code" aria-labelledby="FooterCountryLabelNoScript">
@@ -223,7 +271,7 @@
             {%- endform -%}
           </noscript>
           <localization-form>
-            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+            {%- form 'localization', id: 'FooterCountryForm', class: '' -%}
               <div class="no-js-hidden">
                 <h2 class="caption-large" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
                 <div class="disclosure">
@@ -245,11 +293,12 @@
               </div>
             {%- endform -%}
           </localization-form>
+        </div>
         {%- endif -%}
-
         {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+        <div>
           <noscript>
-            {%- form 'localization', id: 'FooterLanguageFormNoScript', class: 'localization-form' -%}
+            {%- form 'localization', id: 'FooterLanguageFormNoScript', class: '' -%}
               <div class="localization-form__select">
                 <h2 class="visually-hidden" id="FooterLanguageLabelNoScript">{{ 'localization.language_label' | t }}</h2>
                 <select class="localization-selector link" name="locale_code" aria-labelledby="FooterLanguageLabelNoScript">
@@ -263,13 +312,40 @@
               </div>
               <button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
             {%- endform -%}
-          </noscript>
-
+          </noscript>     
           <localization-form>
-            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-              <div class="no-js-hidden">
-                <h2 class="caption-large" id="FooterLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-                <div class="disclosure">
+            {%- form 'localization', id: 'FooterLanguageForm', class: '' -%}
+            <div class="no-js-hidden">
+              <h2 class="text-caption pb-1" id="FooterLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+              <details class="relative">
+                <summary class="flex btn-secondary inline-flex">
+                  <div class=""
+                    aria-expanded="false" 
+                    aria-controls="FooterLanguageList" 
+                    aria-describedby="FooterLanguageLabel">
+                    {{ localization.language.endonym_name | capitalize }}
+                  </div>
+                  {% render 'aaa-icon-chevron-down' %}
+                </summary>
+                <ul class="bg-light1 p-4 absolute bottom-14 w-40 z-20 border border-accent1">
+                  {%- for language in localization.available_languages -%}
+                  <li class="w-full" tabindex="-1">
+                    <a class="text-body2 btn-link py-2 inline-block"
+                      href="#" 
+                      hreflang="{{ language.iso_code }}" 
+                      lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} 
+                      aria-current="true"{% endif %} 
+                      data-value="{{ language.iso_code }}">
+                      {{ language.endonym_name | capitalize }}
+                    </a>
+                  </li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+              <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+
+
+                <!-- <div class="disclosure">
                   <button type="button" class="disclosure__button localization-form__select localization-selector link link--text caption-large" aria-expanded="false" aria-controls="FooterLanguageList" aria-describedby="FooterLanguageLabel">
                     {{ localization.language.endonym_name | capitalize }}
                     {% render 'icon-caret' %}
@@ -283,29 +359,29 @@
                       </li>
                     {%- endfor -%}
                   </ul>
-                </div>
-                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+                </div> -->
               </div>
             {%- endform -%}
           </localization-form>
+        </div>
         {%- endif -%}
       </div>
-      <div class="footer__column footer__column--info">
+      <div>
         {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
+          <div class="">
             <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list list-payment" role="list">
+            <ul class="flex" role="list">
               {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
+                <li class="p-1">
                   {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
                 </li>
               {%- endfor -%}
             </ul>
           </div>
         {%- endif -%}
-        <div class="footer__copyright caption">
-          <small class="copyright__content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
-          <small class="copyright__content">{{ powered_by_link }}</small>
+        <div class="text-caption text-center md:text-right">
+          <small class="">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
+          <small class="">{{ powered_by_link }}</small>
         </div>
       </div>
     </div>
@@ -385,6 +461,15 @@
           "default": "footer",
           "label": "t:sections.footer.blocks.link_list.settings.menu.label",
           "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        },
+        {
+          "type": "range",
+          "id": "link_list_column_span",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "label": "Column span on large screen",
+          "default": 2
         }
       ]
     },
@@ -403,6 +488,15 @@
           "id": "subtext",
           "default": "<p>Share store details, promotions, or brand content with your customers.</p>",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        },
+        {
+          "type": "range",
+          "id": "text_column_span",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "label": "Column span on large screen",
+          "default": 2
         }
       ]
     },
@@ -431,7 +525,7 @@
           "label": "Image alignment on large screen",
           "options": [
             {
-              "value": "",
+              "value": "start",
               "label": "Left"
             },
             {
@@ -439,11 +533,20 @@
               "label": "Center"
             },
             {
-              "value": "right",
+              "value": "end",
               "label": "Right"
             }
           ],
-          "default": "center"
+          "default": "start"
+        },
+        {
+          "type": "range",
+          "id": "image_column_span",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "label": "Column span on large screen",
+          "default": 2
         }
       ]
     }
@@ -540,6 +643,9 @@
   ],
   "default": {
     "blocks": [
+      {
+        "type": "image"
+      },
       {
         "type": "link_list"
       },
